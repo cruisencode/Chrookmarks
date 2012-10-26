@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cfc72968-710e-4058-a978-0ac924c46e10" name="Default" comment="" />
+    <list default="true" id="cfc72968-710e-4058-a978-0ac924c46e10" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/app.js" afterPath="$PROJECT_DIR$/js/app.js" />
+    </list>
     <ignored path="Chromarks.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -35,16 +39,16 @@
       <file leaf-file-name="options.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/options.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="0" selection-start="996" selection-end="996" vertical-scroll-proportion="-19.615385">
+            <state line="30" column="0" selection-start="996" selection-end="996" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="options.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="options.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/options.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="23" selection-start="896" selection-end="896" vertical-scroll-proportion="0.5292653">
+            <state line="25" column="23" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -55,19 +59,18 @@
       <file leaf-file-name="popup.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/popup.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="0" selection-start="1027" selection-end="1027" vertical-scroll-proportion="-18.961538">
+            <state line="29" column="0" selection-start="1027" selection-end="1027" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="app.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="241" column="27" selection-start="7151" selection-end="7168" vertical-scroll-proportion="0.0">
+            <state line="45" column="35" selection-start="1765" selection-end="1765" vertical-scroll-proportion="0.6025317">
               <folding>
-                <element signature="n#!!doc" expanded="true" />
-                <marker date="1350073240597" expanded="true" signature="6619:6656" placeholder="..." />
+                <marker date="1351270914938" expanded="true" signature="6656:6693" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -98,6 +101,9 @@
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
@@ -110,18 +116,18 @@
         <option value="$PROJECT_DIR$/popup.html" />
         <option value="$PROJECT_DIR$/manifest.json" />
         <option value="$PROJECT_DIR$/options.html" />
-        <option value="$PROJECT_DIR$/js/app.js" />
         <option value="$PROJECT_DIR$/js/options.js" />
+        <option value="$PROJECT_DIR$/js/app.js" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="90" />
-    <option name="y" value="14" />
+    <option name="x" value="68" />
+    <option name="y" value="13" />
     <option name="width" value="1416" />
     <option name="height" value="988" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -147,6 +153,16 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -227,23 +243,29 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="168" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="168" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="options.lastSelected" value="JavaScript.Libraries" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="168" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="168" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="843" />
     <property name="DefaultHtmlFileTemplate" value="Html" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="843" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="169" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="167" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
   </component>
@@ -291,8 +313,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="90" y="14" width="1416" height="988" extended-state="0" />
-    <editor active="true" />
+    <frame x="68" y="13" width="1416" height="988" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -302,7 +324,8 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971016" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="JsTestDriver Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32971016" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -310,7 +333,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="JsTestDriver Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -335,6 +357,7 @@
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
     <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
+    <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
@@ -344,6 +367,7 @@
     <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
+    <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
     <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
@@ -368,40 +392,27 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="24" column="0" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/popup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="1027" selection-end="1027" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="29" column="0" selection-start="1027" selection-end="1027" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="78" column="0" selection-start="2810" selection-end="2810" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1350073240597" expanded="true" signature="6619:6656" placeholder="..." />
-          </folding>
-        </state>
+        <state line="78" column="0" selection-start="2810" selection-end="2810" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/popup.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="738" selection-end="738" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="22" column="0" selection-start="738" selection-end="738" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/_locales/en/messages.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="14" column="0" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/ext-all.css">
@@ -414,63 +425,54 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/popup.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="738" selection-end="738" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_locales/en/messages.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/ext-all.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="2" selection-start="2" selection-end="2" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="2" selection-start="2" selection-end="2" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="0" selection-start="638" selection-end="638" vertical-scroll-proportion="0.0">
+        <state line="25" column="0" selection-start="638" selection-end="638" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/options.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="0" selection-start="996" selection-end="996" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/popup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="0" selection-start="1027" selection-end="1027" vertical-scroll-proportion="-18.961538">
+        <state line="29" column="0" selection-start="1027" selection-end="1027" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/options.html">
+    <entry file="file://$PROJECT_DIR$/css/popup.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="0" selection-start="996" selection-end="996" vertical-scroll-proportion="-19.615385">
-          <folding />
+        <state line="22" column="0" selection-start="738" selection-end="738" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/_locales/en/messages.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="309" selection-end="309" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/options.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="23" selection-start="896" selection-end="896" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="241" column="27" selection-start="7151" selection-end="7168" vertical-scroll-proportion="0.0">
+        <state line="45" column="35" selection-start="1765" selection-end="1765" vertical-scroll-proportion="0.6025317">
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <marker date="1350073240597" expanded="true" signature="6619:6656" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/options.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="23" selection-start="896" selection-end="896" vertical-scroll-proportion="0.5292653">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <marker date="1351270914938" expanded="true" signature="6656:6693" placeholder="..." />
           </folding>
         </state>
       </provider>

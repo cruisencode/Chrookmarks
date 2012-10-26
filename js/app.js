@@ -42,7 +42,8 @@ function loadChildren(children, marks) {
       leaf: (result.url && result.url.length > 0),
       singleClickExpand: (result.url && result.url.length > 0 ? undefined : true),
       allowDrag: (result.url && result.url.length > 0),
-      allowDrop: !(result.url && result.url.length > 0)
+      allowDrop: !(result.url && result.url.length > 0),
+      expanded: (result.id === '1')
     });
 
     marks.push(mark);
@@ -243,6 +244,7 @@ Ext.application({
           store: store,
           rootVisible: false,
           useArrows: true,
+          animate: false,
           tbar: [
             {
               xtype: 'textfield',
