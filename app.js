@@ -1,4 +1,4 @@
-<!--
+/*
  This file is part of Chromarks.
 
  Copyright (c) 2012, James Nuzzi
@@ -15,15 +15,26 @@
 
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
--->
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="css/ext-all.css">
-    <link rel="stylesheet" type="text/css" href="css/popup.css">
-    <script type="text/javascript" src="js/ext-all.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-  </head>
-  <body id="body">
-  </body>
-</html>
+ */
+Ext.application({
+  requires: ['Ext.container.Viewport'],
+  name: 'Chromarks',
+  appFolder: 'app',
+  controllers: [
+    'Marks'
+  ],
+  launch: function () {
+    Chromarks.app = this;
+    window.setTimeout(this.initApp, 1);
+  },
+  initApp: function () {
+    Ext.create('Ext.container.Viewport', {
+      layout: 'fit',
+      items: [
+        {
+          xtype: 'markTree'
+        }
+      ]
+    });
+  }
+});

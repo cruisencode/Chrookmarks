@@ -1,4 +1,4 @@
-<!--
+/*
  This file is part of Chromarks.
 
  Copyright (c) 2012, James Nuzzi
@@ -15,15 +15,17 @@
 
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
--->
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="css/ext-all.css">
-    <link rel="stylesheet" type="text/css" href="css/popup.css">
-    <script type="text/javascript" src="js/ext-all.js"></script>
-    <script type="text/javascript" src="app.js"></script>
-  </head>
-  <body id="body">
-  </body>
-</html>
+ */
+Ext.define('Chromarks.store.Marks', {
+  extend: 'Ext.data.TreeStore',
+  model: 'Chromarks.model.Mark',
+  autoLoad: true,
+  autoSync: true,
+  folderSort: true,
+  sorters: [
+    { property: 'text', direction: 'ASC' }
+  ],
+  root: {
+    expanded: true
+  }
+});

@@ -23,6 +23,7 @@ Ext.require([
   'Ext.data.TreeStore',
   'Ext.menu.Menu',
   'Ext.MessageBox',
+  'Ext.Msg',
   'Ext.container.Viewport',
   'Ext.tree.Panel'
 ]);
@@ -30,13 +31,17 @@ Ext.require([
 var tree;
 
 function loadChildren(children, marks) {
-  for (var i = 0; i < children.length; i++) {
-    var result = children[i];
-    var mark = Ext.create('Chromarks.model.Mark', {
+  var i,
+      result,
+      mark;
+
+  for (i = 0; i < children.length; i++) {
+    result = children[i];
+    mark = Ext.create('Chromarks.model.Mark', {
       id: result.id,
       text: result.title,
       qtitle: (result.url && result.url.length > 0 ? result.title : undefined),
-      qtip: (result.url && result.url.length > 0 ? '<u>' + result.url + '</u><br/><br/>' + new Date(result.dateAdded).toLocaleString().replace(/ \(.*?\)/i, "") : undefined),
+      qtip: (result.url && result.url.length > 0 ? '<u>' + result.url + '</u><br/><br/>' + new Date(result.dateAdded).toLocaleString() : undefined),
       url: result.url,
       icon: (result.url && result.url.length > 0 ? "chrome://favicon/" + result.url : undefined),
       leaf: (result.url && result.url.length > 0),
@@ -53,25 +58,25 @@ function loadChildren(children, marks) {
 Ext.define("Chromarks.proxy.Marks", {
   extend: 'Ext.data.Proxy',
   alias: 'proxy.marks',
-  update: function(operation, callback, scope) {
+  update: function (operation, callback, scope) {
     var thisProxy = this;
 
     if (operation.records.length === 1) {
       if (operation.records[0].modified.parentId) {
-        chrome.bookmarks.move(operation.records[0].get('id'), { parentId: operation.records[0].parentNode.get('id') }, function() {
+        chrome.bookmarks.move(operation.records[0].get('id'), { parentId: operation.records[0].parentNode.get('id') }, function () {
           operation.setSuccessful();
           operation.setCompleted();
 
-          if (typeof callback == "function") {
+          if (typeof callback === "function") {
             callback.call(scope || thisProxy, operation);
           }
         });
       } else if (operation.records[0].modified.text) {
-        chrome.bookmarks.update(operation.records[0].get('id'), { title: operation.records[0].get('text') }, function() {
+        chrome.bookmarks.update(operation.records[0].get('id'), { title: operation.records[0].get('text') }, function () {
           operation.setSuccessful();
           operation.setCompleted();
 
-          if (typeof callback == "function") {
+          if (typeof callback === "function") {
             callback.call(scope || thisProxy, operation);
           }
         });
@@ -80,20 +85,20 @@ Ext.define("Chromarks.proxy.Marks", {
       operation.setException('Cannot update more than one node.');
       operation.setCompleted();
 
-      if (typeof callback == "function") {
+      if (typeof callback === "function") {
         callback.call(scope || thisProxy, operation);
       }
     }
   },
-  destroy: function(operation, callback, scope) {
+  destroy: function (operation, callback, scope) {
     var thisProxy = this;
 
     if (operation.records.length === 1) {
-      chrome.bookmarks.remove(operation.records[0].get('id'), function() {
+      chrome.bookmarks.remove(operation.records[0].get('id'), function () {
         operation.setSuccessful();
         operation.setCompleted();
 
-        if (typeof callback == "function") {
+        if (typeof callback === "function") {
           callback.call(scope || thisProxy, operation);
         }
       });
@@ -101,58 +106,58 @@ Ext.define("Chromarks.proxy.Marks", {
       operation.setException('Cannot delete more than one node.');
       operation.setCompleted();
 
-      if (typeof callback == "function") {
+      if (typeof callback === "function") {
         callback.call(scope || thisProxy, operation);
       }
     }
   },
-  read: function(operation, callback, scope) {
+  read: function (operation, callback, scope) {
     var thisProxy = this;
 
-    if (operation.params.node === "root"){
-      chrome.bookmarks.getTree(function(results){
-        var marks = [];
-        var children = results[0].children;
+    if (operation.params.node === "root") {
+      chrome.bookmarks.getTree(function (results) {
+        var marks = [],
+            children = results[0].children;
 
         loadChildren(children, marks);
 
         //return model instances in a result set
-          operation.resultSet = new Ext.data.ResultSet({
-            records: marks,
-            total  : marks.length,
-            loaded : true
-          });
+        operation.resultSet = new Ext.data.ResultSet({
+          records: marks,
+          total  : marks.length,
+          loaded : true
+        });
 
-          //announce success
-          operation.setSuccessful();
-          operation.setCompleted();
+        //announce success
+        operation.setSuccessful();
+        operation.setCompleted();
 
-          //finish with callback
-          if (typeof callback == "function") {
-            callback.call(scope || thisProxy, operation);
-          }
+        //finish with callback
+        if (typeof callback === "function") {
+          callback.call(scope || thisProxy, operation);
+        }
       });
     } else {
-      chrome.bookmarks.getChildren(operation.params.node, function(results){
+      chrome.bookmarks.getChildren(operation.params.node, function (results) {
         var marks = [];
 
         loadChildren(results, marks);
 
         //return model instances in a result set
-          operation.resultSet = new Ext.data.ResultSet({
-            records: marks,
-            total  : marks.length,
-            loaded : true
-          });
+        operation.resultSet = new Ext.data.ResultSet({
+          records: marks,
+          total  : marks.length,
+          loaded : true
+        });
 
-          //announce success
-          operation.setSuccessful();
-          operation.setCompleted();
+        //announce success
+        operation.setSuccessful();
+        operation.setCompleted();
 
-          //finish with callback
-          if (typeof callback == "function") {
-            callback.call(scope || thisProxy, operation);
-          }
+        //finish with callback
+        if (typeof callback === "function") {
+          callback.call(scope || thisProxy, operation);
+        }
       });
     }
   }
@@ -186,7 +191,7 @@ var ctxMenu = new Ext.menu.Menu({
     {
       text: 'Open in new tab',
       icon: 'icons/new-tab.png',
-      handler: function() {
+      handler: function () {
         chrome.tabs.create({ url: tree.getSelectionModel().getLastSelected().get('url'), selected: false });
       }
     },
@@ -194,31 +199,31 @@ var ctxMenu = new Ext.menu.Menu({
     {
       text: 'Rename',
       icon: 'icons/rename.png',
-      handler: function() {
+      handler: function () {
         Ext.MessageBox.prompt(
-            'Rename Bookmark',
-            'Bookmark Name:',
-            function(buttonId, text) {
-              if (buttonId === 'ok') {
-                var node = tree.getSelectionModel().getLastSelected();
+          'Rename Bookmark',
+          'Bookmark Name:',
+          function (buttonId, text) {
+            if (buttonId === 'ok') {
+              var node = tree.getSelectionModel().getLastSelected();
 
-                node.set('text', text);
-                node.commit(false);
-              }
-            },
-            this,
-            false,
-            tree.getSelectionModel().getLastSelected().get('text')
+              node.set('text', text);
+              node.commit(false);
+            }
+          },
+          this,
+          false,
+          tree.getSelectionModel().getLastSelected().get('text')
         );
       }
     },
     {
       text: 'Delete',
       icon: 'icons/delete.png',
-      handler: function() {
+      handler: function () {
         var selectedNode = tree.getSelectionModel().getLastSelected();
 
-        if (selectedNode != tree.getRootNode()) {
+        if (selectedNode !== tree.getRootNode()) {
           Ext.MessageBox.maxWidth = 300;
           Ext.Msg.confirm('Delete Bookmark', '<p style="font-weight: bold; text-wrap: normal;">' + selectedNode.get('text') + '</p><br/><p>Are you sure you want to delete this bookmark?</p>', function(button) {
             if (button === 'yes') {
@@ -233,72 +238,77 @@ var ctxMenu = new Ext.menu.Menu({
 });
 
 
-Ext.application({
-  name: 'Chromarks',
-  launch: function() {
-    Ext.create('Ext.container.Viewport', {
-      layout: 'border',
-      items: [
-        tree = Ext.create('Ext.tree.Panel', {
-          region: 'center',
-          store: store,
-          rootVisible: false,
-          useArrows: true,
-          animate: false,
-          tbar: [
-            {
-              xtype: 'textfield',
-              name: 'field1',
-              fieldStyle: 'background: white url(icons/search.png) 1px 50% no-repeat; padding-left: 18px;',
-              emptyText: 'Search Bookmarks'
-            },
-              '->',
-            {
-              xtype: 'button',
-              tooltip: 'Options',
-              icon: 'icons/options.png',
-              handler: function() {
-                chrome.tabs.create({ url: chrome.extension.getURL("options.html"), selected: true });
-
-                self.close();
-              }
-            }
-          ],
-          listeners: {
-            itemclick: function(view, node, item, index, e) {
-              if(node.isLeaf()) {
-                if (e.ctrlKey === true) {
-                  chrome.tabs.create({ url: node.get('url'), selected: false });
-                } else {
-                  chrome.tabs.getSelected(null, function(tab) {
-                    chrome.tabs.update(tab.id, { url: node.get('url') });
-
-                    self.close();
-                  });
-                }
-              } else if(node.isExpanded()) {
-                node.collapse();
-              } else {
-                node.expand();
-              }
-            }
+function init() {
+  Ext.create('Ext.container.Viewport', {
+    layout: 'border',
+    items: [
+      tree = Ext.create('Ext.tree.Panel', {
+        region: 'center',
+        store: store,
+        rootVisible: false,
+        useArrows: true,
+        animate: false,
+        tbar: [
+          {
+            xtype: 'textfield',
+            name: 'field1',
+            fieldStyle: 'background: white url(icons/search.png) 1px 50% no-repeat; padding-left: 18px;',
+            emptyText: 'Search Bookmarks'
           },
-          itemdblclick: function(view, node, item, index, e) {
-            e.stopEvent();
-          },
-          viewConfig: {
-            plugins: {
-              ptype: 'treeviewdragdrop',
-              appendOnly: true,
-              containerScroll: true
+          '->',
+          {
+            xtype: 'button',
+            tooltip: 'Options',
+            icon: 'icons/options.png',
+            handler: function () {
+              chrome.tabs.create({ url: chrome.extension.getURL("options.html"), selected: true });
+
+              self.close();
             }
           }
-        })
-      ]
-    });
-    tree.on('itemcontextmenu', function(view, record, item, index, event){
-      ctxMenu.showAt(event.getXY());
-      event.stopEvent();
-    },this);
+        ],
+        listeners: {
+          itemclick: function (view, node, item, index, e) {
+            if (node.isLeaf()) {
+              if (e.ctrlKey === true) {
+                chrome.tabs.create({ url: node.get('url'), selected: false });
+              } else {
+                chrome.tabs.getSelected(null, function (tab) {
+                  chrome.tabs.update(tab.id, { url: node.get('url') });
+
+                  self.close();
+                });
+              }
+            } else if (node.isExpanded()) {
+              node.collapse();
+            } else {
+              node.expand();
+            }
+          }
+        },
+        itemdblclick: function (view, node, item, index, e) {
+          e.stopEvent();
+        },
+        viewConfig: {
+          plugins: {
+            ptype: 'treeviewdragdrop',
+            appendOnly: true,
+            containerScroll: true
+          }
+        }
+      })
+    ]
+  });
+  tree.on('itemcontextmenu', function (view, record, item, index, event){
+    ctxMenu.showAt(event.getXY());
+    event.stopEvent();
+  }, this);
+}
+
+
+Ext.application({
+  name: 'Chromarks',
+  launch: function () {
+    setTimeout(init, 1);
   }
 });
