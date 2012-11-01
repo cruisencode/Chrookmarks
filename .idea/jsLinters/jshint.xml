@@ -8,6 +8,7 @@
     <option noarg="true" />
     <option noempty="true" />
     <option nonew="true" />
+    <option strict="true" />
     <option undef="true" />
     <option browser="true" />
     <option maxerr="50" />
