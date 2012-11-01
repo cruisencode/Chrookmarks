@@ -72,7 +72,6 @@ Ext.define('Chromarks.view.mark.Tree', {
     }
   },
   initComponent: function () {
-    console.log("Init tree");
     this.callParent(arguments);
   }
 });

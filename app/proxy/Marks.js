@@ -56,8 +56,8 @@ Ext.define("Chromarks.proxy.Marks", {
             callback.call(scope || thisProxy, operation);
           }
         });
-      } else if (operation.records[0].modified.text) {
-        chrome.bookmarks.update(operation.records[0].get('id'), { title: operation.records[0].get('text') }, function () {
+      } else if (operation.records[0].modified.text || operation.records[0].modified.url) {
+        chrome.bookmarks.update(operation.records[0].get('id'), { 'url': operation.records[0].get('url'), 'title': operation.records[0].get('text') }, function () {
           operation.setSuccessful();
           operation.setCompleted();
 

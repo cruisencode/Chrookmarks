@@ -29,26 +29,28 @@ var ctxMenu = new Ext.menu.Menu({
     },
     '-',
     {
-      text: 'Rename',
+      text: 'Edit',
       icon: 'icons/rename.png',
       handler: function () {
         var tree = Ext.ComponentQuery.query('markTree')[0];
 
-        Ext.MessageBox.prompt(
-          'Rename Bookmark',
-          'Bookmark Name:',
-          function (buttonId, text) {
-            if (buttonId === 'ok') {
-              var node = tree.getSelectionModel().getLastSelected();
+        Chromarks.app.getController('Marks').editMark(tree.getSelectionModel().getLastSelected());
 
-              node.set('text', text);
-              node.commit(false);
-            }
-          },
-          this,
-          false,
-          tree.getSelectionModel().getLastSelected().get('text')
-        );
+//        Ext.MessageBox.prompt(
+//          'Rename Bookmark',
+//          'Bookmark Name:',
+//          function (buttonId, text) {
+//            if (buttonId === 'ok') {
+//              var node = tree.getSelectionModel().getLastSelected();
+//
+//              node.set('text', text);
+//              node.commit(false);
+//            }
+//          },
+//          this,
+//          false,
+//          tree.getSelectionModel().getLastSelected().get('text')
+//        );
       }
     },
     {
@@ -76,13 +78,31 @@ Ext.define('Chromarks.controller.Marks', {
   extend: 'Ext.app.Controller',
   stores: [ 'Marks' ],
   models: [ 'Mark' ],
-  views: [ 'mark.Tree' ],
+  views: [ 'mark.Tree', 'mark.Edit' ],
   init: function () {
     this.control({
       'markTree': {
         itemcontextmenu: this.contextMenu
+      },
+      'markEdit button[action=save]': {
+        click: this.updateMark
       }
     });
+  },
+  editMark: function (selected) {
+    var view = Ext.widget('markEdit');
+
+    view.down('form').loadRecord(selected);
+  },
+  updateMark: function (button) {
+    var win = button.up('window'),
+        form = win.down('form'),
+        record = form.getRecord(),
+        values = form.getValues();
+
+    record.set(values);
+    record.commit();
+    win.close();
   },
   contextMenu: function (view, record, item, index, event) {
     event.stopEvent();
