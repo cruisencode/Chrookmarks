@@ -19,6 +19,7 @@
 Ext.define('Chromarks.view.mark.Tree', {
   extend: 'Ext.tree.Panel',
   alias: 'widget.markTree',
+  id: 'bookmarkTree',
   store: 'Marks',
   rootVisible: false,
   useArrows: true,

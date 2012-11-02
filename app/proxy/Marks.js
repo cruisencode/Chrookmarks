@@ -19,18 +19,24 @@
 Ext.define("Chromarks.proxy.Marks", {
   extend: 'Ext.data.Proxy',
   alias: 'proxy.marksProxy',
+  createTip: function (mark, markTitle, markDate) {
+    var markUrl = mark.get('url');
+
+    mark.set('qtitle', (markUrl && markUrl.length > 0 ? markTitle : undefined));
+    mark.set('qtip', (markUrl && markUrl.length > 0 ? "<span style='text-decoration: underline'>" + markUrl + '</span><br/><br/>' + markDate.toLocaleDateString() + ' ' + markDate.toLocaleTimeString() : undefined));
+  },
   loadChildren: function (children, marks) {
     var i,
         result,
-        mark;
+        mark,
+        markDate;
 
     for (i = 0; i < children.length; i++) {
       result = children[i];
+      markDate = new Date(result.dateAdded);
       mark = Ext.create('Chromarks.model.Mark', {
         id: result.id,
         text: result.title,
-        qtitle: (result.url && result.url.length > 0 ? result.title : undefined),
-        qtip: (result.url && result.url.length > 0 ? '<u>' + result.url + '</u><br/><br/>' + new Date(result.dateAdded).toLocaleString() : undefined),
         url: result.url,
         icon: (result.url && result.url.length > 0 ? "chrome://favicon/" + result.url : undefined),
         leaf: (result.url && result.url.length > 0),
@@ -39,6 +45,8 @@ Ext.define("Chromarks.proxy.Marks", {
         allowDrop: !(result.url && result.url.length > 0),
         expanded: (result.id === '1')
       });
+
+      this.createTip(mark, result.title, markDate);
 
       marks.push(mark);
     }
@@ -49,6 +57,8 @@ Ext.define("Chromarks.proxy.Marks", {
     if (operation.records.length === 1) {
       if (operation.records[0].modified.parentId) {
         chrome.bookmarks.move(operation.records[0].get('id'), { parentId: operation.records[0].parentNode.get('id') }, function () {
+          Ext.getCmp('bookmarkStore').sort();
+
           operation.setSuccessful();
           operation.setCompleted();
 
@@ -57,7 +67,10 @@ Ext.define("Chromarks.proxy.Marks", {
           }
         });
       } else if (operation.records[0].modified.text || operation.records[0].modified.url) {
-        chrome.bookmarks.update(operation.records[0].get('id'), { 'url': operation.records[0].get('url'), 'title': operation.records[0].get('text') }, function () {
+        chrome.bookmarks.update(operation.records[0].get('id'), { 'url': operation.records[0].get('url'), 'title': operation.records[0].get('text') }, function (result) {
+          thisProxy.createTip(operation.records[0], result.title, new Date(result.dateAdded));
+          Ext.getCmp('bookmarkStore').sort();
+
           operation.setSuccessful();
           operation.setCompleted();
 

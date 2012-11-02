@@ -16,10 +16,10 @@
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
  */
-Ext.define('Chromarks.view.mark.Edit', {
+Ext.define('Chromarks.view.mark.Delete', {
   extend: 'Ext.window.Window',
-  alias: 'widget.markEdit',
-  title: 'Edit Bookmark',
+  alias: 'widget.markDelete',
+  title: 'Delete Bookmark',
   layout: 'fit',
   autoShow: true,
   modal: true,
@@ -29,22 +29,20 @@ Ext.define('Chromarks.view.mark.Edit', {
         xtype: 'form',
         width: 300,
         defaults: {
-          labelAlign: 'top',
-          labelStyle: 'font-weight:bold;',
           padding: 10
         },
         items: [
           {
-            xtype: 'textfield',
+            xtype: 'displayfield',
             name: 'text',
             anchor: '100%',
-            fieldLabel: 'Name'
+            fieldStyle: {
+              fontWeight: 'bold'
+            }
           },
           {
-            xtype: 'textfield',
-            name: 'url',
-            anchor: '100%',
-            fieldLabel: 'URL'
+            xtype: 'label',
+            text: 'Are you sure you want to delete this bookmark?'
           }
         ]
       }
@@ -52,8 +50,8 @@ Ext.define('Chromarks.view.mark.Edit', {
 
     this.buttons = [
       {
-        text: 'Save',
-        action: 'save'
+        text: 'Delete',
+        action: 'delete'
       },
       {
         text: 'Cancel',

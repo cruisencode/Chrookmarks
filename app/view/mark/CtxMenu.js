@@ -16,21 +16,29 @@
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
  */
-Ext.application({
-  requires: ['Ext.container.Viewport'],
-  name: 'Chromarks',
-  appFolder: 'app',
-  controllers: [ 'Marks' ],
-  launch: function () {
-    window.setTimeout(this.initApp, 1);
-  },
-  initApp: function () {
-    Ext.create('Ext.container.Viewport', {
-      layout: 'fit',
-      items: [ { xtype: 'markTree' } ]
-    });
+Ext.define('Chromarks.view.mark.CtxMenu', {
+  extend: 'Ext.menu.Menu',
+  alias: 'widget.ctxMenu',
+  initComponent: function () {
+    this.items = [
+      {
+        text: 'Open in new tab',
+        icon: 'icons/new-tab.png',
+        itemId: 'openNew'
+      },
+      '-',
+      {
+        text: 'Edit',
+        icon: 'icons/rename.png',
+        itemId: 'edit'
+      },
+      {
+        text: 'Delete',
+        icon: 'icons/delete.png',
+        itemId: 'delete'
+      }
+    ];
 
-    Ext.tip.QuickTipManager.init();
-    Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), { showDelay: 1000, hideDelay: 0 });
+    this.callParent(arguments);
   }
 });

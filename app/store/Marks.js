@@ -18,6 +18,7 @@
  */
 Ext.define('Chromarks.store.Marks', {
   extend: 'Ext.data.TreeStore',
+  id: 'bookmarkStore',
   model: 'Chromarks.model.Mark',
   autoLoad: true,
   autoSync: true,

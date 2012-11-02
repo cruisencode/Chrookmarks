@@ -16,69 +16,11 @@
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
  */
-var ctxMenu = new Ext.menu.Menu({
-  items: [
-    {
-      text: 'Open in new tab',
-      icon: 'icons/new-tab.png',
-      handler: function () {
-        var tree = Ext.ComponentQuery.query('markTree')[0];
-
-        chrome.tabs.create({ url: tree.getSelectionModel().getLastSelected().get('url'), selected: false });
-      }
-    },
-    '-',
-    {
-      text: 'Edit',
-      icon: 'icons/rename.png',
-      handler: function () {
-        var tree = Ext.ComponentQuery.query('markTree')[0];
-
-        Chromarks.app.getController('Marks').editMark(tree.getSelectionModel().getLastSelected());
-
-//        Ext.MessageBox.prompt(
-//          'Rename Bookmark',
-//          'Bookmark Name:',
-//          function (buttonId, text) {
-//            if (buttonId === 'ok') {
-//              var node = tree.getSelectionModel().getLastSelected();
-//
-//              node.set('text', text);
-//              node.commit(false);
-//            }
-//          },
-//          this,
-//          false,
-//          tree.getSelectionModel().getLastSelected().get('text')
-//        );
-      }
-    },
-    {
-      text: 'Delete',
-      icon: 'icons/delete.png',
-      handler: function () {
-        var tree = Ext.ComponentQuery.query('markTree')[0],
-            selectedNode = tree.getSelectionModel().getLastSelected();
-
-        if (selectedNode !== tree.getRootNode()) {
-          Ext.MessageBox.maxWidth = 300;
-          Ext.Msg.confirm('Delete Bookmark', '<p style="font-weight: bold; text-wrap: normal;">' + selectedNode.get('text') + '</p><br/><p>Are you sure you want to delete this bookmark?</p>', function(button) {
-            if (button === 'yes') {
-              selectedNode.remove();
-              selectedNode.commit(false);
-            }
-          });
-        }
-      }
-    }
-  ]
-});
-
 Ext.define('Chromarks.controller.Marks', {
   extend: 'Ext.app.Controller',
   stores: [ 'Marks' ],
   models: [ 'Mark' ],
-  views: [ 'mark.Tree', 'mark.Edit' ],
+  views: [ 'mark.Tree', 'mark.Edit', 'mark.Delete', 'mark.CtxMenu' ],
   init: function () {
     this.control({
       'markTree': {
@@ -86,11 +28,24 @@ Ext.define('Chromarks.controller.Marks', {
       },
       'markEdit button[action=save]': {
         click: this.updateMark
+      },
+      'markDelete button[action=delete]': {
+        click: this.removeMark
+      },
+      'ctxMenu menuitem[itemId=openNew]': {
+        click: this.openInNewTab
+      },
+      'ctxMenu menuitem[itemId=edit]': {
+        click: this.editMark
+      },
+      'ctxMenu menuitem[itemId=delete]': {
+        click: this.deleteMark
       }
     });
   },
-  editMark: function (selected) {
-    var view = Ext.widget('markEdit');
+  editMark: function () {
+    var view = Ext.widget('markEdit'),
+        selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
 
     view.down('form').loadRecord(selected);
   },
@@ -104,8 +59,30 @@ Ext.define('Chromarks.controller.Marks', {
     record.commit();
     win.close();
   },
+  deleteMark: function () {
+    var view = Ext.widget('markDelete'),
+        selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
+
+    view.down('form').loadRecord(selected);
+  },
+  removeMark: function (button) {
+    var win = button.up('window'),
+        form = win.down('form'),
+        record = form.getRecord();
+
+    record.remove();
+    record.commit();
+    win.close();
+  },
   contextMenu: function (view, record, item, index, event) {
+    var ctxMenu = Ext.widget('ctxMenu');
+
     event.stopEvent();
     ctxMenu.showAt(event.getXY());
+  },
+  openInNewTab: function() {
+    var selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
+
+    chrome.tabs.create({ url: selected.get('url'), selected: false });
   }
 });
