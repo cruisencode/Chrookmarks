@@ -34,37 +34,11 @@ Ext.define('Chromarks.view.mark.Tree', {
     '->',
     {
       xtype: 'button',
+      action: 'options',
       tooltip: 'Options',
-      icon: 'icons/options.png',
-      handler: function () {
-        chrome.tabs.create({ url: chrome.extension.getURL("options.html"), selected: true });
-
-        self.close();
-      }
+      icon: 'icons/options.png'
     }
   ],
-  listeners: {
-    itemclick: function (view, node, item, index, e) {
-      if (node.isLeaf()) {
-        if (e.ctrlKey === true) {
-          chrome.tabs.create({ url: node.get('url'), selected: false });
-        } else {
-          chrome.tabs.getSelected(null, function (tab) {
-            chrome.tabs.update(tab.id, { url: node.get('url') });
-
-            self.close();
-          });
-        }
-      } else if (node.isExpanded()) {
-        node.collapse();
-      } else {
-        node.expand();
-      }
-    }
-  },
-  itemdblclick: function (view, node, item, index, e) {
-    e.stopEvent();
-  },
   viewConfig: {
     plugins: {
       ptype: 'treeviewdragdrop',

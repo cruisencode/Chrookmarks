@@ -24,7 +24,12 @@ Ext.define('Chromarks.controller.Marks', {
   init: function () {
     this.control({
       'markTree': {
-        itemcontextmenu: this.contextMenu
+        itemcontextmenu: this.contextMenu,
+        itemclick: this.openMark,
+        itemdblclick: function () { e.stopEvent(); }
+      },
+      'markTree button[action=options]': {
+        click: this.openOptions
       },
       'markEdit button[action=save]': {
         click: this.updateMark
@@ -80,9 +85,31 @@ Ext.define('Chromarks.controller.Marks', {
     event.stopEvent();
     ctxMenu.showAt(event.getXY());
   },
-  openInNewTab: function() {
+  openMark: function (view, node, item, index, e) {
+    if (node.isLeaf()) {
+      if (e.ctrlKey === true) {
+        chrome.tabs.create({ url: node.get('url'), selected: false });
+      } else {
+        chrome.tabs.getSelected(null, function (tab) {
+          chrome.tabs.update(tab.id, { url: node.get('url') });
+
+          self.close();
+        });
+      }
+    } else if (node.isExpanded()) {
+      node.collapse();
+    } else {
+      node.expand();
+    }
+  },
+  openInNewTab: function () {
     var selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
 
     chrome.tabs.create({ url: selected.get('url'), selected: false });
+  },
+  openOptions: function () {
+    chrome.tabs.create({ url: chrome.extension.getURL("options.html"), selected: true });
+
+    self.close();
   }
 });
