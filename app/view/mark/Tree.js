@@ -28,7 +28,7 @@ Ext.define('Chromarks.view.mark.Tree', {
     {
       xtype: 'textfield',
       name: 'field1',
-      fieldStyle: 'background: white url(icons/search.png) 1px 50% no-repeat; padding-left: 18px;',
+      fieldStyle: 'background: white url(resources/icons/search.png) 1px 50% no-repeat; padding-left: 18px;',
       emptyText: 'Search Bookmarks'
     },
     '->',
@@ -36,7 +36,7 @@ Ext.define('Chromarks.view.mark.Tree', {
       xtype: 'button',
       action: 'options',
       tooltip: 'Options',
-      icon: 'icons/options.png'
+      icon: 'resources/icons/options.png'
     }
   ],
   viewConfig: {

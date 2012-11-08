@@ -23,18 +23,18 @@ Ext.define('Chromarks.view.mark.CtxMenu', {
     this.items = [
       {
         text: 'Open in new tab',
-        icon: 'icons/new-tab.png',
+        icon: 'resources/icons/new-tab.png',
         itemId: 'openNew'
       },
       '-',
       {
         text: 'Edit',
-        icon: 'icons/rename.png',
+        icon: 'resources/icons/rename.png',
         itemId: 'edit'
       },
       {
         text: 'Delete',
-        icon: 'icons/delete.png',
+        icon: 'resources/icons/delete.png',
         itemId: 'delete'
       }
     ];
