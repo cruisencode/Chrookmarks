@@ -31,6 +31,9 @@ Ext.define('Chromarks.controller.Marks', {
       'markTree button[action=options]': {
         click: this.openOptions
       },
+      'markTree textfield[id=searchField]': {
+        change: this.searchBookmarks
+      },
       'markEdit button[action=save]': {
         click: this.updateMark
       },
@@ -111,5 +114,13 @@ Ext.define('Chromarks.controller.Marks', {
     chrome.tabs.create({ url: chrome.extension.getURL("options.html"), selected: true });
 
     self.close();
+  },
+  searchBookmarks: function (field, newValue, oldValue, eOpts) {
+    if (!newValue || newValue === "") {
+      Ext.getCmp('bookmarkTree').clearFilter();
+      Ext.getCmp('bookmarkTree').expandPath('/root/1');
+    } else {
+      Ext.getCmp('bookmarkTree').filter(new RegExp('.*?' + newValue + '.*', 'i'), 'text');
+    }
   }
 });

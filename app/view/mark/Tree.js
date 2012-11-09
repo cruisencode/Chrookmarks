@@ -24,10 +24,19 @@ Ext.define('Chromarks.view.mark.Tree', {
   rootVisible: false,
   useArrows: true,
   animate: false,
+  plugins:[
+    Ext.create('Chromarks.view.mark.TreeFilter', {
+      pluginId: 'treefilter',
+      collapseOnClear: true,
+      allowParentFolders: true
+    })
+  ],
   tbar: [
     {
       xtype: 'textfield',
-      name: 'field1',
+      name: 'search',
+      id: 'searchField',
+      alias: 'widget.searchField',
       fieldStyle: 'background: white url(resources/icons/search.png) 1px 50% no-repeat; padding-left: 18px;',
       emptyText: 'Search Bookmarks'
     },
