@@ -56,6 +56,13 @@ Ext.define('Chromarks.controller.Marks', {
         selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
 
     view.down('form').loadRecord(selected);
+
+    if (!selected.isLeaf()) {
+      view.setTitle('Edit Folder');
+      view.down('textfield[name="url"]').setDisabled(true);
+    }
+
+    view.down('textfield[name="text"]').focus(false, true);
   },
   updateMark: function (button) {
     var win = button.up('window'),
@@ -72,6 +79,7 @@ Ext.define('Chromarks.controller.Marks', {
         selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
 
     view.down('form').loadRecord(selected);
+    view.setTitle('Delete Folder');
   },
   removeMark: function (button) {
     var win = button.up('window'),
@@ -83,9 +91,10 @@ Ext.define('Chromarks.controller.Marks', {
     win.close();
   },
   contextMenu: function (view, record, item, index, event) {
-    var ctxMenu = Ext.widget('ctxMenu');
+    var ctxMenu = Ext.widget('ctxMenu', { isLeaf: record.isLeaf() });
 
     event.stopEvent();
+
     ctxMenu.showAt(event.getXY());
   },
   openMark: function (view, node, item, index, e) {
@@ -108,7 +117,21 @@ Ext.define('Chromarks.controller.Marks', {
   openInNewTab: function () {
     var selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
 
-    chrome.tabs.create({ url: selected.get('url'), selected: false });
+    if (selected.isLeaf()) {
+      chrome.tabs.create({ url: selected.get('url'), selected: false });
+    } else {
+      chrome.bookmarks.getChildren(selected.get('id'), function (results) {
+        var i;
+
+        for (i = 0; i < results.length; i++) {
+          var result = results[i];
+
+          if (result.url && result.url.length > 0) {
+            chrome.tabs.create({ url: result.url, selected: false });
+          }
+        }
+      });
+    }
   },
   openOptions: function () {
     chrome.tabs.create({ url: chrome.extension.getURL("options.html"), selected: true });

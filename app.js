@@ -33,6 +33,6 @@ Ext.application({
     Ext.tip.QuickTipManager.init();
     Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), { showDelay: 1000, hideDelay: 0 });
 
-    Ext.getCmp('searchField').focus('', 10);
+    Ext.getCmp('searchField').focus(false, true);
   }
 });

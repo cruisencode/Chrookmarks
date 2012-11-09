@@ -19,10 +19,11 @@
 Ext.define('Chromarks.view.mark.CtxMenu', {
   extend: 'Ext.menu.Menu',
   alias: 'widget.ctxMenu',
+  isLeaf: true,
   initComponent: function () {
     this.items = [
       {
-        text: 'Open in new tab',
+        text: 'Open in new tab' + (this.isLeaf ? '' : 's'),
         icon: 'resources/icons/new-tab.png',
         itemId: 'openNew'
       },

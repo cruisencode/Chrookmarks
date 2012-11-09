@@ -42,7 +42,7 @@ Ext.define('Chromarks.view.mark.Delete', {
           },
           {
             xtype: 'label',
-            text: 'Are you sure you want to delete this bookmark?'
+            text: 'Are you sure you want to delete this item?'
           }
         ]
       }

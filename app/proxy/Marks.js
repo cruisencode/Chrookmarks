@@ -55,9 +55,11 @@ Ext.define("Chromarks.proxy.Marks", {
     var thisProxy = this;
 
     if (operation.records.length === 1) {
-      if (operation.records[0].modified.parentId) {
-        chrome.bookmarks.move(operation.records[0].get('id'), { parentId: operation.records[0].parentNode.get('id') }, function () {
-          Ext.getCmp('bookmarkStore').sort();
+      var rec = operation.records[0];
+
+      if (rec.modified.parentId && rec.modified.parentId.length > 0) {
+        chrome.bookmarks.move(rec.get('id'), { parentId: rec.parentNode.get('id') }, function () {
+          Ext.getCmp('bookmarkTree').getStore().sort();
 
           operation.setSuccessful();
           operation.setCompleted();
@@ -66,10 +68,10 @@ Ext.define("Chromarks.proxy.Marks", {
             callback.call(scope || thisProxy, operation);
           }
         });
-      } else if (operation.records[0].modified.text || operation.records[0].modified.url) {
-        chrome.bookmarks.update(operation.records[0].get('id'), { 'url': operation.records[0].get('url'), 'title': operation.records[0].get('text') }, function (result) {
-          thisProxy.createTip(operation.records[0], result.title, new Date(result.dateAdded));
-          Ext.getCmp('bookmarkStore').sort();
+      } else {
+        chrome.bookmarks.update(rec.get('id'), { 'url': rec.get('url'), 'title': rec.get('text') }, function (result) {
+          thisProxy.createTip(rec, result.title, new Date(result.dateAdded));
+          Ext.getCmp('bookmarkTree').getStore().sort();
 
           operation.setSuccessful();
           operation.setCompleted();
@@ -92,7 +94,7 @@ Ext.define("Chromarks.proxy.Marks", {
     var thisProxy = this;
 
     if (operation.records.length === 1) {
-      chrome.bookmarks.remove(operation.records[0].get('id'), function () {
+      chrome.bookmarks.removeTree(operation.records[0].get('id'), function () {
         operation.setSuccessful();
         operation.setCompleted();
 
