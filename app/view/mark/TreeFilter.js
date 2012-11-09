@@ -43,7 +43,7 @@ Ext.define('Chromarks.view.mark.TreeFilter', {
 
     // iterate over all nodes in the tree in order to evalute them against the search criteria
     me.filterBy(function (node) {
-      return new String(node.get(property)).match(re); // if the node matches the search criteria and is a leaf (could be  modified to searh non-leaf nodes)
+      return node.get(property).match(re); // if the node matches the search criteria and is a leaf (could be  modified to searh non-leaf nodes)
     }, scope);
   },
   filterBy: function (fn, scope) {
@@ -78,7 +78,7 @@ Ext.define('Chromarks.view.mark.TreeFilter', {
       });
     }
 
-    Ext.each(matches, function (item, i, arr) { // loop through all matching leaf nodes
+    Ext.each(matches, function (item) { // loop through all matching leaf nodes
       root.cascadeBy(function (node) { // find each parent node containing the node from the matches array
         if (node.contains(item) === true) {
           visibleNodes.push(node); // if it's an ancestor of the evaluated node add it to the visibleNodes  array

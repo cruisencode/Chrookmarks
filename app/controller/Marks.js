@@ -115,7 +115,7 @@ Ext.define('Chromarks.controller.Marks', {
 
     self.close();
   },
-  searchBookmarks: function (field, newValue, oldValue, eOpts) {
+  searchBookmarks: function (field, newValue) {
     if (!newValue || newValue === "") {
       Ext.getCmp('bookmarkTree').clearFilter();
       Ext.getCmp('bookmarkTree').expandPath('/root/1');
