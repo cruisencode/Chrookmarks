@@ -1,4 +1,4 @@
-<!--
+/*
  This file is part of Chromarks.
 
  Copyright (c) 2012, James Nuzzi
@@ -15,17 +15,14 @@
 
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
--->
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="extjs/resources/css/ext-all.css">
-    <link rel="stylesheet" type="text/css" href="resources/css/options.css">
-    <script type="text/javascript" src="extjs/ext-debug.js"></script>
-    <script type="text/javascript" src="options.js"></script>
+ */
+.tab-list-item {
+  font-size: 12pt;
+  font-family: tahoma, arial, verdana, sans-serif;
+  padding: 4px;
+}
 
-    <title>Chromarks Options</title>
-</head>
-<body id="body">
-</body>
-</html>
+
+.tab-list-item-hover {
+  background-color: #efefef;
+}

@@ -22,13 +22,38 @@ Ext.application({
     Ext.create('Ext.container.Viewport', {
       layout: 'border',
       items: [
-        Ext.create('Ext.panel.Panel'), {
+        {
+          xtype: 'panel',
           region: 'west',
-          html: '<p>Hello World</p>'
+          layout: {
+              type: 'vbox',
+              align : 'stretch'
+          },
+          items: [
+            {
+              xtype: 'panel',
+              width: 200,
+              height: 72,
+              html: '<p style="font-size: 18pt; font-weight: bold;"><img src="resources/icons/icon-48.png" /> Chromarks</p>'
+            },
+            {
+              xtype: 'dataview',
+              flex: 1,
+              itemSelector: '.tab-list-item',
+              overItemCls: 'tab-list-item-hover',
+              tpl: '<tpl for="."><div class="tab-list-item">{title}</div></tpl>',
+              store: Ext.create('Ext.data.ArrayStore', {
+                storeId: 'tabStore',
+                fields: [ 'title' ],
+                data: [ [ 'Test 1' ], [ 'Test 2'] ]
+              })
+            }
+          ]
         },
-        Ext.create('Ext.panel.Panel'), {
+        {
+          xtype: 'panel',
           region: 'center',
-          html: '<p>Hello World!!!</p>'
+          html: '<p>Hello World 3</p>'
         }
       ]
     });
