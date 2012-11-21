@@ -17,45 +17,43 @@
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
  */
 Ext.application({
+  requires: ['Ext.container.Viewport'],
   name: 'Chromarks',
-  launch: function() {
+  appFolder: 'app',
+  controllers: [ 'Options' ],
+  optionsData: null,
+  launch: function () {
+    window.setTimeout(this.initApp, 1);
+  },
+  initApp: function () {
     Ext.create('Ext.container.Viewport', {
       layout: 'border',
       items: [
         {
           xtype: 'panel',
           region: 'west',
+          border: false,
           layout: {
               type: 'vbox',
               align : 'stretch'
           },
           items: [
             {
-              xtype: 'panel',
-              width: 200,
-              height: 72,
-              html: '<p style="font-size: 18pt; font-weight: bold;"><img src="resources/icons/icon-48.png" /> Chromarks</p>'
+              xtype: 'optionsTitle'
             },
             {
-              xtype: 'dataview',
-              flex: 1,
-              itemSelector: '.tab-list-item',
-              overItemCls: 'tab-list-item-hover',
-              tpl: '<tpl for="."><div class="tab-list-item">{title}</div></tpl>',
-              store: Ext.create('Ext.data.ArrayStore', {
-                storeId: 'tabStore',
-                fields: [ 'title' ],
-                data: [ [ 'Test 1' ], [ 'Test 2'] ]
-              })
+              xtype: 'optionsTabs',
+              flex: 1
             }
           ]
         },
         {
-          xtype: 'panel',
-          region: 'center',
-          html: '<p>Hello World 3</p>'
+          xtype: 'optionsOptions',
+          region: 'center'
         }
       ]
     });
+
+    Ext.getCmp('optionsTabs').select(0);
   }
 });

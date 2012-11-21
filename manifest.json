@@ -13,6 +13,7 @@
   "permissions": [
     "bookmarks",
     "tabs",
+    "storage",
     "chrome://favicon/"
   ],
   "browser_action": {

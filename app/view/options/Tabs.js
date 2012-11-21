@@ -16,38 +16,17 @@
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
  */
-#titleDiv {
-  height: 48px;
-  line-height: 48px;
-}
-
-
-#logoImg {
-  float: left;
-}
-
-
-#titleHeading {
-  display: inline;
-  font-size: 24pt;
-  margin-left: 18px;
-}
-
-
-.tab-list-item {
-  font-size: 12pt;
-  font-family: tahoma, arial, verdana, sans-serif;
-  text-align: right;
-  padding: 10px 20px 10px 10px;
-  cursor: pointer;
-}
-
-
-.tab-list-item-hover {
-  background-color: #EFEFEF;
-}
-
-
-.tab-list-item-selected {
-  background-color: #DFE8F6;
-}
+Ext.define('Chromarks.view.options.Tabs', {
+  extend: 'Ext.view.View',
+  alias: 'widget.optionsTabs',
+  id: 'optionsTabs',
+  itemSelector: '.tab-list-item',
+  overItemCls: 'tab-list-item-hover',
+  selectedItemCls: 'tab-list-item-selected',
+  tpl: '<tpl for="."><div class="tab-list-item">{title}</div></tpl>',
+  store: Ext.create('Ext.data.ArrayStore', {
+    storeId: 'tabStore',
+    fields: [ 'title', 'cardIndex' ],
+    data: [ [ 'Bookmarks', 0 ], [ 'Test 2', 1 ] ]
+  })
+});

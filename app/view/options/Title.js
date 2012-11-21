@@ -16,38 +16,12 @@
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
  */
-#titleDiv {
-  height: 48px;
-  line-height: 48px;
-}
-
-
-#logoImg {
-  float: left;
-}
-
-
-#titleHeading {
-  display: inline;
-  font-size: 24pt;
-  margin-left: 18px;
-}
-
-
-.tab-list-item {
-  font-size: 12pt;
-  font-family: tahoma, arial, verdana, sans-serif;
-  text-align: right;
-  padding: 10px 20px 10px 10px;
-  cursor: pointer;
-}
-
-
-.tab-list-item-hover {
-  background-color: #EFEFEF;
-}
-
-
-.tab-list-item-selected {
-  background-color: #DFE8F6;
-}
+Ext.define('Chromarks.view.options.Title', {
+  extend: 'Ext.panel.Panel',
+  alias: 'widget.optionsTitle',
+  width: 285,
+  height: 84,
+  padding: 8,
+  border: false,
+  html: '<div id="titleDiv"><img src="resources/icons/icon-48.png" id="logoImg" /><h1 id="titleHeading">Chromarks</h1></div>'
+});

@@ -16,38 +16,20 @@
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
  */
-#titleDiv {
-  height: 48px;
-  line-height: 48px;
-}
-
-
-#logoImg {
-  float: left;
-}
-
-
-#titleHeading {
-  display: inline;
-  font-size: 24pt;
-  margin-left: 18px;
-}
-
-
-.tab-list-item {
-  font-size: 12pt;
-  font-family: tahoma, arial, verdana, sans-serif;
-  text-align: right;
-  padding: 10px 20px 10px 10px;
-  cursor: pointer;
-}
-
-
-.tab-list-item-hover {
-  background-color: #EFEFEF;
-}
-
-
-.tab-list-item-selected {
-  background-color: #DFE8F6;
-}
+Ext.define('Chromarks.view.options.Options', {
+  extend: 'Ext.panel.Panel',
+  alias: 'widget.optionsOptions',
+  id: 'optionsOptions',
+  border: false,
+  layout: 'card',
+  items: [
+    {
+      border: false,
+      xtype: 'optionsMarksForm'
+    },
+    {
+      padding: 8,
+      border: false,
+      html: '<p>Hello World 2</p>' }
+  ]
+});
