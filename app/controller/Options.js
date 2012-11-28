@@ -24,27 +24,57 @@ Ext.define('Chromarks.controller.Options', {
     this.control({
       'optionsTabs': {
         select: this.selectTab
+      },
+      'optionsMarksForm button[action=save]': {
+        click: this.saveOptions
       }
     });
 
     this.loadOptions();
   },
   selectTab: function (view, record) {
-    Ext.getCmp('optionsOptions').getLayout().setActiveItem(record.data.cardIndex);
-    Ext.getCmp('optionsOptions').getLayout().getActiveItem().setLoading('Loading...');
+    var layout = Ext.getCmp('optionsOptions').getLayout(),
+        form = layout.getActiveItem().down('form');
+
+    layout.setActiveItem(record.data.cardIndex);
+    form.setLoading('Loading...');
 
     this.getOptionsModel().load(0, {
       scope: this,
       callback: function(record) {
-        Ext.getCmp('optionsOptions').getLayout().getActiveItem().down('form').loadRecord(record);
-        Ext.getCmp('optionsOptions').getLayout().getActiveItem().setLoading(false);
+        form.loadRecord(record);
+        form.setLoading(false);
       }
     });
-    //Ext.getCmp('optionsOptions').getLayout().getActiveItem().down('form').loadRecord();
   },
   loadOptions: function () {
     Chromarks.optionsData = this.getOptionsModel();
 
     Chromarks.optionsData.load(0);
+  },
+  saveOptions: function () {
+    var form = Ext.getCmp('optionsOptions').getLayout().getActiveItem().down('form'),
+        record = form.getRecord(),
+        values = {};
+
+    form.setLoading('Saving...');
+
+    form.items.each(function (f) {
+       values[f.getName()] = f.getValue();
+    });
+
+    record.set(values);
+    record.commit();
+    record.save({
+      callback: function (records, operation) {
+        form.setLoading(false);
+
+        if (operation.success === true) {
+          Ext.Msg.alert('Success', 'Options saved successfully.');
+        } else {
+          Ext.Msg.alert('Error', 'Error saving options.');
+        }
+      }
+    });
   }
 });

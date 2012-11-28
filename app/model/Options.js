@@ -20,7 +20,7 @@ Ext.define('Chromarks.model.Options', {
   requires: [ 'Chromarks.proxy.Options' ],
   extend: 'Ext.data.Model',
   fields: [
-    { name: 'openInNewTab', type: 'boolean'}
+    { name: 'openInNewTab', type: 'boolean' }
   ],
   proxy: { type: 'optionsProxy' }
 });

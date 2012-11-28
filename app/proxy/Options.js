@@ -29,7 +29,7 @@ Ext.define("Chromarks.proxy.Options", {
     }, function (items) {
       //return model instances in a result set
       operation.resultSet = new Ext.data.ResultSet({
-        records: [ items.options ],
+        records: [ Ext.create('Chromarks.model.Options', items.options) ],
         total  : 1,
         loaded : true
       });
@@ -43,5 +43,30 @@ Ext.define("Chromarks.proxy.Options", {
         callback.call(scope || thisProxy, operation);
       }
     });
+  },
+  update: function (operation, callback, scope) {
+    var thisProxy = this;
+
+    if (operation.records.length === 1) {
+      var rec = operation.records[0];
+
+      chrome.storage.sync.set({
+        'options': rec.data
+      }, function () {
+        operation.setSuccessful();
+        operation.setCompleted();
+
+        if (typeof callback === "function") {
+          callback.call(scope || thisProxy, operation);
+        }
+      });
+    } else {
+      operation.setException('Error saving options.');
+      operation.setCompleted();
+
+      if (typeof callback === "function") {
+        callback.call(scope || thisProxy, operation);
+      }
+    }
   }
 });
