@@ -19,7 +19,6 @@
 Ext.define('Chromarks.view.mark.Delete', {
   extend: 'Ext.window.Window',
   alias: 'widget.markDelete',
-  title: 'Delete Bookmark',
   layout: 'fit',
   autoShow: true,
   modal: true,

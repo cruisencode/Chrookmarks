@@ -79,7 +79,7 @@ Ext.define('Chromarks.controller.Marks', {
         selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
 
     view.down('form').loadRecord(selected);
-    view.setTitle('Delete Folder');
+    view.setTitle(selected.get('url') && selected.get('url').length > 0 ? 'Delete Bookmark' : 'Delete Folder');
   },
   removeMark: function (button) {
     var win = button.up('window'),
