@@ -21,7 +21,6 @@ Ext.application({
   name: 'Chromarks',
   appFolder: 'app',
   controllers: [ 'Options' ],
-  optionsData: null,
   launch: function () {
     window.setTimeout(this.initApp, 1);
   },

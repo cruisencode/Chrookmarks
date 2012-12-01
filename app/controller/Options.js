@@ -29,14 +29,15 @@ Ext.define('Chromarks.controller.Options', {
         click: this.saveOptions
       }
     });
-
-    this.loadOptions();
   },
   selectTab: function (view, record) {
     var layout = Ext.getCmp('optionsOptions').getLayout(),
-        form = layout.getActiveItem().down('form');
+        form;
 
     layout.setActiveItem(record.data.cardIndex);
+
+    form = layout.getActiveItem().down('form');
+
     form.setLoading('Loading...');
 
     this.getOptionsModel().load(0, {
@@ -46,11 +47,6 @@ Ext.define('Chromarks.controller.Options', {
         form.setLoading(false);
       }
     });
-  },
-  loadOptions: function () {
-    Chromarks.optionsData = this.getOptionsModel();
-
-    Chromarks.optionsData.load(0);
   },
   saveOptions: function () {
     var form = Ext.getCmp('optionsOptions').getLayout().getActiveItem().down('form'),
