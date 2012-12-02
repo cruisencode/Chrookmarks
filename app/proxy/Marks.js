@@ -19,6 +19,20 @@
 Ext.define("Chromarks.proxy.Marks", {
   extend: 'Ext.data.Proxy',
   alias: 'proxy.marksProxy',
+  requires: [ 'Chromarks.model.Options' ],
+  optionsData: null,
+  constructor: function (config) {
+    this.param = config.param;
+
+    Chromarks.model.Options.load(0, {
+      scope: this,
+      callback: function(record) {
+        this.optionsData = record;
+      }
+    });
+
+    this.callParent(arguments);
+  },
   createTip: function (mark, markTitle, markDate) {
     var markUrl = mark.get('url');
 
@@ -46,7 +60,9 @@ Ext.define("Chromarks.proxy.Marks", {
         expanded: (result.id === '1')
       });
 
-      this.createTip(mark, result.title, markDate);
+      if (this.optionsData.get('showTooltips') === true) {
+        this.createTip(mark, result.title, markDate);
+      }
 
       marks.push(mark);
     }

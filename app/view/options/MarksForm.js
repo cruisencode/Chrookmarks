@@ -36,6 +36,11 @@ Ext.define('Chromarks.view.options.MarksForm', {
             xtype: 'checkbox',
             name: 'openInNewTab',
             fieldLabel: 'Open in New Tab'
+          },
+          {
+            xtype: 'checkbox',
+            name: 'showTooltips',
+            fieldLabel: 'Show Tooltips'
           }
         ]
       }

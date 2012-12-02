@@ -18,9 +18,22 @@
  */
 Ext.define('Chromarks.controller.Marks', {
   extend: 'Ext.app.Controller',
+  optionsData: null,
   stores: [ 'Marks' ],
-  models: [ 'Mark' ],
+  models: [ 'Mark', 'Options' ],
   views: [ 'mark.Tree', 'mark.Edit', 'mark.Delete', 'mark.CtxMenu' ],
+  constructor: function (config) {
+    this.param = config.param;
+
+    Chromarks.model.Options.load(0, {
+      scope: this,
+      callback: function(record) {
+        this.optionsData = record;
+      }
+    });
+
+    this.callParent(arguments);
+  },
   init: function () {
     this.control({
       'markTree': {
@@ -101,6 +114,10 @@ Ext.define('Chromarks.controller.Marks', {
     if (node.isLeaf()) {
       if (e.ctrlKey === true) {
         chrome.tabs.create({ url: node.get('url'), selected: false });
+      } else if (this.optionsData.get('openInNewTab') === true) {
+        chrome.tabs.create({ url: node.get('url'), selected: true });
+
+        self.close();
       } else {
         chrome.tabs.getSelected(null, function (tab) {
           chrome.tabs.update(tab.id, { url: node.get('url') });
