@@ -128,53 +128,29 @@ Ext.define("Chromarks.proxy.Marks", {
     }
   },
   read: function (operation, callback, scope) {
-    var thisProxy = this;
+    var thisProxy = this,
+        node = operation.params.node;
 
-    if (operation.params.node === "root") {
-      chrome.bookmarks.getTree(function (results) {
-        var marks = [],
-            children = results[0].children;
+    chrome.bookmarks.getChildren((node === 'root' ? '0' : node), function (results) {
+      var marks = [];
 
-        thisProxy.loadChildren(children, marks);
+      thisProxy.loadChildren(results, marks);
 
-        //return model instances in a result set
-        operation.resultSet = new Ext.data.ResultSet({
-          records: marks,
-          total  : marks.length,
-          loaded : true
-        });
-
-        //announce success
-        operation.setSuccessful();
-        operation.setCompleted();
-
-        //finish with callback
-        if (typeof callback === "function") {
-          callback.call(scope || thisProxy, operation);
-        }
+      //return model instances in a result set
+      operation.resultSet = new Ext.data.ResultSet({
+        records: marks,
+        total  : marks.length,
+        loaded : true
       });
-    } else {
-      chrome.bookmarks.getChildren(operation.params.node, function (results) {
-        var marks = [];
 
-        thisProxy.loadChildren(results, marks);
+      //announce success
+      operation.setSuccessful();
+      operation.setCompleted();
 
-        //return model instances in a result set
-        operation.resultSet = new Ext.data.ResultSet({
-          records: marks,
-          total  : marks.length,
-          loaded : true
-        });
-
-        //announce success
-        operation.setSuccessful();
-        operation.setCompleted();
-
-        //finish with callback
-        if (typeof callback === "function") {
-          callback.call(scope || thisProxy, operation);
-        }
-      });
-    }
+      //finish with callback
+      if (typeof callback === "function") {
+        callback.call(scope || thisProxy, operation);
+      }
+    });
   }
 });
