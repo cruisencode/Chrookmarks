@@ -29,6 +29,9 @@ Ext.define('Chromarks.controller.Marks', {
       scope: this,
       callback: function(record) {
         this.optionsData = record;
+
+        document.body.style.minWidth = this.optionsData.get('popupWidth') + 'px';
+        document.body.style.minHeight = this.optionsData.get('popupHeight') + 'px';
       }
     });
 

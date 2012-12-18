@@ -21,7 +21,9 @@ Ext.define('Chromarks.model.Options', {
   extend: 'Ext.data.Model',
   fields: [
     { name: 'openInNewTab', type: 'boolean' },
-    { name: 'showTooltips', type: 'boolean' }
+    { name: 'showTooltips', type: 'boolean' },
+    { name: 'popupWidth', type: 'string' },
+    { name: 'popupHeight', type: 'string' }
   ],
   proxy: { type: 'optionsProxy' }
 });

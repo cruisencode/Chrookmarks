@@ -18,7 +18,7 @@
  */
 Ext.define('Chromarks.controller.Options', {
   extend: 'Ext.app.Controller',
-  views: [ 'options.Title', 'options.Tabs', 'options.Options', 'options.MarksForm' ],
+  views: [ 'options.Title', 'options.Tabs', 'options.Options', 'options.MarksForm', 'options.ViewForm' ],
   models: [ 'Options' ],
   init: function () {
     this.control({
@@ -26,6 +26,9 @@ Ext.define('Chromarks.controller.Options', {
         select: this.selectTab
       },
       'optionsMarksForm button[action=save]': {
+        click: this.saveOptions
+      },
+      'optionsViewForm button[action=save]': {
         click: this.saveOptions
       }
     });

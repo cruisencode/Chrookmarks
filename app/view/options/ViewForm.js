@@ -16,16 +16,16 @@
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
  */
-Ext.define('Chromarks.view.options.MarksForm', {
+Ext.define('Chromarks.view.options.ViewForm', {
   extend: 'Ext.panel.Panel',
-  alias: 'widget.optionsMarksForm',
-  itemId: 'marksForm',
+  alias: 'widget.optionsViewForm',
+  itemId: 'viewForm',
   layout: 'fit',
   initComponent: function () {
     this.items = [
       {
         xtype: 'form',
-        title: 'Bookmarks',
+        title: 'View',
         defaults: {
           labelStyle: 'font-weight: bold;',
           labelWidth: 200,
@@ -33,14 +33,23 @@ Ext.define('Chromarks.view.options.MarksForm', {
         },
         items: [
           {
-            xtype: 'checkbox',
-            name: 'openInNewTab',
-            fieldLabel: 'Open in New Tab'
+            xtype: 'textfield',
+            name: 'popupWidth',
+            fieldLabel: 'Popup Width',
+            allowBlank: false,
+            enforceMaxLength: true,
+            maxLength: 4,
+            size: 4
           },
           {
-            xtype: 'checkbox',
-            name: 'showTooltips',
-            fieldLabel: 'Show Tooltips'
+            xtype: 'textfield',
+            name: 'popupHeight',
+            fieldLabel: 'Popup Height',
+            afterBodyEl: 'px',
+            allowBlank: false,
+            enforceMaxLength: true,
+            maxLength: 4,
+            size: 4
           }
         ]
       }
@@ -48,10 +57,9 @@ Ext.define('Chromarks.view.options.MarksForm', {
 
     this.buttons = [
       {
-        text: '<b>Save Bookmarks Options</b>',
+        text: '<b>Save View Options</b>',
         action: 'save',
-        scale: 'large',
-        marginBottom: 12
+        scale: 'large'
       }
     ];
 

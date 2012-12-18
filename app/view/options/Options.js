@@ -28,8 +28,8 @@ Ext.define('Chromarks.view.options.Options', {
       xtype: 'optionsMarksForm'
     },
     {
-      padding: 8,
       border: false,
-      html: '<p>Hello World 2</p>' }
+      xtype: 'optionsViewForm'
+    }
   ]
 });

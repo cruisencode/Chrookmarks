@@ -27,6 +27,6 @@ Ext.define('Chromarks.view.options.Tabs', {
   store: Ext.create('Ext.data.ArrayStore', {
     storeId: 'tabStore',
     fields: [ 'title', 'cardIndex' ],
-    data: [ [ 'Bookmarks', 0 ], [ 'Test 2', 1 ] ]
+    data: [ [ 'Bookmarks', 0 ], [ 'View', 1 ] ]
   })
 });

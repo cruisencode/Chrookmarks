@@ -25,7 +25,9 @@ Ext.define("Chromarks.proxy.Options", {
     chrome.storage.sync.get({
       'options': {
         'openInNewTab': true,
-        'showTooltips': true
+        'showTooltips': true,
+        'popupWidth': '360',
+        'popupHeight': '600'
       }
     }, function (items) {
       //return model instances in a result set
