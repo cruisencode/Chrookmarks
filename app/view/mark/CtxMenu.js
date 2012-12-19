@@ -23,9 +23,25 @@ Ext.define('Chromarks.view.mark.CtxMenu', {
   initComponent: function () {
     this.items = [
       {
+        text: 'Open in current tab',
+        icon: 'resources/icons/new-tab.png',
+        itemId: 'openCurrentTab',
+        hidden: !this.isLeaf
+      },
+      {
         text: 'Open in new tab' + (this.isLeaf ? '' : 's'),
         icon: 'resources/icons/new-tab.png',
-        itemId: 'openNew'
+        itemId: 'openNewTab'
+      },
+      {
+        text: 'Open in new window',
+        icon: 'resources/icons/new-tab.png',
+        itemId: 'openNewWindow'
+      },
+      {
+        text: 'Open in Incognito window',
+        icon: 'resources/icons/new-tab.png',
+        itemId: 'openNewIncognito'
       },
       '-',
       {

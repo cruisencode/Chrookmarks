@@ -56,8 +56,17 @@ Ext.define('Chromarks.controller.Marks', {
       'markDelete button[action=delete]': {
         click: this.removeMark
       },
-      'ctxMenu menuitem[itemId=openNew]': {
+      'ctxMenu menuitem[itemId=openCurrentTab]': {
+        click: this.openInCurrentTab
+      },
+      'ctxMenu menuitem[itemId=openNewTab]': {
         click: this.openInNewTab
+      },
+      'ctxMenu menuitem[itemId=openNewWindow]': {
+        click: this.openInNewWindow
+      },
+      'ctxMenu menuitem[itemId=openNewIncognito]': {
+        click: this.openInNewIncognito
       },
       'ctxMenu menuitem[itemId=edit]': {
         click: this.editMark
@@ -134,6 +143,15 @@ Ext.define('Chromarks.controller.Marks', {
       node.expand();
     }
   },
+  openInCurrentTab: function () {
+    var selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
+
+    if (selected.isLeaf()) {
+      chrome.tabs.getSelected(null, function (tab) {
+        chrome.tabs.update(tab.id, { url: selected.get('url') });
+      });
+    }
+  },
   openInNewTab: function () {
     var selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
 
@@ -150,6 +168,34 @@ Ext.define('Chromarks.controller.Marks', {
             chrome.tabs.create({ url: result.url, selected: false });
           }
         }
+      });
+    }
+  },
+  openInNewWindow: function () {
+    this.createNewWindow(false);
+  },
+  openInNewIncognito: function () {
+    this.createNewWindow(true);
+  },
+  createNewWindow: function (incognito) {
+    var selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
+
+    if (selected.isLeaf()) {
+      chrome.windows.create({ url: selected.get('url'), incognito: incognito });
+    } else {
+      chrome.bookmarks.getChildren(selected.get('id'), function (results) {
+        var urls = [ ],
+            i;
+
+        for (i = 0; i < results.length; i++) {
+          var result = results[i];
+
+          if (result.url && result.url.length > 0) {
+            urls.push(result.url);
+          }
+        }
+
+        chrome.windows.create({ url: urls, incognito: incognito });
       });
     }
   },
