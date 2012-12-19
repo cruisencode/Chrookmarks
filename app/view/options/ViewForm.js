@@ -28,28 +28,31 @@ Ext.define('Chromarks.view.options.ViewForm', {
         title: 'View',
         defaults: {
           labelStyle: 'font-weight: bold;',
-          labelWidth: 200,
+          labelWidth: 180,
           padding: 10
         },
         items: [
           {
-            xtype: 'textfield',
+            xtype: 'numberfield',
             name: 'popupWidth',
-            fieldLabel: 'Popup Width',
+            fieldLabel: 'Popup Width (px)',
             allowBlank: false,
             enforceMaxLength: true,
-            maxLength: 4,
-            size: 4
+            maxLength: 3,
+            size: 5,
+            minValue: 180,
+            maxValue: 800
           },
           {
-            xtype: 'textfield',
+            xtype: 'numberfield',
             name: 'popupHeight',
-            fieldLabel: 'Popup Height',
-            afterBodyEl: 'px',
+            fieldLabel: 'Popup Height (px)',
             allowBlank: false,
             enforceMaxLength: true,
-            maxLength: 4,
-            size: 4
+            maxLength: 3,
+            size: 5,
+            minValue: 240,
+            maxValue: 600
           }
         ]
       }

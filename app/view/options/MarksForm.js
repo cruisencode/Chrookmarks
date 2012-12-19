@@ -28,7 +28,7 @@ Ext.define('Chromarks.view.options.MarksForm', {
         title: 'Bookmarks',
         defaults: {
           labelStyle: 'font-weight: bold;',
-          labelWidth: 200,
+          labelWidth: 180,
           padding: 10
         },
         items: [

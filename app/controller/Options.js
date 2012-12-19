@@ -56,24 +56,28 @@ Ext.define('Chromarks.controller.Options', {
         record = form.getRecord(),
         values = {};
 
-    form.setLoading('Saving...');
+    if (form.getForm().isValid()) {
+      form.setLoading('Saving...');
 
-    form.items.each(function (f) {
-       values[f.getName()] = f.getValue();
-    });
+      form.items.each(function (f) {
+         values[f.getName()] = f.getValue();
+      });
 
-    record.set(values);
-    record.commit();
-    record.save({
-      callback: function (records, operation) {
-        form.setLoading(false);
+      record.set(values);
+      record.commit();
+      record.save({
+        callback: function (records, operation) {
+          form.setLoading(false);
 
-        if (operation.success === true) {
-          Ext.Msg.alert('Success', 'Options saved successfully.');
-        } else {
-          Ext.Msg.alert('Error', 'Error saving options.');
+          if (operation.success === true) {
+            Ext.Msg.alert('Success', 'Options saved successfully.');
+          } else {
+            Ext.Msg.alert('Error', 'Error saving options.');
+          }
         }
-      }
-    });
+      });
+    } else {
+      Ext.Msg.alert('Error', 'Please enter valid values and try again.');
+    }
   }
 });
