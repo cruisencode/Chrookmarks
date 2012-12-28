@@ -25,13 +25,13 @@ Ext.application({
     window.setTimeout(this.initApp, 1);
   },
   initApp: function () {
+    Ext.tip.QuickTipManager.init();
+    Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), { showDelay: 1000, hideDelay: 0 });
+
     Ext.create('Ext.container.Viewport', {
       layout: 'fit',
       items: [ { xtype: 'markTree' } ]
     });
-
-    Ext.tip.QuickTipManager.init();
-    Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), { showDelay: 1000, hideDelay: 0 });
 
     Ext.getCmp('searchField').focus(false, true);
   }

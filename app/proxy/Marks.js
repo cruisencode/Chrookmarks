@@ -43,24 +43,27 @@ Ext.define("Chromarks.proxy.Marks", {
     var i,
         result,
         mark,
-        markDate;
+        markDate,
+        url,
+        showTooltips = this.optionsData.get('showTooltips');
 
     for (i = 0; i < children.length; i++) {
       result = children[i];
       markDate = new Date(result.dateAdded);
+      url = result.url;
       mark = Ext.create('Chromarks.model.Mark', {
         id: result.id,
         text: result.title,
-        url: result.url,
-        icon: (result.url && result.url.length > 0 ? "chrome://favicon/" + result.url : undefined),
-        leaf: (result.url && result.url.length > 0),
-        singleClickExpand: (result.url && result.url.length > 0 ? undefined : true),
-        allowDrag: (result.url && result.url.length > 0),
-        allowDrop: !(result.url && result.url.length > 0),
+        url: url,
+        icon: (url && url.length > 0 ? "chrome://favicon/" + url : undefined),
+        leaf: (url && url.length > 0),
+        singleClickExpand: (url && url.length > 0 ? undefined : true),
+        allowDrag: (url && url.length > 0),
+        allowDrop: !(url && url.length > 0),
         expanded: (result.id === '1')
       });
 
-      if (this.optionsData.get('showTooltips') === true) {
+      if (showTooltips === true) {
         this.createTip(mark, result.title, markDate);
       }
 
