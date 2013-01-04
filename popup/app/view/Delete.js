@@ -41,7 +41,7 @@ Ext.define("popup.view.Delete", {
           },
           {
             xtype: 'label',
-            text: 'Are you sure you want to delete this item?'
+            text: chrome.i18n.getMessage('popupDeleteConfirm')
           }
         ]
       }
@@ -49,11 +49,11 @@ Ext.define("popup.view.Delete", {
 
     this.buttons = [
       {
-        text: 'Delete',
+        text: chrome.i18n.getMessage('popupDelete'),
         action: 'delete'
       },
       {
-        text: 'Cancel',
+        text: chrome.i18n.getMessage('popupCancel'),
         scope: this,
         handler: this.close
       }

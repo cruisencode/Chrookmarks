@@ -27,7 +27,7 @@ Ext.define("popup.view.Tree", {
   animate: false,
   plugins:[
     Ext.create('popup.view.TreeFilter', {
-      pluginId: 'treefilter',
+      pluginId: 'treeFilter',
       collapseOnClear: true,
       allowParentFolders: true
     })
@@ -39,13 +39,13 @@ Ext.define("popup.view.Tree", {
       id: 'searchField',
       alias: 'widget.searchField',
       fieldStyle: 'background: white url(/icons/search.png) 1px 50% no-repeat; padding-left: 18px;',
-      emptyText: 'Search Bookmarks'
+      emptyText: chrome.i18n.getMessage('popupSearchBookmarks')
     },
     '->',
     {
       xtype: 'button',
       action: 'options',
-      tooltip: 'Options',
+      tooltip: chrome.i18n.getMessage('popupOptions'),
       icon: '/icons/options.png'
     }
   ],

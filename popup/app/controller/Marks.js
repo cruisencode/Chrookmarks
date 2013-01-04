@@ -62,9 +62,9 @@ Ext.define('popup.controller.Marks', {
         selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
 
     view.down('form').loadRecord(selected);
+    view.setTitle(chrome.i18n.getMessage(selected.isLeaf() ? 'popupEditBookmark' : 'popupEditFolder'));
 
     if (!selected.isLeaf()) {
-      view.setTitle('Edit Folder');
       view.down('textfield[name="url"]').setDisabled(true);
     }
 
@@ -85,7 +85,7 @@ Ext.define('popup.controller.Marks', {
         selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
 
     view.down('form').loadRecord(selected);
-    view.setTitle(selected.get('url') && selected.get('url').length > 0 ? 'Delete Bookmark' : 'Delete Folder');
+    view.setTitle(chrome.i18n.getMessage(selected.get('url') && selected.get('url').length > 0 ? 'popupDeleteBookmark' : 'popupDeleteFolder'));
   },
   removeMark: function (button) {
     var win = button.up('window'),
@@ -181,7 +181,7 @@ Ext.define('popup.controller.Marks', {
     }
   },
   openOptions: function () {
-    chrome.tabs.create({ url: chrome.extension.getURL("options/production/index.html"), selected: true });
+    chrome.tabs.create({ url: chrome.extension.getURL("/options/production/index.html"), selected: true });
 
     self.close();
   },

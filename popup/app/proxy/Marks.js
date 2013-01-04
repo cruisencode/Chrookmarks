@@ -55,7 +55,7 @@ Ext.define("popup.proxy.Marks", {
         id: result.id,
         text: result.title,
         url: url,
-        icon: (url && url.length > 0 ? "chrome://favicon/" + url : undefined),
+        icon: (url && url.length > 0 ? 'chrome://favicon/' + url : undefined),
         leaf: (url && url.length > 0),
         singleClickExpand: (url && url.length > 0 ? undefined : true),
         allowDrag: (url && url.length > 0),
@@ -101,7 +101,7 @@ Ext.define("popup.proxy.Marks", {
         });
       }
     } else {
-      operation.setException('Cannot update more than one node.');
+      operation.setException(chrome.i18n.getMessage('popupMarksProxyMultiNodeUpdateError'));
       operation.setCompleted();
 
       if (typeof callback === "function") {
@@ -122,7 +122,7 @@ Ext.define("popup.proxy.Marks", {
         }
       });
     } else {
-      operation.setException('Cannot delete more than one node.');
+      operation.setException(chrome.i18n.getMessage('popupMarksProxyMultiNodeDeleteError'));
       operation.setCompleted();
 
       if (typeof callback === "function") {

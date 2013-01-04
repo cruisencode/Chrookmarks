@@ -19,7 +19,6 @@
 Ext.define("popup.view.Edit", {
   extend: 'Ext.window.Window',
   alias: 'widget.markEdit',
-  title: 'Edit Bookmark',
   layout: 'fit',
   autoShow: true,
   modal: true,
@@ -38,13 +37,13 @@ Ext.define("popup.view.Edit", {
             xtype: 'textfield',
             name: 'text',
             anchor: '100%',
-            fieldLabel: 'Name'
+            fieldLabel: chrome.i18n.getMessage('popupEditName')
           },
           {
             xtype: 'textfield',
             name: 'url',
             anchor: '100%',
-            fieldLabel: 'URL'
+            fieldLabel: chrome.i18n.getMessage('popupEditURL')
           }
         ]
       }
@@ -52,11 +51,11 @@ Ext.define("popup.view.Edit", {
 
     this.buttons = [
       {
-        text: 'Save',
+        text: chrome.i18n.getMessage('popupEditSave'),
         action: 'save'
       },
       {
-        text: 'Cancel',
+        text: chrome.i18n.getMessage('popupCancel'),
         scope: this,
         handler: this.close
       }

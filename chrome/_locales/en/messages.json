@@ -1,14 +1,94 @@
 {
-	"extName": {
-		"message": "Chromarks",
-		"description": "Extension name"
-	},
-	"extDescription": {
-		"message": "Chromarks - Displays Bookmarks in a tree.",
-		"description": "Extension description"
-	},
-	"extDefaultTitle": {
-		"message": "Chromarks",
-		"description": "Default title for browser action"
-	}
+  "extName": {
+    "message": "Chromarks",
+    "description": "Extension name"
+  },
+  "extDescription": {
+    "message": "Chromarks - Displays bookmarks in a tree.",
+    "description": "Extension description"
+  },
+  "extDefaultTitle": {
+    "message": "Chromarks",
+    "description": "Default title for browser action"
+  },
+  "popupSearchBookmarks": {
+    "message": "Search Bookmarks",
+    "description": "Text to display in search field when no text has been entered by the user"
+  },
+  "popupOptions": {
+    "message": "Options",
+    "description": "Text for options button tooltip"
+  },
+  "popupDelete": {
+    "message": "Delete",
+    "description": "Text for Delete buttons throughout popup"
+  },
+  "popupCancel": {
+    "message": "Cancel",
+    "description": "Text for Cancel buttons throughout popup"
+  },
+  "popupEditBookmark": {
+    "message": "Edit Bookmark",
+    "description": "Title text for Edit Bookmark window"
+  },
+  "popupEditFolder": {
+    "message": "Edit Folder",
+    "description": "Title text for Edit Folder window"
+  },
+  "popupDeleteBookmark": {
+    "message": "Delete Bookmark",
+    "description": "Title text for Delete Bookmark window"
+  },
+  "popupDeleteFolder": {
+    "message": "Delete Folder",
+    "description": "Title text for Delete Folder window"
+  },
+  "popupEditName": {
+    "message": "Name",
+    "description": "Text for Name field in Edit Bookmark window"
+  },
+  "popupEditURL": {
+    "message": "URL",
+    "description": "Text for URL field in Edit Bookmark window"
+  },
+  "popupEditSave": {
+    "message": "Save",
+    "description": "Text for Save button in Edit Bookmark window"
+  },
+  "popupDeleteConfirm": {
+    "message": "Are you sure you want to delete this item?",
+    "description": "Text for confirmation message/question in Delete Bookmark window"
+  },
+  "popupCtxMenuCurrentTab": {
+    "message": "Open in current tab",
+    "description": "Text for Open in current tab option in context menu"
+  },
+  "popupCtxMenuNewTab": {
+    "message": "Open in new tab",
+    "description": "Text for Open in new tab option in context menu"
+  },
+  "popupCtxMenuNewTabs": {
+    "message": "Open in new tabs",
+    "description": "Text for Open in new tabs option in context menu"
+  },
+  "popupCtxMenuNewWindow": {
+    "message": "Open in new window",
+    "description": "Text for Open in new window option in context menu"
+  },
+  "popupCtxMenuNewIncognito": {
+    "message": "Open in Incognito window",
+    "description": "Text for Open in Incognito window option in context menu"
+  },
+  "popupCtxMenuEdit": {
+    "message": "Edit",
+    "description": "Text for Edit option in context menu"
+  },
+  "popupMarksProxyMultiNodeUpdateError": {
+    "message": "Cannot update more than one node.",
+    "description": "Text for proxy error message when trying to update more than one node"
+  },
+  "popupMarksProxyMultiNodeDeleteError": {
+    "message": "Cannot delete more than one node.",
+    "description": "Text for proxy error message when trying to delete more than one node"
+  }
 }

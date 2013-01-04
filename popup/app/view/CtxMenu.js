@@ -23,34 +23,34 @@ Ext.define("popup.view.CtxMenu", {
   initComponent: function () {
     this.items = [
       {
-        text: 'Open in current tab',
+        text: chrome.i18n.getMessage('popupCtxMenuCurrentTab'),
         icon: '/icons/new-tab.png',
         itemId: 'openCurrentTab',
         hidden: !this.isLeaf
       },
       {
-        text: 'Open in new tab' + (this.isLeaf ? '' : 's'),
+        text: chrome.i18n.getMessage(this.isLeaf ? 'popupCtxMenuNewTab' : 'popupCtxMenuNewTabs'),
         icon: '/icons/new-tab.png',
         itemId: 'openNewTab'
       },
       {
-        text: 'Open in new window',
+        text: chrome.i18n.getMessage('popupCtxMenuNewWindow'),
         icon: '/icons/new-tab.png',
         itemId: 'openNewWindow'
       },
       {
-        text: 'Open in Incognito window',
+        text: chrome.i18n.getMessage('popupCtxMenuNewIncognito'),
         icon: '/icons/new-tab.png',
         itemId: 'openNewIncognito'
       },
       '-',
       {
-        text: 'Edit',
+        text: chrome.i18n.getMessage('popupCtxMenuEdit'),
         icon: '/icons/rename.png',
         itemId: 'edit'
       },
       {
-        text: 'Delete',
+        text: chrome.i18n.getMessage('popupDelete'),
         icon: '/icons/delete.png',
         itemId: 'delete'
       }

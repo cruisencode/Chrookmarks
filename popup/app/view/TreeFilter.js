@@ -18,7 +18,7 @@
  */
 Ext.define("popup.view.TreeFilter", {
   extend: 'Ext.AbstractPlugin',
-  alias: 'plugin.treefilter',
+  alias: 'plugin.treeFilter',
   collapseOnClear: false, // collapse all nodes when clearing/resetting the filter
   allowParentFolders: false, // allow nodes not designated as 'leaf' (and their child items) to  be matched by the filter
   init: function (tree) {
