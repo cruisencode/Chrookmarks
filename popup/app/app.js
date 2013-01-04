@@ -33,6 +33,8 @@ Ext.application({
       }
     });
     
+    document.title = chrome.i18n.getMessage('extName');
+
     Ext.tip.QuickTipManager.init();
     Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), { showDelay: 1000, hideDelay: 0 });
   },

@@ -22,10 +22,12 @@ Ext.application({
   controllers: ["Options"],
   views: ["ViewForm","Title","Tabs","Options","MarksForm"],
   name: 'options',
-  launch: function () {
-    window.setTimeout(this.initApp, 1);
+  init: function () {
+    document.title = chrome.i18n.getMessage('extName') + ' - ' + chrome.i18n.getMessage('popupOptions');
   },
-  initApp: function () {
+  launch: function () {
+    //window.setTimeout(this.initApp, 1);
+
     Ext.create('Ext.container.Viewport', {
       layout: 'border',
       items: [
@@ -55,5 +57,7 @@ Ext.application({
     });
 
     Ext.getCmp('optionsTabs').select(0);
+  },
+  initApp: function () {
   }
 });
