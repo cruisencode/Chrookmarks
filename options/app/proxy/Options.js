@@ -69,7 +69,7 @@ Ext.define("options.proxy.Options", {
         }
       });
     } else {
-      operation.setException('Error saving options.');
+      operation.setException(chrome.i18n.getMessage('optionsProxyUpdateError'));
       operation.setCompleted();
 
       if (typeof callback === "function") {

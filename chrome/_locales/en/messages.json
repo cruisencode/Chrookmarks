@@ -90,5 +90,69 @@
   "popupMarksProxyMultiNodeDeleteError": {
     "message": "Cannot delete more than one node.",
     "description": "Text for proxy error message when trying to delete more than one node"
+  },
+  "optionsBookmarks": {
+    "message": "Bookmarks",
+    "description": "Title for Bookmarks throughout options"
+  },
+  "optionsView": {
+    "message": "View",
+    "description": "Title for View throughout options"
+  },
+  "optionsViewPopupWidth": {
+    "message": "Popup Width (px)",
+    "description": "Text for Popup Width label in View form"
+  },
+  "optionsViewPopupHeight": {
+    "message": "Popup Height (px)",
+    "description": "Text for Popup Height label in View form"
+  },
+  "optionsViewSave": {
+    "message": "Save View Options",
+    "description": "Text for save button in View form"
+  },
+  "optionsBookmarksOpenNewTab": {
+    "message": "Open in New Tab",
+    "description": "Text for Open in New Tab label in Bookmarks form"
+  },
+  "optionsBookmarksShowTooltips": {
+    "message": "Show Tooltips",
+    "description": "Text for Show Tooltips label in Bookmarks form"
+  },
+  "optionsBookmarksSave": {
+    "message": "Save Bookmarks Options",
+    "description": "Text for save button in Bookmarks form"
+  },
+  "optionsProxyUpdateError": {
+    "message": "Error saving options.",
+    "description": "Text for proxy error message when trying to update options"
+  },
+  "optionsControllerLoading": {
+    "message": "Loading...",
+    "description": "Loading text for options forms"
+  },
+  "optionsControllerSaving": {
+    "message": "Saving...",
+    "description": "Saving text for options forms"
+  },
+  "optionsControllerSuccess": {
+    "message": "Success",
+    "description": "Title for success window after saving options"
+  },
+  "optionsControllerSuccessMsg": {
+    "message": "Options saved successfully.",
+    "description": "Text for message in success window after saving options"
+  },
+  "optionsControllerError": {
+    "message": "Error",
+    "description": "Title for error window after saving options"
+  },
+  "optionsControllerErrorMsg": {
+    "message": "Error saving options.",
+    "description": "Text for message in error window after saving options"
+  },
+  "optionsControllerValidationErrorMsg": {
+    "message": "Please enter valid values and try again.",
+    "description": "Text for message in validation error window after saving options"
   }
 }

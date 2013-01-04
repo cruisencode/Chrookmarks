@@ -39,7 +39,7 @@ Ext.define('options.controller.Options', {
 
     form = layout.getActiveItem().down('form');
 
-    form.setLoading('Loading...');
+    form.setLoading(chrome.i18n.getMessage('optionsControllerLoading'));
 
     options.model.Options.load(0, {
       scope: this,
@@ -52,10 +52,11 @@ Ext.define('options.controller.Options', {
   saveOptions: function () {
     var form = Ext.getCmp('optionsOptions').getLayout().getActiveItem().down('form'),
         record = form.getRecord(),
-        values = {};
+        values = {},
+        errorTitle = chrome.i18n.getMessage('optionsControllerError');
 
     if (form.getForm().isValid()) {
-      form.setLoading('Saving...');
+      form.setLoading(chrome.i18n.getMessage('optionsControllerSaving'));
 
       form.items.each(function (f) {
          values[f.getName()] = f.getValue();
@@ -68,14 +69,14 @@ Ext.define('options.controller.Options', {
           form.setLoading(false);
 
           if (operation.success === true) {
-            Ext.Msg.alert('Success', 'Options saved successfully.');
+            Ext.Msg.alert(chrome.i18n.getMessage('optionsControllerSuccess'), chrome.i18n.getMessage('optionsControllerSuccessMsg'));
           } else {
-            Ext.Msg.alert('Error', 'Error saving options.');
+            Ext.Msg.alert(errorTitle, chrome.i18n.getMessage('optionsControllerErrorMsg'));
           }
         }
       });
     } else {
-      Ext.Msg.alert('Error', 'Please enter valid values and try again.');
+      Ext.Msg.alert(errorTitle, chrome.i18n.getMessage('optionsControllerValidationErrorMsg'));
     }
   }
 });

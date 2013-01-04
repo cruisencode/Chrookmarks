@@ -25,7 +25,7 @@ Ext.define("options.view.ViewForm", {
     this.items = [
       {
         xtype: 'form',
-        title: 'View',
+        title: chrome.i18n.getMessage('optionsView'),
         defaults: {
           labelStyle: 'font-weight: bold;',
           labelWidth: 180,
@@ -35,7 +35,7 @@ Ext.define("options.view.ViewForm", {
           {
             xtype: 'numberfield',
             name: 'popupWidth',
-            fieldLabel: 'Popup Width (px)',
+            fieldLabel: chrome.i18n.getMessage('optionsViewPopupWidth'),
             allowBlank: false,
             enforceMaxLength: true,
             maxLength: 3,
@@ -46,7 +46,7 @@ Ext.define("options.view.ViewForm", {
           {
             xtype: 'numberfield',
             name: 'popupHeight',
-            fieldLabel: 'Popup Height (px)',
+            fieldLabel: chrome.i18n.getMessage('optionsViewPopupHeight'),
             allowBlank: false,
             enforceMaxLength: true,
             maxLength: 3,
@@ -60,7 +60,7 @@ Ext.define("options.view.ViewForm", {
 
     this.buttons = [
       {
-        text: '<b>Save View Options</b>',
+        text: '<b>' + chrome.i18n.getMessage('optionsViewSave') + '</b>',
         action: 'save',
         scale: 'large'
       }

@@ -29,6 +29,6 @@ Ext.define("options.view.Tabs", {
   store: Ext.create('Ext.data.ArrayStore', {
     storeId: 'tabStore',
     fields: [ 'title', 'cardIndex' ],
-    data: [ [ 'Bookmarks', 0 ], [ 'View', 1 ] ]
+    data: [ [ chrome.i18n.getMessage('optionsBookmarks'), 0 ], [ chrome.i18n.getMessage('optionsView'), 1 ] ]
   })
 });

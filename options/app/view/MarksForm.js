@@ -25,7 +25,7 @@ Ext.define("options.view.MarksForm", {
     this.items = [
       {
         xtype: 'form',
-        title: 'Bookmarks',
+        title: chrome.i18n.getMessage('optionsBookmarks'),
         defaults: {
           labelStyle: 'font-weight: bold;',
           labelWidth: 180,
@@ -35,12 +35,12 @@ Ext.define("options.view.MarksForm", {
           {
             xtype: 'checkbox',
             name: 'openInNewTab',
-            fieldLabel: 'Open in New Tab'
+            fieldLabel: chrome.i18n.getMessage('optionsBookmarksOpenNewTab')
           },
           {
             xtype: 'checkbox',
             name: 'showTooltips',
-            fieldLabel: 'Show Tooltips'
+            fieldLabel: chrome.i18n.getMessage('optionsBookmarksShowTooltips')
           }
         ]
       }
@@ -48,7 +48,7 @@ Ext.define("options.view.MarksForm", {
 
     this.buttons = [
       {
-        text: '<b>Save Bookmarks Options</b>',
+        text: '<b>' + chrome.i18n.getMessage('optionsBookmarksSave') + '</b>',
         action: 'save',
         scale: 'large',
         marginBottom: 12

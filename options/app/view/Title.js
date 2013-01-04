@@ -23,5 +23,5 @@ Ext.define("options.view.Title", {
   height: 84,
   padding: 8,
   border: false,
-  html: '<div id="titleDiv"><img src="/icons/icon-48.png" id="logoImg" /><h1 id="titleHeading">Chromarks</h1></div>'
+  html: '<div id="titleDiv"><img src="/icons/icon-48.png" id="logoImg" /><h1 id="titleHeading">' + chrome.i18n.getMessage('extName') + '</h1></div>'
 });
