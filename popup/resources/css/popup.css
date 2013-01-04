@@ -1,4 +1,4 @@
-<!--
+/*
  This file is part of Chromarks.
 
  Copyright (c) 2012, James Nuzzi
@@ -15,22 +15,8 @@
 
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
--->
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Chromarks</title>
-        <link rel="stylesheet" href="resources/css/default/app.css">
-        <link rel="stylesheet" href="resources/css/popup.css">
-        <!-- <x-compile> -->
-            <!-- <x-bootstrap> -->
-                <script src="../ext/ext-dev.js"></script>
-                <script src="bootstrap.js"></script>
-            <!-- </x-bootstrap> -->
-            <script src="app/app.js"></script>
-        <!-- </x-compile> -->
-    </head>
-    <body>
-    </body>
-</html>
+ */
+body {
+  min-width: 360px;
+  min-height: 600px;
+}
