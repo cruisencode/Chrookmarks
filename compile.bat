@@ -15,7 +15,8 @@
 :: You should have received a copy of the GNU General Public License
 :: along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
 
-DEL /F /Q /S build\* > NUL
+for %%i in (build\*) do if not "%%i"=="build\.gitignore" DEL /F /Q /S "%%i" > NUL
+
 for /D %%i in ("build\*") do RD /S /Q "%%i" > NUL
 
 xcopy chrome build /E /I /R /Y
