@@ -21,6 +21,7 @@ Ext.define('options.model.Options', {
   extend: 'Ext.data.Model',
   fields: [
     { name: 'openInNewTab', type: 'boolean' },
+    { name: 'showFavIcons', type: 'boolean' },
     { name: 'showTooltips', type: 'boolean' },
     { name: 'popupWidth', type: 'string' },
     { name: 'popupHeight', type: 'string' }

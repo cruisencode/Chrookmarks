@@ -45,6 +45,7 @@ Ext.define("popup.proxy.Marks", {
         mark,
         markDate,
         url,
+        showFavIcons = this.optionsData.get('showFavIcons'),
         showTooltips = this.optionsData.get('showTooltips');
 
     for (i = 0; i < children.length; i++) {
@@ -55,7 +56,7 @@ Ext.define("popup.proxy.Marks", {
         id: result.id,
         text: result.title,
         url: url,
-        icon: (url && url.length > 0 ? 'chrome://favicon/' + url : undefined),
+        icon: (showFavIcons && url && url.length > 0 ? 'chrome://favicon/' + url : undefined),
         leaf: (url && url.length > 0),
         singleClickExpand: (url && url.length > 0 ? undefined : true),
         allowDrag: (url && url.length > 0),

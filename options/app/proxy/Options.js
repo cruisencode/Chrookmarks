@@ -25,6 +25,7 @@ Ext.define("options.proxy.Options", {
     chrome.storage.sync.get({
       'options': {
         'openInNewTab': true,
+        'showFavIcons': true,
         'showTooltips': true,
         'popupWidth': '360',
         'popupHeight': '600'

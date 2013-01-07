@@ -39,6 +39,11 @@ Ext.define("options.view.MarksForm", {
           },
           {
             xtype: 'checkbox',
+            name: 'showFavIcons',
+            fieldLabel: chrome.i18n.getMessage('optionsBookmarksShowFavIcons')
+          },
+          {
+            xtype: 'checkbox',
             name: 'showTooltips',
             fieldLabel: chrome.i18n.getMessage('optionsBookmarksShowTooltips')
           }

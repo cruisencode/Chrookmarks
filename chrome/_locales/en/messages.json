@@ -115,6 +115,10 @@
     "message": "Open in New Tab",
     "description": "Text for Open in New Tab label in Bookmarks form"
   },
+  "optionsBookmarksShowFavIcons": {
+    "message": "Show FavIcons",
+    "description": "Text for Show FavIcons label in Bookmarks form"
+  },
   "optionsBookmarksShowTooltips": {
     "message": "Show Tooltips",
     "description": "Text for Show Tooltips label in Bookmarks form"
