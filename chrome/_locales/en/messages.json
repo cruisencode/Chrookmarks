@@ -115,6 +115,30 @@
     "message": "Open in New Tab",
     "description": "Text for Open in New Tab label in Bookmarks form"
   },
+  "optionsBookmarksSortBy": {
+    "message": "Sort By",
+    "description": "Text for Sort By label in Bookmarks form"
+  },
+  "optionsBookmarksSortByName": {
+    "message": "Name",
+    "description": "Text for Sort By Name value in Bookmarks form"
+  },
+  "optionsBookmarksSortByDate": {
+    "message": "Date",
+    "description": "Text for Sort By Date value in Bookmarks form"
+  },
+  "optionsBookmarksSortOrder": {
+    "message": "Sort Order",
+    "description": "Text for Sort Order label in Bookmarks form"
+  },
+  "optionsBookmarksSortOrderAscending": {
+    "message": "Ascending",
+    "description": "Text for Sort Order Ascending value in Bookmarks form"
+  },
+  "optionsBookmarksSortOrderDescending": {
+    "message": "Descending",
+    "description": "Text for Sort Order Descending value in Bookmarks form"
+  },
   "optionsBookmarksShowFavIcons": {
     "message": "Show FavIcons",
     "description": "Text for Show FavIcons label in Bookmarks form"
