@@ -20,9 +20,9 @@ Ext.define('popup.model.Mark', {
   requires: [ 'popup.proxy.Marks' ],
   extend: 'Ext.data.Model',
   fields: [
-    { name: 'text', type: 'string' },
+    { name: 'text', type: 'string', convert: null },
     { name: 'date', type: 'date' },
-    { name: 'url', type: 'string' }
+    { name: 'url', type: 'string', convert: null }
   ],
   hasMany: { model: 'popup.model.Mark', name: 'children' },
   proxy: { type: 'marksProxy' }
