@@ -20,13 +20,10 @@ Ext.define('popup.store.Marks', {
   extend: 'Ext.data.TreeStore',
   storeId: 'bookmarkStore',
   model: 'popup.model.Mark',
-  autoLoad: true,
+  autoLoad: false,
   autoSync: true,
   folderSort: true,
-  sorters: [
-    { property: 'text', direction: 'ASC' }
-  ],
   root: {
-    expanded: true
+    expanded: false
   }
 });

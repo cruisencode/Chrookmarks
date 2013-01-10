@@ -18,6 +18,7 @@
  */
 Ext.define('popup.controller.Marks', {
   extend: 'Ext.app.Controller',
+  views: [ 'Tree', 'TreeFilter', 'Edit', 'Delete', 'CtxMenu' ],
   init: function () {
     this.control({
       'markTree': {
@@ -186,11 +187,13 @@ Ext.define('popup.controller.Marks', {
     self.close();
   },
   searchBookmarks: function (field, newValue) {
-    if (!newValue || newValue === "") {
-      Ext.getCmp('bookmarkTree').clearFilter();
-      Ext.getCmp('bookmarkTree').expandPath('/root/1');
+    var tree = Ext.getCmp('bookmarkTree');
+
+    if (!newValue || newValue === '') {
+      tree.clearFilter();
+      tree.expandPath('/root/1');
     } else {
-      Ext.getCmp('bookmarkTree').filter(new RegExp('.*?' + newValue + '.*', 'i'), 'text');
+      tree.filter(new RegExp('.*?' + newValue + '.*', 'i'), 'text');
     }
   }
 });

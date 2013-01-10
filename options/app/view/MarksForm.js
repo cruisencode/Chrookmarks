@@ -38,6 +38,36 @@ Ext.define("options.view.MarksForm", {
             fieldLabel: chrome.i18n.getMessage('optionsBookmarksOpenNewTab')
           },
           {
+            xtype: 'combobox',
+            name: 'sortBy',
+            fieldLabel: 'Sort By',
+            editable: false,
+            forceSelection: true,
+            queryMode: 'local',
+            displayField: 'text',
+            valueField: 'val',
+            store: Ext.create('Ext.data.ArrayStore', {
+              storeId: 'sortByStore',
+              fields: [ 'text', 'val' ],
+              data: [ [ 'Name', 'text' ], [ 'Date', 'date' ] ]
+            })
+          },
+          {
+            xtype: 'combobox',
+            name: 'sortOrder',
+            fieldLabel: 'Sort Order',
+            editable: false,
+            forceSelection: true,
+            queryMode: 'local',
+            displayField: 'text',
+            valueField: 'val',
+            store: Ext.create('Ext.data.ArrayStore', {
+              storeId: 'sortOrderStore',
+              fields: [ 'text', 'val' ],
+              data: [ [ 'Ascending', 'ASC' ], [ 'Descending', 'DESC' ] ]
+            })
+          },
+          {
             xtype: 'checkbox',
             name: 'showFavIcons',
             fieldLabel: chrome.i18n.getMessage('optionsBookmarksShowFavIcons')

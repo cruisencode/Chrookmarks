@@ -25,6 +25,8 @@ Ext.define("options.proxy.Options", {
     chrome.storage.sync.get({
       'options': {
         'openInNewTab': true,
+        'sortBy': 'text',
+        'sortOrder': 'ASC',
         'showFavIcons': true,
         'showTooltips': true,
         'popupWidth': '360',
@@ -43,7 +45,7 @@ Ext.define("options.proxy.Options", {
       operation.setCompleted();
 
       //finish with callback
-      if (typeof callback === "function") {
+      if (typeof callback === 'function') {
         callback.call(scope || thisProxy, operation);
       }
     });
@@ -65,7 +67,7 @@ Ext.define("options.proxy.Options", {
           operation.setCompleted();
         }
         
-        if (typeof callback === "function") {
+        if (typeof callback === 'function') {
           callback.call(scope || thisProxy, operation);
         }
       });
@@ -73,7 +75,7 @@ Ext.define("options.proxy.Options", {
       operation.setException(chrome.i18n.getMessage('optionsProxyUpdateError'));
       operation.setCompleted();
 
-      if (typeof callback === "function") {
+      if (typeof callback === 'function') {
         callback.call(scope || thisProxy, operation);
       }
     }

@@ -16,26 +16,11 @@
  You should have received a copy of the GNU General Public License
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
  */
-Ext.define("popup.proxy.Marks", {
+Ext.define('popup.proxy.Marks', {
   extend: 'Ext.data.Proxy',
   alias: 'proxy.marksProxy',
   requires: [ 'options.model.Options' ],
-  optionsData: null,
-  constructor: function (config) {
-    this.param = config.param;
-
-    options.model.Options.load(0, {
-      scope: this,
-      callback: function(record) {
-        this.optionsData = record;
-      }
-    });
-
-    this.callParent(arguments);
-  },
-  createTip: function (mark, markTitle, markDate) {
-    var markUrl = mark.get('url');
-
+  createTip: function (mark, markUrl, markTitle, markDate) {
     mark.set('qtitle', (markUrl && markUrl.length > 0 ? markTitle : undefined));
     mark.set('qtip', (markUrl && markUrl.length > 0 ? "<span style='text-decoration: underline'>" + markUrl + '</span><br/><br/>' + markDate.toLocaleDateString() + ' ' + markDate.toLocaleTimeString() : undefined));
   },
@@ -44,28 +29,32 @@ Ext.define("popup.proxy.Marks", {
         result,
         mark,
         markDate,
+        id,
+        title,
         url,
-        showFavIcons = this.optionsData.get('showFavIcons'),
-        showTooltips = this.optionsData.get('showTooltips');
+        showFavIcons = popup.optionsData.get('showFavIcons'),
+        showTooltips = popup.optionsData.get('showTooltips');
 
     for (i = 0; i < children.length; i++) {
       result = children[i];
       markDate = new Date(result.dateAdded);
+      id = result.id;
+      title = result.title;
       url = result.url;
       mark = Ext.create('popup.model.Mark', {
-        id: result.id,
-        text: result.title,
+        id: id,
+        text: title,
         url: url,
         icon: (showFavIcons && url && url.length > 0 ? 'chrome://favicon/' + url : undefined),
         leaf: (url && url.length > 0),
         singleClickExpand: (url && url.length > 0 ? undefined : true),
         allowDrag: (url && url.length > 0),
         allowDrop: !(url && url.length > 0),
-        expanded: (result.id === '1')
+        expanded: (id === '1')
       });
 
       if (showTooltips === true) {
-        this.createTip(mark, result.title, markDate);
+        this.createTip(mark, url, title, markDate);
       }
 
       marks.push(mark);
@@ -84,7 +73,7 @@ Ext.define("popup.proxy.Marks", {
           operation.setSuccessful();
           operation.setCompleted();
 
-          if (typeof callback === "function") {
+          if (typeof callback === 'function') {
             callback.call(scope || thisProxy, operation);
           }
         });
@@ -96,7 +85,7 @@ Ext.define("popup.proxy.Marks", {
           operation.setSuccessful();
           operation.setCompleted();
 
-          if (typeof callback === "function") {
+          if (typeof callback === 'function') {
             callback.call(scope || thisProxy, operation);
           }
         });
@@ -105,7 +94,7 @@ Ext.define("popup.proxy.Marks", {
       operation.setException(chrome.i18n.getMessage('popupMarksProxyMultiNodeUpdateError'));
       operation.setCompleted();
 
-      if (typeof callback === "function") {
+      if (typeof callback === 'function') {
         callback.call(scope || thisProxy, operation);
       }
     }
@@ -118,7 +107,7 @@ Ext.define("popup.proxy.Marks", {
         operation.setSuccessful();
         operation.setCompleted();
 
-        if (typeof callback === "function") {
+        if (typeof callback === 'function') {
           callback.call(scope || thisProxy, operation);
         }
       });
@@ -126,7 +115,7 @@ Ext.define("popup.proxy.Marks", {
       operation.setException(chrome.i18n.getMessage('popupMarksProxyMultiNodeDeleteError'));
       operation.setCompleted();
 
-      if (typeof callback === "function") {
+      if (typeof callback === 'function') {
         callback.call(scope || thisProxy, operation);
       }
     }
@@ -152,7 +141,7 @@ Ext.define("popup.proxy.Marks", {
       operation.setCompleted();
 
       //finish with callback
-      if (typeof callback === "function") {
+      if (typeof callback === 'function') {
         callback.call(scope || thisProxy, operation);
       }
     });

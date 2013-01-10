@@ -17,12 +17,17 @@
  along with Chromarks.  If not, see <http://www.gnu.org/licenses/>.
  */
 Ext.application({
-  models: ["Mark"],
-  stores: ["Marks"],
-  controllers: ["Marks"],
-  views: ["Tree","TreeFilter","Edit","Delete","CtxMenu"],
+  models: [ 'Mark' ],
+  stores: [ 'Marks' ],
+  controllers: [ 'Marks' ],
   name: 'popup',
   init: function () {
+    document.title = chrome.i18n.getMessage('extName');
+
+    Ext.tip.QuickTipManager.init();
+    Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), { showDelay: 1000, hideDelay: 0 });
+  },
+  launch: function () {
     options.model.Options.load(0, {
       scope: this,
       callback: function(record) {
@@ -30,20 +35,17 @@ Ext.application({
 
         document.body.style.minWidth = popup.optionsData.get('popupWidth') + 'px';
         document.body.style.minHeight = popup.optionsData.get('popupHeight') + 'px';
+
+        this.getMarksStore().sort(popup.optionsData.get('sortBy'), popup.optionsData.get('sortOrder'));
+
+        Ext.create('Ext.container.Viewport', {
+          layout: 'fit',
+          items: [ { xtype: 'markTree' } ]
+        });
+
+        Ext.getCmp('bookmarkTree').getRootNode().expand();
+        Ext.getCmp('searchField').focus(false, true);
       }
     });
-    
-    document.title = chrome.i18n.getMessage('extName');
-
-    Ext.tip.QuickTipManager.init();
-    Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), { showDelay: 1000, hideDelay: 0 });
-  },
-  launch: function () {
-    Ext.create('Ext.container.Viewport', {
-      layout: 'fit',
-      items: [ { xtype: 'markTree' } ]
-    });
-
-    Ext.getCmp('searchField').focus(false, true);
   }
 });
