@@ -21,6 +21,7 @@ Ext.define('popup.model.Mark', {
   extend: 'Ext.data.Model',
   fields: [
     { name: 'text', type: 'string' },
+    { name: 'date', type: 'date' },
     { name: 'url', type: 'string' }
   ],
   hasMany: { model: 'popup.model.Mark', name: 'children' },

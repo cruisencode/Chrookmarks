@@ -44,6 +44,7 @@ Ext.define('popup.proxy.Marks', {
       mark = Ext.create('popup.model.Mark', {
         id: id,
         text: title,
+        date: markDate,
         url: url,
         icon: (showFavIcons && url && url.length > 0 ? 'chrome://favicon/' + url : undefined),
         leaf: (url && url.length > 0),
