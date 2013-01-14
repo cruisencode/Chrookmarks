@@ -19,6 +19,9 @@
 Ext.define('popup.controller.Marks', {
   extend: 'Ext.app.Controller',
   views: [ 'Tree', 'TreeFilter', 'Edit', 'Delete', 'CtxMenu' ],
+  refs: [
+    { ref: 'tree', selector: 'markTree' }
+  ],
   init: function () {
     this.control({
       'markTree': {
@@ -60,7 +63,7 @@ Ext.define('popup.controller.Marks', {
   },
   editMark: function () {
     var view = Ext.widget('markEdit'),
-        selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
+        selected = this.getTree().getSelectionModel().getLastSelected();
 
     view.down('form').loadRecord(selected);
     view.setTitle(chrome.i18n.getMessage(selected.isLeaf() ? 'popupEditBookmark' : 'popupEditFolder'));
@@ -83,7 +86,7 @@ Ext.define('popup.controller.Marks', {
   },
   deleteMark: function () {
     var view = Ext.widget('markDelete'),
-        selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
+        selected = this.getTree().getSelectionModel().getLastSelected();
 
     view.down('form').loadRecord(selected);
     view.setTitle(chrome.i18n.getMessage(selected.get('url') && selected.get('url').length > 0 ? 'popupDeleteBookmark' : 'popupDeleteFolder'));
@@ -106,15 +109,17 @@ Ext.define('popup.controller.Marks', {
   },
   openMark: function (view, node, item, index, e) {
     if (node.isLeaf()) {
+      var url = node.get('url');
+
       if (e.ctrlKey === true) {
-        chrome.tabs.create({ url: node.get('url'), selected: false });
+        chrome.tabs.create({ url: url, selected: false });
       } else if (popup.optionsData.get('openInNewTab') === true) {
-        chrome.tabs.create({ url: node.get('url'), selected: true });
+        chrome.tabs.create({ url: url, selected: true });
 
         self.close();
       } else {
         chrome.tabs.getSelected(null, function (tab) {
-          chrome.tabs.update(tab.id, { url: node.get('url') });
+          chrome.tabs.update(tab.id, { url: url });
 
           self.close();
         });
@@ -126,7 +131,7 @@ Ext.define('popup.controller.Marks', {
     }
   },
   openInCurrentTab: function () {
-    var selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
+    var selected = this.getTree().getSelectionModel().getLastSelected();
 
     if (selected.isLeaf()) {
       chrome.tabs.getSelected(null, function (tab) {
@@ -135,19 +140,20 @@ Ext.define('popup.controller.Marks', {
     }
   },
   openInNewTab: function () {
-    var selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
+    var selected = this.getTree().getSelectionModel().getLastSelected();
 
     if (selected.isLeaf()) {
       chrome.tabs.create({ url: selected.get('url'), selected: false });
     } else {
       chrome.bookmarks.getChildren(selected.get('id'), function (results) {
-        var i;
+        var i,
+            url;
 
         for (i = 0; i < results.length; i++) {
-          var result = results[i];
+          url = results[i].url;
 
-          if (result.url && result.url.length > 0) {
-            chrome.tabs.create({ url: result.url, selected: false });
+          if (url && url.length > 0) {
+            chrome.tabs.create({ url: url, selected: false });
           }
         }
       });
@@ -160,20 +166,21 @@ Ext.define('popup.controller.Marks', {
     this.createNewWindow(true);
   },
   createNewWindow: function (incognito) {
-    var selected = Ext.getCmp('bookmarkTree').getSelectionModel().getLastSelected();
+    var selected = this.getTree().getSelectionModel().getLastSelected();
 
     if (selected.isLeaf()) {
       chrome.windows.create({ url: selected.get('url'), incognito: incognito });
     } else {
       chrome.bookmarks.getChildren(selected.get('id'), function (results) {
         var urls = [ ],
-            i;
+            i,
+            url;
 
         for (i = 0; i < results.length; i++) {
-          var result = results[i];
+          url = results[i].url;
 
-          if (result.url && result.url.length > 0) {
-            urls.push(result.url);
+          if (url && url.length > 0) {
+            urls.push(url);
           }
         }
 
@@ -187,7 +194,7 @@ Ext.define('popup.controller.Marks', {
     self.close();
   },
   searchBookmarks: function (field, newValue) {
-    var tree = Ext.getCmp('bookmarkTree');
+    var tree = this.getTree();
 
     if (!newValue || newValue === '') {
       tree.clearFilter();

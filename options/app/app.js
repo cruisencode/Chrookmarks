@@ -20,7 +20,6 @@ Ext.application({
   requires: ["Ext.layout.container.Border"],
   models: ["Options"],
   controllers: ["Options"],
-  views: ["ViewForm","Title","Tabs","Options","MarksForm"],
   name: 'options',
   init: function () {
     document.title = chrome.i18n.getMessage('extName') + ' - ' + chrome.i18n.getMessage('popupOptions');

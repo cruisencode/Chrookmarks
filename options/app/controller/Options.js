@@ -18,6 +18,7 @@
  */
 Ext.define('options.controller.Options', {
   extend: 'Ext.app.Controller',
+  views: ["ViewForm","Title","Tabs","Options","MarksForm"],
   init: function () {
     this.control({
       'optionsTabs': {

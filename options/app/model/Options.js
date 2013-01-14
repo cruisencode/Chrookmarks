@@ -21,12 +21,12 @@ Ext.define('options.model.Options', {
   extend: 'Ext.data.Model',
   fields: [
     { name: 'openInNewTab', type: 'boolean' },
-    { name: 'sortBy', type: 'string' },
-    { name: 'sortOrder', type: 'string' },
+    { name: 'sortBy', type: 'string', convert: null },
+    { name: 'sortOrder', type: 'string', convert: null },
     { name: 'showFavIcons', type: 'boolean' },
     { name: 'showTooltips', type: 'boolean' },
-    { name: 'popupWidth', type: 'string' },
-    { name: 'popupHeight', type: 'string' }
+    { name: 'popupWidth', type: 'string', convert: null },
+    { name: 'popupHeight', type: 'string', convert: null }
   ],
   proxy: { type: 'optionsProxy' }
 });
