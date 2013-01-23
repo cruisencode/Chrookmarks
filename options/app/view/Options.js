@@ -30,6 +30,10 @@ Ext.define("options.view.Options", {
     {
       border: false,
       xtype: 'optionsViewForm'
+    },
+    {
+      border: false,
+      xtype: 'optionsAboutForm'
     }
   ]
 });

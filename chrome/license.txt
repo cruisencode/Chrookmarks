@@ -1,9 +1,8 @@
 Chrookmarks
 Copyright (c) 2013, James Nuzzi
 All rights reserved.
-jim@jimnuzzi.com
 
-http://www.jimnuzzi.com
+http://www.chrookmarks.com
 
 Open Source License
 ------------------------------------------------------------------------------------------

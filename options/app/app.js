@@ -55,8 +55,6 @@ Ext.application({
       ]
     });
 
-    Ext.getCmp('optionsTabs').select(0);
-  },
-  initApp: function () {
+    Ext.getCmp('optionsTabs').select(2);
   }
 });

@@ -99,6 +99,10 @@
     "message": "View",
     "description": "Title for View throughout options"
   },
+  "optionsAbout": {
+    "message": "About",
+    "description": "Title for About throughout options"
+  },
   "optionsViewPopupWidth": {
     "message": "Popup Width (px)",
     "description": "Text for Popup Width label in View form"
@@ -150,6 +154,22 @@
   "optionsBookmarksSave": {
     "message": "Save Bookmarks Options",
     "description": "Text for save button in Bookmarks form"
+  },
+  "optionsAboutVersion": {
+    "message": "Version",
+    "description": "Text for Version label in About form"
+  },
+  "optionsAboutLegalNotice": {
+    "message": "Legal Notice",
+    "description": "Text for Legal Notice label in About form"
+  },
+  "optionsAboutDonateUSD": {
+    "message": "Donate (USD)",
+    "description": "Text for Donate (USD) label in About form"
+  },
+  "optionsAboutDonateEUR": {
+    "message": "Donate (EUR)",
+    "description": "Text for Donate (EUR) label in About form"
   },
   "optionsProxyUpdateError": {
     "message": "Error saving options.",
