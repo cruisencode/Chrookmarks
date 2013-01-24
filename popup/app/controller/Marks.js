@@ -118,11 +118,9 @@ Ext.define('popup.controller.Marks', {
 
         self.close();
       } else {
-        chrome.tabs.getSelected(null, function (tab) {
-          chrome.tabs.update(tab.id, { url: url });
+        chrome.tabs.update({ url: url });
 
-          self.close();
-        });
+        self.close();
       }
     } else if (node.isExpanded()) {
       node.collapse();
@@ -134,9 +132,7 @@ Ext.define('popup.controller.Marks', {
     var selected = this.getTree().getSelectionModel().getLastSelected();
 
     if (selected.isLeaf()) {
-      chrome.tabs.getSelected(null, function (tab) {
-        chrome.tabs.update(tab.id, { url: selected.get('url') });
-      });
+      chrome.tabs.update({ url: selected.get('url') });
     }
   },
   openInNewTab: function () {
