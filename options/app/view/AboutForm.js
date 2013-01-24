@@ -59,7 +59,7 @@ Ext.define("options.view.AboutForm", {
           },
           {
             xtype: 'component',
-            margin: '20 10 20 10',
+            margin: '40 10 40 10',
             padding: 0,
             autoEl: {
               tag: 'hr'
@@ -89,6 +89,12 @@ Ext.define("options.view.AboutForm", {
             <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" name="submit" alt="PayPal - The safer, easier way to pay online!">\
             <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">\
             </form>'
+          },
+          {
+            xtype: 'component',
+            autoEl: {
+              tag: 'br'
+            }
           },
           {
             xtype: 'displayfield',

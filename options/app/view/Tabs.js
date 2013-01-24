@@ -21,7 +21,9 @@ Ext.define("options.view.Tabs", {
   alias: 'widget.optionsTabs',
   id: 'optionsTabs',
   trackOver: true,
-  allowDeselect: false,
+  selModel: {
+    deselectOnContainerClick: false
+  },
   itemSelector: '.tab-list-item',
   overItemCls: 'tab-list-item-hover',
   selectedItemCls: 'tab-list-item-selected',
