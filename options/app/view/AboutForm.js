@@ -39,6 +39,12 @@ Ext.define("options.view.AboutForm", {
           },
           {
             xtype: 'displayfield',
+            name: 'versionHistory',
+            fieldLabel: chrome.i18n.getMessage('optionsAboutVersionHistory'),
+            value: '<a href="http://www.chrookmarks.com/version-history" target="_blank">http://www.chrookmarks.com/version-history</a>'
+          },
+          {
+            xtype: 'displayfield',
             name: 'license',
             fieldLabel: chrome.i18n.getMessage('optionsAboutLegalNotice'),
             value: 'Chrookmarks<br/>' +

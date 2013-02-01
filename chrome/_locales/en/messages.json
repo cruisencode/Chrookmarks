@@ -159,6 +159,10 @@
     "message": "Version",
     "description": "Text for Version label in About form"
   },
+  "optionsAboutVersionHistory": {
+    "message": "Version History",
+    "description": "Text for Version History label in About form"
+  },
   "optionsAboutLegalNotice": {
     "message": "Legal Notice",
     "description": "Text for Legal Notice label in About form"
