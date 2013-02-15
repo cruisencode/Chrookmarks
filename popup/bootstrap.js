@@ -1,77 +1,79 @@
-/*
- This file is part of Chrookmarks.
-
- Copyright (c) 2013, James Nuzzi
-
- Chrookmarks is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-
- Chrookmarks is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with Chrookmarks.  If not, see <http://www.gnu.org/licenses/>.
- */
 Ext.Loader.addClassPathMappings({
   "Ext": "../ext/src",
   "popup": "app",
-  "Ext.ux.GroupTreeChunker": "../ext/src/ux/GroupTabPanel.js"
+  "Ext.ux.GroupTreeChunker": "../ext/src/ux/GroupTabPanel.js",
+  "options": "../options/app"
 });Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.BoxReorderer": [],
   "Ext.ux.grid.filter.Filter": [],
   "Ext.ux.ajax.DataSimlet": [],
   "Ext.ux.grid.TransformGrid": [],
+  "options.controller.Main": [],
   "Ext.ux.FieldReplicator": [],
   "popup.view.Viewport": [],
   "Ext.ux.grid.filter.ListFilter": [],
+  "popup.view.Edit": [],
   "Ext.ux.ajax.XmlSimlet": [],
   "Ext.ux.event.Driver": [],
   "Ext.ux.DataView.DragSelector": [],
+  "options.view.Options": [],
+  "popup.view.Tree": [],
   "Ext.ux.grid.menu.ListMenu": [],
   "Ext.ux.GMapPanel": [],
+  "options.view.ViewForm": [],
+  "popup.view.Delete": [],
   "Ext.ux.form.MultiSelect": [
     "Ext.ux.Multiselect"
   ],
+  "options.proxy.Options": [],
   "Ext.ux.DataView.LabelEditor": [],
   "Ext.ux.GroupTabPanel": [],
   "Ext.ux.grid.filter.StringFilter": [],
   "Ext.ux.statusbar.ValidationStatus": [],
   "Ext.ux.GroupTreeChunker": [],
   "Ext.ux.layout.Center": [],
+  "popup.view.CtxMenu": [],
   "Ext.ux.CheckColumn": [],
   "Ext.ux.PreviewPlugin": [],
   "Ext.ux.DataView.Animated": [],
+  "options.view.MarksForm": [],
   "Ext.ux.ajax.SimXhr": [],
   "Ext.ux.event.RecorderManager": [],
+  "popup.view.TreeFilter": [],
   "Ext.ux.ProgressBarPager": [],
+  "options.view.Viewport": [],
   "Ext.ux.statusbar.StatusBar": [
     "Ext.ux.StatusBar"
   ],
   "Ext.ux.ajax.Simlet": [],
+  "popup.controller.Marks": [],
   "Ext.ux.SlidingPager": [],
   "Ext.ux.TabReorderer": [],
   "popup.view.Main": [],
+  "popup.model.Mark": [],
   "Ext.ux.grid.filter.NumericFilter": [],
   "Ext.ux.grid.menu.RangeMenu": [],
   "Ext.ux.RowExpander": [],
   "Ext.ux.event.Recorder": [],
+  "options.controller.Options": [],
   "Ext.ux.event.Player": [],
+  "popup.store.Marks": [],
+  "options.view.Main": [],
   "Ext.ux.ajax.SimManager": [],
   "popup.controller.Main": [],
   "Ext.ux.grid.filter.BooleanFilter": [],
   "Ext.ux.ToolbarDroppable": [],
   "Ext.ux.event.Maker": [],
   "Ext.ux.TabScrollerMenu": [],
+  "options.model.Options": [],
   "Ext.ux.IFrame": [],
   "Ext.ux.DataView.Draggable": [],
   "Ext.ux.TabCloseMenu": [],
+  "options.view.Title": [],
   "Ext.ux.form.SearchField": [],
   "Ext.ux.LiveSearchGridPanel": [],
   "Ext.ux.grid.filter.DateFilter": [],
+  "popup.proxy.Marks": [],
   "Ext.ux.TreePicker": [],
   "Ext.ux.form.ItemSelector": [
     "Ext.ux.ItemSelector"
@@ -81,29 +83,50 @@ Ext.Loader.addClassPathMappings({
   "Ext.ux.grid.FiltersFeature": [],
   "Ext.ux.data.PagingMemoryProxy": [
     "Ext.data.PagingMemoryProxy"
-  ]
+  ],
+  "options.view.Tabs": [],
+  "options.view.AboutForm": []
 });Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.BoxReorderer": [],
   "Ext.ux.grid.filter.Filter": [],
   "Ext.ux.ajax.DataSimlet": [],
   "Ext.ux.grid.TransformGrid": [],
+  "options.controller.Main": [],
   "Ext.ux.FieldReplicator": [],
   "popup.view.Viewport": [],
   "Ext.ux.grid.filter.ListFilter": [
     "gridfilter.list"
+  ],
+  "popup.view.Edit": [
+    "widget.markEdit"
   ],
   "Ext.ux.ajax.XmlSimlet": [
     "simlet.xml"
   ],
   "Ext.ux.event.Driver": [],
   "Ext.ux.DataView.DragSelector": [],
+  "options.view.Options": [
+    "widget.optionsOptions"
+  ],
+  "popup.view.Tree": [
+    "widget.markTree"
+  ],
   "Ext.ux.grid.menu.ListMenu": [],
   "Ext.ux.GMapPanel": [
     "widget.gmappanel"
   ],
+  "options.view.ViewForm": [
+    "widget.optionsViewForm"
+  ],
+  "popup.view.Delete": [
+    "widget.markDelete"
+  ],
   "Ext.ux.form.MultiSelect": [
     "widget.multiselectfield",
     "widget.multiselect"
+  ],
+  "options.proxy.Options": [
+    "proxy.optionsProxy"
   ],
   "Ext.ux.DataView.LabelEditor": [],
   "Ext.ux.GroupTabPanel": [
@@ -117,6 +140,9 @@ Ext.Loader.addClassPathMappings({
   "Ext.ux.layout.Center": [
     "layout.ux.center"
   ],
+  "popup.view.CtxMenu": [
+    "widget.ctxMenu"
+  ],
   "Ext.ux.CheckColumn": [
     "widget.checkcolumn"
   ],
@@ -124,20 +150,29 @@ Ext.Loader.addClassPathMappings({
     "plugin.preview"
   ],
   "Ext.ux.DataView.Animated": [],
+  "options.view.MarksForm": [
+    "widget.optionsMarksForm"
+  ],
   "Ext.ux.ajax.SimXhr": [],
   "Ext.ux.event.RecorderManager": [
     "widget.eventrecordermanager"
   ],
+  "popup.view.TreeFilter": [
+    "plugin.treeFilter"
+  ],
   "Ext.ux.ProgressBarPager": [],
+  "options.view.Viewport": [],
   "Ext.ux.statusbar.StatusBar": [
     "widget.statusbar"
   ],
   "Ext.ux.ajax.Simlet": [
     "simlet.basic"
   ],
+  "popup.controller.Marks": [],
   "Ext.ux.SlidingPager": [],
   "Ext.ux.TabReorderer": [],
   "popup.view.Main": [],
+  "popup.model.Mark": [],
   "Ext.ux.grid.filter.NumericFilter": [
     "gridfilter.numeric"
   ],
@@ -146,7 +181,10 @@ Ext.Loader.addClassPathMappings({
     "plugin.rowexpander"
   ],
   "Ext.ux.event.Recorder": [],
+  "options.controller.Options": [],
   "Ext.ux.event.Player": [],
+  "popup.store.Marks": [],
+  "options.view.Main": [],
   "Ext.ux.ajax.SimManager": [],
   "popup.controller.Main": [],
   "Ext.ux.grid.filter.BooleanFilter": [
@@ -157,6 +195,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.ux.TabScrollerMenu": [
     "plugin.tabscrollermenu"
   ],
+  "options.model.Options": [],
   "Ext.ux.IFrame": [
     "widget.uxiframe"
   ],
@@ -164,12 +203,18 @@ Ext.Loader.addClassPathMappings({
   "Ext.ux.TabCloseMenu": [
     "plugin.tabclosemenu"
   ],
+  "options.view.Title": [
+    "widget.optionsTitle"
+  ],
   "Ext.ux.form.SearchField": [
     "widget.searchfield"
   ],
   "Ext.ux.LiveSearchGridPanel": [],
   "Ext.ux.grid.filter.DateFilter": [
     "gridfilter.date"
+  ],
+  "popup.proxy.Marks": [
+    "proxy.marksProxy"
   ],
   "Ext.ux.TreePicker": [
     "widget.treepicker"
@@ -187,5 +232,11 @@ Ext.Loader.addClassPathMappings({
   ],
   "Ext.ux.data.PagingMemoryProxy": [
     "proxy.pagingmemory"
+  ],
+  "options.view.Tabs": [
+    "widget.optionsTabs"
+  ],
+  "options.view.AboutForm": [
+    "widget.optionsAboutForm"
   ]
 });

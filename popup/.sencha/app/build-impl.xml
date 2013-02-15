@@ -60,6 +60,12 @@
         <taskdef resource="com/sencha/ant/antlib.xml" classpath="${cmd.dir}/sencha.jar"/>
         <x-sencha-init prefix=""/>
         
+        <!-- default the build environment to production if it is unset by this point -->
+        <property name="args.environment" value="production"/>
+        
+        <!-- initialize the build.dir property from the workspace config after we've loaded it -->
+        <property name="build.dir" location="${workspace.build.dir}/${args.environment}"/>
+        
         <property name="build.compression.production" value="-yui"/>
         <property name="build.compression.testing" value=""/>
         
@@ -77,6 +83,22 @@
         
         <property name="build.options.production" value="-debug=false"/>
         <property name="build.options.testing" value=""/>
+        
+        <!--
+            This property can be modified to change the input and output page file 
+            used in the compile command. (eg: index.aspx, index.jsp ... )
+        -->
+        <property name="app.page.name" value="index.html"/>
+        
+        <!-- Specify the input page file -->
+        <property name="app.page.file" location="${app.dir}/${app.page.name}"/>
+        
+        <!-- Specify the output page file -->
+        <property name="build.page.file" location="${build.dir}/${app.page.name}"/>
+        
+        <!-- Specify the output js file -->
+        <property name="build.classes.name" value="all-classes.js"/>
+        <property name="build.classes.file" location="${build.dir}/${build.classes.name}"/>
         
         <!-- init environment -->
         <property name="args.environment" value="production"/>
@@ -102,14 +124,45 @@
                 </if>
             </else>
         </if>
-
-        <!-- initialize the build.dir property from the workspace config after we've loaded it -->
-        <property name="build.dir" location="${workspace.build.dir}/${args.environment}"/>
+        
+        <!-- Specify the name for the individual resource dirs in the app -->
+        <property name="app.sass.name" value="sass"/>
+        <property name="app.css.name" value="css"/>
+        <property name="app.theme.name" value="theme"/>
+        <property name="app.img.name" value="images"/>
+        
+        <!-- Specify the resources path in the app -->
+        <property name="app.packages.dir" location="${app.dir}/packages"/>
+        
+        <!-- Specify the theme path in the app -->
+        <property name="app.theme.dir" location="${app.packages.dir}"/>
+        
+        <!-- Specify the sass path in the app -->
+        <property name="app.sass.dir" location="${app.theme.dir}/${theme.name}/${app.sass.name}"/>
+        
+        <!-- Specify the resources path in the build -->
+        <property name="build.resources.dir" location="${build.dir}/resources"/>
+        
+        <!-- Specify the files to exclude when copying resources to the build -->
+        <property name="build.resources.exclude" 
+                  value="${app.theme.name}/**/*"/>
+       
+        <!-- Specify the resources path in the app -->
+        <property name="build.images.dir" location="${build.resources.dir}/images"/>
+        
+        <!-- Specify the sass path in the build -->
+        <property name="build.css.dir" location="${build.resources.dir}/${app.sass.name}"/>
+        
+        <!-- The entry point for the theme command -->
+        <property name="theme.page.name" value="theme.html"/>
         
         <!-- Some operations require sencha.jar in the Ant classpath -->
         <x-extend-classpath>
             <jar path="${cmd.dir}/sencha.jar"/>
         </x-extend-classpath>
+        
+        <x-verify-app-cmd-ver/>
+        
     </target>
     <target name="-after-init"/>
     <target name="init"
@@ -127,6 +180,123 @@
             depends="init,-before-clean,-clean,-after-clean"
             description="Removes all build output produced by the 'build' target"/>
 
+    
+    <macrodef name="x-build-sass">
+        <attribute name="theme"/>
+        <sequential>
+            <local name="sass.name"/>
+            <local name="use.shell"/>
+
+            <!--
+            convert abspath to just the leaf path name
+            -->
+            <basename property="sass.name" file="@{theme}"/>
+            <local name="sass.base.name"/>
+            <property name="sass.base.name" value="${sass.name}"/>
+
+            <!--
+            compile to both the workspace (for theme build)
+            and build directory (for deployment)
+            -->
+            <condition property="use.shell" value="true">
+                <os family="unix"/>
+            </condition>
+
+            <x-shell dir="@{theme}/sass">
+                compass compile --boring --force
+            </x-shell>
+
+            <x-compress-css srcfile="${app.dir}/resources/${sass.base.name}/*.css"
+                            outdir="${app.dir}/resources/${sass.base.name}"/>
+        </sequential>
+    </macrodef>
+    
+    <macrodef name="x-build-theme">
+        <attribute name="theme" description="the path of the theme folder"/>
+        <attribute name="buildsass" default="false"/>
+        <attribute name="basetheme" default="default"/>
+        <sequential>
+            <local name="theme.name"/>
+
+            <local name="framework.theme.dir"/>
+            <local name="tmp.theme.dir"/>
+            <local name="tmp.img.dir"/>
+
+            <basename property="theme.name" file="@{theme}"/>
+            <local name="theme.base.name"/>
+            <property name="theme.base.name" value="${theme.name}"/>
+            
+            <property name="tmp.res.dir" value="${app.dir}/resources"/>
+            <property name="tmp.theme.dir" value="${tmp.res.dir}/${theme.base.name}"/>
+            <property name="tmp.img.dir" value="${tmp.theme.dir}/images"/>
+
+            <property name="app.res.dir" location="${app.dir}/packages"/>
+            <property name="app.img.dir" location="${app.res.dir}/images"/>
+
+            <property name="framework.res.dir" location="${framework.dir}/resources"/>
+            <property name="framework.img.dir" location="${framework.res.dir}/themes/images"/>
+            <property name="framework.theme.dir" location="${framework.img.dir}/@{basetheme}"/>
+
+
+            <echo>Copying base framework images from ${framework.theme.dir} to ${tmp.img.dir}</echo>
+            <copy todir="${tmp.img.dir}">
+                <fileset dir="${framework.theme.dir}" includes="**/*"/>
+            </copy>
+
+            <if>
+                <equals arg1="@{buildsass}" arg2="true"/>
+                <then>
+                    <echo>Building sass for theme ${theme.name}</echo>
+                    <x-build-sass theme="@{theme}"/>
+                </then>
+            </if>
+
+            <echo>Slicing images for theme ${theme.name} to ${tmp.img.dir}</echo>
+            <x-sencha-command>
+                theme
+                build
+                -page=@{theme}/${theme.page.name}
+                -out=${tmp.img.dir}
+            </x-sencha-command>
+
+            <if>
+                <available file="@{theme}/images"/>
+                <then>
+                    <echo>Copying user defined images from @{theme}/images to ${tmp.img.dir}</echo>
+                    <copy todir="${tmp.img.dir}">
+                        <fileset dir="@{theme}/images" includes="**/*"/>
+                    </copy>
+                </then>
+            </if>
+
+        </sequential>
+    </macrodef>
+    
+    <macrodef name="x-copy-resources">
+        <sequential>
+            <copy todir="${build.dir}/resources" includeEmptyDirs="false">
+                <fileset dir="${app.dir}/resources"
+                         includes="**/*"/>
+            </copy>
+
+            <x-script-def name="x-get-rel-path" language="javascript">
+                importPackage(com.sencha.util);
+                var fwPath = project.getProperty("framework.dir"),
+                    appPath = project.getProperty("app.dir");
+
+                project.setProperty(
+                    'framework.rel.path', 
+                    PathUtil.getRelativePath(appPath, fwPath));
+            </x-script-def>
+            <x-get-rel-path/>
+            
+            <copy toDir="${build.dir}/${framework.rel.path}">
+                <fileset dir="${framework.dir}" 
+                         includes="src/ux/**/css/**/*"/>
+            </copy>
+        </sequential>
+    </macrodef>
+    
     <!--
     Build SASS
     -->
@@ -134,61 +304,11 @@
     <target name="-sass">
         <!-- run sass compilation over the various themes -->
         <for param="sass">
-            <dirset dir="${app.dir}/resources/sass" includes="*"/>
+            <dirset dir="${app.theme.dir}" includes="*"/>
             <sequential>
-                <local name="app-css-dir"/>
-                <local name="build-css-dir"/>
-                <local name="sass.name"/>
-                <local name="use.shell"/>
-
-                <property name="app-css-dir" location="${app.dir}/resources/css"/>
-                <property name="build-css-dir" location="${build.dir}/resources/css"/>
-
-                <!--
-                convert abspath to just the leaf path name
-                -->
-                <basename property="sass.name" file="@{sass}"/>
-
-                <!--
-                compile to both the workspace (for theme build)
-                and build directory (for deployment)
-                -->
-                <condition property="use.shell" value="true">
-                    <os family="unix"/>
-                </condition>
-
-                <x-shell dir="@{sass}">
-                    compass compile --boring --force
-                </x-shell>
-
-                <x-compress-css srcfile="${build-css-dir}/${sass.name}/*.css"
-                                outdir="${build-css-dir}/${sass.name}"/>
+                <x-build-sass theme="@{sass}"/>
             </sequential>
         </for>
-
-        <!-- copy framework / app resource files to build.dir -->
-        <copy todir="${build.dir}">
-            <fileset dir="${app.dir}"
-                     includes="resources/**/*"
-                     excludes="resources/sass,
-                               resources/theme"/>
-        </copy>
-        
-        <script language="javascript">
-            importPackage(com.sencha.util);
-            var fwPath = project.getProperty("framework.dir"),
-                appPath = project.getProperty("app.dir");
-            
-            project.setProperty(
-                'framework.rel.path', 
-                PathUtil.getRelativePath(appPath, fwPath));
-        </script>
-        
-        <copy toDir="${build.dir}/${framework.rel.path}">
-            <fileset dir="${framework.dir}" 
-                     includes="resources/themes/images/**/*,
-                               src/ux/**/css/**/*"/>
-        </copy>
     </target>
     <target name="-after-sass"/>
     <target name="sass" depends="init" unless="skip.sass"
@@ -205,19 +325,12 @@
     <target name="-theme">
         <!-- slice the themes for the various images -->
         <for param="theme">
-            <dirset dir="${app.dir}/resources/theme" includes="*"/>
+            <dirset dir="${app.theme.dir}" includes="*"/>
             <sequential>
-                <local name="theme.name"/>
-                <basename property="theme.name" file="@{theme}"/>
-
-                <x-sencha-command>
-                    theme
-                    build
-                    -page=@{theme}/theme.html
-                    -out=${build.dir}/resources/images/${theme.name}
-                </x-sencha-command>
+                <x-build-theme theme="@{theme}"/>
             </sequential>
         </for>
+        <x-copy-resources/>
     </target>
     <target name="-after-theme"/>
     <target name="theme" depends="init" unless="skip.theme"
@@ -225,6 +338,24 @@
         <antcall target="-before-theme"/>
         <antcall target="-theme"/>
         <antcall target="-after-theme"/>
+    </target>
+
+    <!--
+    Refresh Individual Theme
+    -->
+    <target name="-before-refresh-theme"/>
+    <target name="-refresh-theme">
+        <local name="theme.dir"/>
+        <property name="theme.dir" location="${app.theme.dir}/${args.themeName}"/>
+        <x-build-theme theme="${theme.dir}" buildsass="true"/>
+        <x-copy-resources/>
+    </target>
+    <target name="-after-refresh-theme"/>
+    <target name="refresh-theme" depends="init" unless="skip.theme"
+            description="Builds only the application's Theme(s)">
+        <antcall target="-before-refresh-theme"/>
+        <antcall target="-refresh-theme"/>
+        <antcall target="-after-refresh-theme"/>
     </target>
 
     <!--
@@ -239,8 +370,9 @@
                 ${build.options}
                 page
                     -name=page
-                    -in=index.html
-                    -out=${build.dir}/index.html
+                    -in=${app.page.file}
+                    -out=${build.page.file}
+                    -classes=${build.classes.name}
                 and
                 restore
                     page
@@ -249,7 +381,7 @@
                 and
                 concat
                     ${build.compression}
-                    -out=${build.dir}/all-classes.js
+                    -out=${build.classes.file}
         </x-sencha-command>
     </target>
     <target name="-after-page"/>
@@ -327,29 +459,36 @@ process.
             
 The following properties can be used to modify the build process.
             
- * build.compression.production        Set the compression for a production
-                                       build.
- * build.compression.testing           Set the compression for a test build.
-                                       (defaults to none)
- * build.compression                   Set the compression for all builds.
-                                       (defaults to build.compression.production
+ * build.compression.production         Set the compression for a production
+                                        build.
+ * build.compression.testing            Set the compression for a test build.
+                                        (defaults to none)
+ * build.compression                    Set the compression for all builds.
+                                        (defaults to
+                                        build.compression.production
                                         or build.compression.testing)
             
- * build.operations.production         Insert commands into the compile command
-                                       for a production build. 
- * build.operations.testing            Insert commands into the compile command
-                                       for a testing build.
- * build.operations                    Insert commands into the compile command
-                                       for all builds.
-                                       (defaults to build.operations.production
+ * build.operations.production          Insert commands into the compile command
+                                        for a production build. 
+ * build.operations.testing             Insert commands into the compile command
+                                        for a testing build.
+ * build.operations                     Insert commands into the compile command
+                                        for all builds.
+                                        (defaults to build.operations.production
                                         or build.operations.testing)
  
- * build.options.production            Set options for a production build.
-                                       (eg: -debug=false)
- * build.options.testing               Set options for a testing build.
- * build.options                       Set options for all builds.
-                                       (defaults to build.options.production
+ * build.options.production             Set options for a production build.
+                                        (eg: -debug=false)
+ * build.options.testing                Set options for a testing build.
+ * build.options                        Set options for all builds.
+                                        (defaults to build.options.production
                                         or build.options.testing)
+ 
+ * app.page.name                        Set the input and output page file
+                                        for the compile command.
+ 
+ * build.classes.name                   Specify the compiled js file
+                                        
 
 For details about how these options affect your build, see
 

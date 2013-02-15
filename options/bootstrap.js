@@ -1,21 +1,3 @@
-/*
- This file is part of Chrookmarks.
-
- Copyright (c) 2013, James Nuzzi
-
- Chrookmarks is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-
- Chrookmarks is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with Chrookmarks.  If not, see <http://www.gnu.org/licenses/>.
- */
 Ext.Loader.addClassPathMappings({
   "Ext": "../ext/src",
   "Ext.ux.GroupTreeChunker": "../ext/src/ux/GroupTabPanel.js",
@@ -31,11 +13,14 @@ Ext.Loader.addClassPathMappings({
   "Ext.ux.ajax.XmlSimlet": [],
   "Ext.ux.event.Driver": [],
   "Ext.ux.DataView.DragSelector": [],
+  "options.view.Options": [],
   "Ext.ux.grid.menu.ListMenu": [],
   "Ext.ux.GMapPanel": [],
+  "options.view.ViewForm": [],
   "Ext.ux.form.MultiSelect": [
     "Ext.ux.Multiselect"
   ],
+  "options.proxy.Options": [],
   "Ext.ux.DataView.LabelEditor": [],
   "Ext.ux.GroupTabPanel": [],
   "Ext.ux.grid.filter.StringFilter": [],
@@ -45,6 +30,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.ux.CheckColumn": [],
   "Ext.ux.PreviewPlugin": [],
   "Ext.ux.DataView.Animated": [],
+  "options.view.MarksForm": [],
   "Ext.ux.ajax.SimXhr": [],
   "Ext.ux.event.RecorderManager": [],
   "Ext.ux.ProgressBarPager": [],
@@ -59,6 +45,7 @@ Ext.Loader.addClassPathMappings({
   "Ext.ux.grid.menu.RangeMenu": [],
   "Ext.ux.RowExpander": [],
   "Ext.ux.event.Recorder": [],
+  "options.controller.Options": [],
   "Ext.ux.event.Player": [],
   "options.view.Main": [],
   "Ext.ux.ajax.SimManager": [],
@@ -66,9 +53,11 @@ Ext.Loader.addClassPathMappings({
   "Ext.ux.ToolbarDroppable": [],
   "Ext.ux.event.Maker": [],
   "Ext.ux.TabScrollerMenu": [],
+  "options.model.Options": [],
   "Ext.ux.IFrame": [],
   "Ext.ux.DataView.Draggable": [],
   "Ext.ux.TabCloseMenu": [],
+  "options.view.Title": [],
   "Ext.ux.form.SearchField": [],
   "Ext.ux.LiveSearchGridPanel": [],
   "Ext.ux.grid.filter.DateFilter": [],
@@ -81,7 +70,9 @@ Ext.Loader.addClassPathMappings({
   "Ext.ux.grid.FiltersFeature": [],
   "Ext.ux.data.PagingMemoryProxy": [
     "Ext.data.PagingMemoryProxy"
-  ]
+  ],
+  "options.view.Tabs": [],
+  "options.view.AboutForm": []
 });Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.BoxReorderer": [],
   "Ext.ux.grid.filter.Filter": [],
@@ -97,13 +88,22 @@ Ext.Loader.addClassPathMappings({
   ],
   "Ext.ux.event.Driver": [],
   "Ext.ux.DataView.DragSelector": [],
+  "options.view.Options": [
+    "widget.optionsOptions"
+  ],
   "Ext.ux.grid.menu.ListMenu": [],
   "Ext.ux.GMapPanel": [
     "widget.gmappanel"
   ],
+  "options.view.ViewForm": [
+    "widget.optionsViewForm"
+  ],
   "Ext.ux.form.MultiSelect": [
     "widget.multiselectfield",
     "widget.multiselect"
+  ],
+  "options.proxy.Options": [
+    "proxy.optionsProxy"
   ],
   "Ext.ux.DataView.LabelEditor": [],
   "Ext.ux.GroupTabPanel": [
@@ -124,6 +124,9 @@ Ext.Loader.addClassPathMappings({
     "plugin.preview"
   ],
   "Ext.ux.DataView.Animated": [],
+  "options.view.MarksForm": [
+    "widget.optionsMarksForm"
+  ],
   "Ext.ux.ajax.SimXhr": [],
   "Ext.ux.event.RecorderManager": [
     "widget.eventrecordermanager"
@@ -146,6 +149,7 @@ Ext.Loader.addClassPathMappings({
     "plugin.rowexpander"
   ],
   "Ext.ux.event.Recorder": [],
+  "options.controller.Options": [],
   "Ext.ux.event.Player": [],
   "options.view.Main": [],
   "Ext.ux.ajax.SimManager": [],
@@ -157,12 +161,16 @@ Ext.Loader.addClassPathMappings({
   "Ext.ux.TabScrollerMenu": [
     "plugin.tabscrollermenu"
   ],
+  "options.model.Options": [],
   "Ext.ux.IFrame": [
     "widget.uxiframe"
   ],
   "Ext.ux.DataView.Draggable": [],
   "Ext.ux.TabCloseMenu": [
     "plugin.tabclosemenu"
+  ],
+  "options.view.Title": [
+    "widget.optionsTitle"
   ],
   "Ext.ux.form.SearchField": [
     "widget.searchfield"
@@ -187,5 +195,11 @@ Ext.Loader.addClassPathMappings({
   ],
   "Ext.ux.data.PagingMemoryProxy": [
     "proxy.pagingmemory"
+  ],
+  "options.view.Tabs": [
+    "widget.optionsTabs"
+  ],
+  "options.view.AboutForm": [
+    "widget.optionsAboutForm"
   ]
 });
