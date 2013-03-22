@@ -17,12 +17,13 @@
  along with Chrookmarks.  If not, see <http://www.gnu.org/licenses/>.
  */
 Ext.define('popup.proxy.Marks', {
-  extend: 'Ext.data.Proxy',
+  extend: 'Ext.data.proxy.Proxy',
   alias: 'proxy.marksProxy',
-  requires: [ 'options.model.Options' ],
   createTip: function (mark, markUrl, markTitle, markDate) {
-    mark.set('qtitle', (markUrl && markUrl.length > 0 ? markTitle : undefined));
-    mark.set('qtip', (markUrl && markUrl.length > 0 ? "<span style='text-decoration: underline'>" + markUrl + '</span><br/><br/>' + markDate.toLocaleDateString() + ' ' + markDate.toLocaleTimeString() : undefined));
+    if (markUrl && markUrl.length > 0) {
+      mark.set('qtitle', markTitle);
+      mark.set('qtip', "<span style='text-decoration: underline'>" + markUrl + '</span><br/><br/>' + markDate.toLocaleDateString() + ' ' + markDate.toLocaleTimeString());
+    }
   },
   loadChildren: function (children, marks) {
     var i,
@@ -32,6 +33,7 @@ Ext.define('popup.proxy.Marks', {
         id,
         title,
         url,
+        hasUrl,
         showFavIcons = popup.optionsData.get('showFavIcons'),
         showTooltips = popup.optionsData.get('showTooltips');
 
@@ -41,16 +43,17 @@ Ext.define('popup.proxy.Marks', {
       id = result.id;
       title = result.title;
       url = result.url;
+      hasUrl = (url && url.length > 0);
       mark = Ext.create('popup.model.Mark', {
         id: id,
         text: title,
         date: markDate,
         url: url,
-        icon: (showFavIcons && url && url.length > 0 ? 'chrome://favicon/' + url : undefined),
-        leaf: (url && url.length > 0),
-        singleClickExpand: (url && url.length > 0 ? undefined : true),
-        allowDrag: (url && url.length > 0),
-        allowDrop: !(url && url.length > 0),
+        icon: (showFavIcons && hasUrl ? 'chrome://favicon/' + url : undefined),
+        leaf: hasUrl,
+        singleClickExpand: (hasUrl ? undefined : true),
+        allowDrag: hasUrl,
+        allowDrop: !hasUrl,
         expanded: (id === '1')
       });
 
@@ -63,6 +66,8 @@ Ext.define('popup.proxy.Marks', {
   },
   update: function (operation, callback, scope) {
     var thisProxy = this;
+
+    operation.setStarted();
 
     if (operation.records.length === 1) {
       var rec = operation.records[0];
@@ -80,7 +85,7 @@ Ext.define('popup.proxy.Marks', {
         });
       } else {
         chrome.bookmarks.update(rec.get('id'), { 'url': rec.get('url'), 'title': rec.get('text') }, function (result) {
-          thisProxy.createTip(rec, result.title, new Date(result.dateAdded));
+          thisProxy.createTip(rec, result.url, result.title, new Date(result.dateAdded));
           Ext.getCmp('bookmarkTree').getStore().sort();
 
           operation.setSuccessful();
@@ -102,6 +107,8 @@ Ext.define('popup.proxy.Marks', {
   },
   destroy: function (operation, callback, scope) {
     var thisProxy = this;
+
+    operation.setStarted();
 
     if (operation.records.length === 1) {
       chrome.bookmarks.removeTree(operation.records[0].get('id'), function () {
@@ -125,13 +132,15 @@ Ext.define('popup.proxy.Marks', {
     var thisProxy = this,
         node = operation.params.node;
 
+    operation.setStarted();
+
     chrome.bookmarks.getChildren((node === 'root' ? '0' : node), function (results) {
       var marks = [];
 
       thisProxy.loadChildren(results, marks);
 
       //return model instances in a result set
-      operation.resultSet = new Ext.data.ResultSet({
+      operation.resultSet = Ext.create('Ext.data.ResultSet', {
         records: marks,
         total  : marks.length,
         loaded : true

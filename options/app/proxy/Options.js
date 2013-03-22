@@ -17,10 +17,12 @@
  along with Chrookmarks.  If not, see <http://www.gnu.org/licenses/>.
  */
 Ext.define("options.proxy.Options", {
-  extend: 'Ext.data.Proxy',
+  extend: 'Ext.data.proxy.Proxy',
   alias: 'proxy.optionsProxy',
   read: function (operation, callback, scope) {
     var thisProxy = this;
+
+    operation.setStarted();
 
     chrome.storage.sync.get({
       'options': {
@@ -52,6 +54,8 @@ Ext.define("options.proxy.Options", {
   },
   update: function (operation, callback, scope) {
     var thisProxy = this;
+
+    operation.setStarted();
 
     if (operation.records.length === 1) {
       var rec = operation.records[0];

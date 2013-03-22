@@ -185,7 +185,7 @@ Ext.define('popup.controller.Marks', {
     }
   },
   openOptions: function () {
-    chrome.tabs.create({ url: chrome.extension.getURL("/options/production/index.html"), selected: true });
+    chrome.tabs.create({ url: chrome.extension.getURL(chrome.runtime.getManifest().options_page), selected: true });
 
     self.close();
   },

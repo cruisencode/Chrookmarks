@@ -1,10 +1,10 @@
 {
   "extName": {
-    "message": "Chrookmarks",
+    "message": "Chrookmarks - Chrome Bookmarks",
     "description": "Extension name"
   },
   "extDescription": {
-    "message": "Chrookmarks - Displays your Chrome bookmarks in a tree.",
+    "message": "Chrookmarks - Displays your Chrome bookmarks in a tree.  Also allows for editing your bookmarks.",
     "description": "Extension description"
   },
   "extDefaultTitle": {

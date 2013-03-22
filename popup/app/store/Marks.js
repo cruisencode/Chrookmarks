@@ -18,6 +18,7 @@
  */
 Ext.define('popup.store.Marks', {
   extend: 'Ext.data.TreeStore',
+  requires: [ 'popup.proxy.Marks' ],
   storeId: 'bookmarkStore',
   model: 'popup.model.Mark',
   autoLoad: false,
@@ -25,5 +26,6 @@ Ext.define('popup.store.Marks', {
   folderSort: true,
   root: {
     expanded: false
-  }
+  },
+  proxy: { type: 'marksProxy' }
 });

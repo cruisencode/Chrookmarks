@@ -21,10 +21,11 @@ Ext.application({
   stores: [ 'Marks' ],
   controllers: [ 'Marks' ],
   name: 'popup',
+  autoCreateViewport: false,
+  enableQuickTips: true,
   init: function () {
     document.title = chrome.i18n.getMessage('extName');
 
-    Ext.tip.QuickTipManager.init();
     Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), { showDelay: 1000, hideDelay: 0 });
   },
   launch: function () {
@@ -33,8 +34,8 @@ Ext.application({
       callback: function(record) {
         popup.optionsData = record;
 
-        document.body.style.minWidth = popup.optionsData.get('popupWidth') + 'px';
-        document.body.style.minHeight = popup.optionsData.get('popupHeight') + 'px';
+        document.body.style.width = popup.optionsData.get('popupWidth') + 'px';
+        document.body.style.height = popup.optionsData.get('popupHeight') + 'px';
 
         this.getMarksStore().sort(popup.optionsData.get('sortBy'), popup.optionsData.get('sortOrder'));
 
