@@ -21,8 +21,7 @@ Ext.define('popup.proxy.Marks', {
   alias: 'proxy.marksProxy',
   createTip: function (mark, markUrl, markTitle, markDate) {
     if (markUrl && markUrl.length > 0) {
-      mark.set('qtitle', markTitle);
-      mark.set('qtip', "<span style='text-decoration: underline'>" + markUrl + '</span><br/><br/>' + markDate.toLocaleDateString() + ' ' + markDate.toLocaleTimeString());
+      mark.set('qtip', '<b>' + markTitle + "</b><br/><br/><span style='text-decoration: underline'>" + markUrl + '</span><br/><br/>' + markDate.toLocaleDateString() + ' ' + markDate.toLocaleTimeString());
     }
   },
   loadChildren: function (children, marks) {
@@ -72,8 +71,9 @@ Ext.define('popup.proxy.Marks', {
     if (operation.records.length === 1) {
       var rec = operation.records[0];
 
-      if (rec.modified.parentId && rec.modified.parentId.length > 0) {
-        chrome.bookmarks.move(rec.get('id'), { parentId: rec.parentNode.get('id') }, function () {
+      if ((rec.modified.text && rec.modified.text.length > 0) || (rec.modified.url && rec.modified.url.length > 0)) {
+        chrome.bookmarks.update(rec.get('id'), { 'url': rec.get('url'), 'title': rec.get('text') }, function (result) {
+          thisProxy.createTip(rec, result.url, result.title, new Date(result.dateAdded));
           Ext.getCmp('bookmarkTree').getStore().sort();
 
           operation.setSuccessful();
@@ -84,8 +84,7 @@ Ext.define('popup.proxy.Marks', {
           }
         });
       } else {
-        chrome.bookmarks.update(rec.get('id'), { 'url': rec.get('url'), 'title': rec.get('text') }, function (result) {
-          thisProxy.createTip(rec, result.url, result.title, new Date(result.dateAdded));
+        chrome.bookmarks.move(rec.get('id'), { parentId: rec.parentNode.get('id') }, function () {
           Ext.getCmp('bookmarkTree').getStore().sort();
 
           operation.setSuccessful();
@@ -130,7 +129,7 @@ Ext.define('popup.proxy.Marks', {
   },
   read: function (operation, callback, scope) {
     var thisProxy = this,
-        node = operation.params.node;
+        node = operation.id;
 
     operation.setStarted();
 
