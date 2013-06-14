@@ -148,7 +148,7 @@ dist
 eggs
 parts
 bin
-var
+# var
 sdist
 develop-eggs
 .installed.cfg

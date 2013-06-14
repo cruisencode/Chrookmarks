@@ -18,7 +18,6 @@
  */
 Ext.define('popup.controller.Marks', {
   extend: 'Ext.app.Controller',
-  views: [ 'Tree', 'TreeFilter', 'Edit', 'Delete', 'CtxMenu' ],
   refs: [
     { ref: 'tree', selector: 'markTree' }
   ],

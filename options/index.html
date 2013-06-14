@@ -1,34 +1,53 @@
-<!--
- This file is part of Chrookmarks.
-
- Copyright (c) 2013, James Nuzzi
-
- Chrookmarks is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
-
- Chrookmarks is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- GNU General Public License for more details.
-
- You should have received a copy of the GNU General Public License
- along with Chrookmarks.  If not, see <http://www.gnu.org/licenses/>.
--->
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="resources/theme/app.css">
-        <link rel="stylesheet" href="resources/css/options.css">
-        <!-- <x-compile> -->
-            <!-- <x-bootstrap> -->
-                <script src="../ext/ext-dev.js"></script>
-                <script src="bootstrap.js"></script>
-            <!-- </x-bootstrap> -->
-            <script src="app/app.js"></script>
-        <!-- </x-compile> -->
-    </head>
-    <body></body>
+<head>
+    <meta charset="UTF-8">
+    <title>options</title>
+    <style type="text/css">
+        #titleDiv {
+          height: 48px;
+          line-height: 48px;
+        }
+
+
+        #logoImg {
+          float: left;
+        }
+
+
+        #titleHeading {
+          display: inline;
+          font-size: 24pt;
+          margin-left: 18px;
+        }
+
+
+        .tab-list-item {
+          font-size: 12pt;
+          font-family: tahoma, arial, verdana, sans-serif;
+          text-align: right;
+          padding: 10px 20px 10px 10px;
+          cursor: pointer;
+        }
+
+
+        .tab-list-item-hover {
+          background-color: #EFEFEF;
+        }
+
+
+        .tab-list-item-selected {
+          background-color: #DFE8F6;
+        }
+    </style>
+    <!-- <x-compile> -->
+        <!-- <x-bootstrap> -->
+            <link rel="stylesheet" href="bootstrap.css">
+            <script src="../ext/ext-dev.js"></script>
+            <script src="bootstrap.js"></script>
+        <!-- </x-bootstrap> -->
+        <script src="app.js"></script>
+    <!-- </x-compile> -->
+</head>
+<body></body>
 </html>

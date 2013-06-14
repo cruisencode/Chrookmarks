@@ -50,6 +50,7 @@ Ext.define("popup.view.Tree", {
     }
   ],
   viewConfig: {
+    mouseOverOutBuffer: false,
     plugins: {
       ptype: 'treeviewdragdrop',
       appendOnly: true,
