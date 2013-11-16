@@ -23,6 +23,9 @@ Ext.define('options.controller.Options', {
       'optionsTabs': {
         select: this.selectTab
       },
+      'optionsMarksForm combobox[name=sortBy]': {
+        select: this.sortByChanged
+      },
       'optionsMarksForm button[action=save]': {
         click: this.saveOptions
       },
@@ -30,6 +33,11 @@ Ext.define('options.controller.Options', {
         click: this.saveOptions
       }
     });
+  },
+  sortByChanged: function (combo, records) {
+    var sortOrder = Ext.getCmp('sortOrder');
+
+    sortOrder.setDisabled(records[0].data.val === 'none');
   },
   selectTab: function (view, record) {
     var layout = Ext.getCmp('optionsOptions').getLayout(),
@@ -43,8 +51,16 @@ Ext.define('options.controller.Options', {
 
     options.model.Options.load(0, {
       scope: this,
-      callback: function(record) {
-        form.loadRecord(record);
+      callback: function(optionsRecord) {
+        form.loadRecord(optionsRecord);
+
+        if (record.data.title === chrome.i18n.getMessage('optionsBookmarks')) {
+          var sortBy = Ext.getCmp('sortBy'),
+              sortOrder = Ext.getCmp('sortOrder');
+
+          sortOrder.setDisabled(sortBy.getValue() === 'none');
+        }
+
         form.setLoading(false);
       }
     });

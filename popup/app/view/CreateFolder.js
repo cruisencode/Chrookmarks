@@ -16,12 +16,13 @@
  You should have received a copy of the GNU General Public License
  along with Chrookmarks.  If not, see <http://www.gnu.org/licenses/>.
  */
-Ext.define("popup.view.Edit", {
+Ext.define("popup.view.CreateFolder", {
   extend: 'Ext.window.Window',
-  alias: 'widget.markEdit',
+  alias: 'widget.createFolder',
   layout: 'fit',
   autoShow: true,
   modal: true,
+  title: chrome.i18n.getMessage('popupCreateFolder'),
   initComponent: function () {
     this.items = [
       {
@@ -35,15 +36,9 @@ Ext.define("popup.view.Edit", {
         items: [
           {
             xtype: 'textfield',
-            name: 'text',
+            name: 'textNewFolder',
             anchor: '100%',
             fieldLabel: chrome.i18n.getMessage('popupName')
-          },
-          {
-            xtype: 'textfield',
-            name: 'url',
-            anchor: '100%',
-            fieldLabel: chrome.i18n.getMessage('popupEditURL')
           }
         ]
       }

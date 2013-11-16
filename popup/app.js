@@ -25,6 +25,7 @@ Ext.application({
     'Mark'
   ],
   views: [
+    'CreateFolder',
     'CtxMenu',
     'Delete',
     'Edit',
@@ -60,7 +61,12 @@ Ext.application({
         document.body.style.width = popup.optionsData.get('popupWidth') + 'px';
         document.body.style.height = popup.optionsData.get('popupHeight') + 'px';
 
-        this.getMarksStore().sort(popup.optionsData.get('sortBy'), popup.optionsData.get('sortOrder'));
+        var sortBy = popup.optionsData.get('sortBy');
+
+        if (sortBy != 'none') {
+          this.getMarksStore().folderSort = true;
+          this.getMarksStore().sort(popup.optionsData.get('sortBy'), popup.optionsData.get('sortOrder'));
+        }
 
         Ext.create('Ext.container.Viewport', {
           layout: 'fit',

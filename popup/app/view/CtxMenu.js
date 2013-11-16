@@ -45,6 +45,12 @@ Ext.define("popup.view.CtxMenu", {
       },
       '-',
       {
+        text: chrome.i18n.getMessage('popupCtxMenuCreateFolder'),
+        icon: '/icons/folder_add.png',
+        itemId: 'createNewFolder',
+        hidden: this.isLeaf
+      },
+      {
         text: chrome.i18n.getMessage('popupCtxMenuEdit'),
         icon: '/icons/rename.png',
         itemId: 'edit'

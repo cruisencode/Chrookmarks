@@ -16,15 +16,10 @@
  You should have received a copy of the GNU General Public License
  along with Chrookmarks.  If not, see <http://www.gnu.org/licenses/>.
  */
-Ext.define('popup.store.Marks', {
-  extend: 'Ext.data.TreeStore',
-  requires: [ 'popup.proxy.Marks' ],
-  storeId: 'bookmarkStore',
-  model: 'popup.model.Mark',
-  autoLoad: false,
-  autoSync: true,
-  root: {
-    expanded: false
-  },
-  proxy: { type: 'marksProxy' }
+chrome.runtime.onInstalled.addListener(function(details) {
+  if (details.reason === 'update') {
+    if (details.previousVersion !== chrome.runtime.getManifest().version) {
+      chrome.tabs.create({ url: 'http://www.chrookmarks.com/version-history', selected: false });
+    }
+  }
 });

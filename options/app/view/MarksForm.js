@@ -40,6 +40,7 @@ Ext.define("options.view.MarksForm", {
           {
             xtype: 'combobox',
             name: 'sortBy',
+            id: 'sortBy',
             fieldLabel: chrome.i18n.getMessage('optionsBookmarksSortBy'),
             editable: false,
             forceSelection: true,
@@ -50,6 +51,7 @@ Ext.define("options.view.MarksForm", {
               storeId: 'sortByStore',
               fields: [ 'text', 'val' ],
               data: [
+                [ chrome.i18n.getMessage('optionsBookmarksSortByNone'), 'none' ],
                 [ chrome.i18n.getMessage('optionsBookmarksSortByName'), 'text' ],
                 [ chrome.i18n.getMessage('optionsBookmarksSortByDate'), 'date' ]
               ]
@@ -58,6 +60,7 @@ Ext.define("options.view.MarksForm", {
           {
             xtype: 'combobox',
             name: 'sortOrder',
+            id: 'sortOrder',
             fieldLabel: chrome.i18n.getMessage('optionsBookmarksSortOrder'),
             editable: false,
             forceSelection: true,

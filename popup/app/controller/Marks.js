@@ -34,6 +34,9 @@ Ext.define('popup.controller.Marks', {
       'markTree textfield[id=searchField]': {
         change: this.searchBookmarks
       },
+      'createFolder button[action=save]': {
+        click: this.createFolder
+      },
       'markEdit button[action=save]': {
         click: this.updateMark
       },
@@ -52,6 +55,9 @@ Ext.define('popup.controller.Marks', {
       'ctxMenu menuitem[itemId=openNewIncognito]': {
         click: this.openInNewIncognito
       },
+      'ctxMenu menuitem[itemId=createNewFolder]': {
+        click: this.createNewFolder
+      },
       'ctxMenu menuitem[itemId=edit]': {
         click: this.editMark
       },
@@ -59,6 +65,30 @@ Ext.define('popup.controller.Marks', {
         click: this.deleteMark
       }
     });
+  },
+  createNewFolder: function () {
+    var view = Ext.widget('createFolder'),
+        selected = this.getTree().getSelectionModel().getLastSelected();
+
+    view.down('form').loadRecord(selected);
+    view.down('textfield[name="textNewFolder"]').focus(false, true);
+  },
+  createFolder: function (button) {
+    var win = button.up('window'),
+        form = win.down('form'),
+        record = form.getRecord(),
+        values = form.getValues(),
+        mark = Ext.create('popup.model.Mark', {
+          text: values.textNewFolder,
+          leaf: false,
+          singleClickExpand: true,
+          allowDrag: false,
+          allowDrop: true,
+          expanded: false
+        });
+
+    record.appendChild(mark, false, true);
+    win.close();
   },
   editMark: function () {
     var view = Ext.widget('markEdit'),

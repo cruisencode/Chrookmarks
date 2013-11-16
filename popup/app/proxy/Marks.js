@@ -63,6 +63,38 @@ Ext.define('popup.proxy.Marks', {
       marks.push(mark);
     }
   },
+  create: function (operation, callback, scope) {
+    var thisProxy = this;
+
+    operation.setStarted();
+
+    if (operation.records.length === 1) {
+      var rec = operation.records[0];
+
+      chrome.bookmarks.create({ parentId: rec.get('parentId'), title: rec.get('text') }, function (result) {
+        var marks = [];
+
+        thisProxy.loadChildren([ result ], marks);
+
+        operation.commitRecords(marks);
+        operation.setSuccessful();
+        operation.setCompleted();
+
+        Ext.getCmp('bookmarkTree').getStore().sort();
+
+        if (typeof callback === 'function') {
+          callback.call(scope || thisProxy, operation);
+        }
+      });
+    } else {
+      operation.setException(chrome.i18n.getMessage('popupMarksProxyMultiNodeCreateError'));
+      operation.setCompleted();
+
+      if (typeof callback === 'function') {
+        callback.call(scope || thisProxy, operation);
+      }
+    }
+  },
   update: function (operation, callback, scope) {
     var thisProxy = this;
 
@@ -73,22 +105,33 @@ Ext.define('popup.proxy.Marks', {
 
       if ((rec.modified.text && rec.modified.text.length > 0) || (rec.modified.url && rec.modified.url.length > 0)) {
         chrome.bookmarks.update(rec.get('id'), { 'url': rec.get('url'), 'title': rec.get('text') }, function (result) {
-          thisProxy.createTip(rec, result.url, result.title, new Date(result.dateAdded));
-          Ext.getCmp('bookmarkTree').getStore().sort();
+          //thisProxy.createTip(rec, result.url, result.title, new Date(result.dateAdded));
 
+          var marks = [];
+
+          thisProxy.loadChildren([ result ], marks);
+
+          operation.commitRecords(marks);
           operation.setSuccessful();
           operation.setCompleted();
+
+          Ext.getCmp('bookmarkTree').getStore().sort();
 
           if (typeof callback === 'function') {
             callback.call(scope || thisProxy, operation);
           }
         });
       } else {
-        chrome.bookmarks.move(rec.get('id'), { parentId: rec.parentNode.get('id') }, function () {
-          Ext.getCmp('bookmarkTree').getStore().sort();
+        chrome.bookmarks.move(rec.get('id'), { parentId: rec.parentNode.get('id') }, function (result) {
+          var marks = [];
 
+          thisProxy.loadChildren([ result ], marks);
+
+          operation.commitRecords(marks);
           operation.setSuccessful();
           operation.setCompleted();
+
+          Ext.getCmp('bookmarkTree').getStore().sort();
 
           if (typeof callback === 'function') {
             callback.call(scope || thisProxy, operation);
@@ -146,6 +189,7 @@ Ext.define('popup.proxy.Marks', {
       });
 
       //announce success
+      operation.commitRecords(marks);
       operation.setSuccessful();
       operation.setCompleted();
 

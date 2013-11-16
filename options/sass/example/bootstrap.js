@@ -5,188 +5,169 @@
  * metadata-driven class system features 
  */
 Ext.Loader.addClassPathMappings({
-  " Ext.Msg": "../../../ext/src/window/MessageBox.js",
   "Ext": "../../../ext/src",
+  "Ext.Msg": "../../../ext/src/window/MessageBox.js",
   "Ext.rtl.EventObjectImpl": "../../../ext/src/rtl/EventObject.js",
   "options": "../../app"
 });
 Ext.ClassManager.addNameAlternateMappings({
   "Ext.ux.BoxReorderer": [],
-  "Ext.ux.grid.filter.Filter": [],
-  "Ext.ux.GroupTabRenderer": [],
-  "Ext.ux.ajax.DataSimlet": [],
-  "Ext.ux.grid.TransformGrid": [],
-  "Ext.ux.FieldReplicator": [],
-  "Ext.ux.grid.filter.ListFilter": [],
-  "Ext.ux.ajax.XmlSimlet": [],
-  "Ext.ux.event.Driver": [],
-  "Ext.ux.dd.PanelFieldDragZone": [],
-  "Ext.ux.DataView.DragSelector": [],
-  "options.view.Options": [],
-  "Ext.ux.grid.menu.ListMenu": [],
-  "Ext.ux.GMapPanel": [],
-  "options.view.ViewForm": [],
-  "Ext.ux.form.MultiSelect": [
-    "Ext.ux.Multiselect"
-  ],
-  "options.proxy.Options": [],
-  "Ext.ux.DataView.LabelEditor": [],
-  "Ext.ux.GroupTabPanel": [],
-  "Ext.ux.grid.filter.StringFilter": [],
-  "Ext.ux.statusbar.ValidationStatus": [],
-  "Ext.ux.layout.Center": [],
-  "Ext.ux.PreviewPlugin": [],
-  "Ext.ux.DataView.Animated": [],
-  "options.view.MarksForm": [],
-  "Ext.ux.ajax.SimXhr": [],
-  "Ext.ux.event.RecorderManager": [],
-  "Ext.ux.ProgressBarPager": [],
   "Ext.ux.CellDragDrop": [],
-  "Ext.ux.statusbar.StatusBar": [
-    "Ext.ux.StatusBar"
-  ],
-  "Ext.ux.ajax.Simlet": [],
-  "Ext.ux.SlidingPager": [],
-  "Ext.ux.TabReorderer": [],
-  "Ext.ux.grid.filter.NumericFilter": [],
-  "Ext.ux.grid.menu.RangeMenu": [],
-  "Ext.ux.RowExpander": [],
-  "Ext.ux.event.Recorder": [],
-  "options.controller.Options": [],
-  "Ext.ux.event.Player": [],
-  "Ext.ux.ajax.SimManager": [],
-  "Ext.ux.grid.filter.BooleanFilter": [],
-  "Ext.ux.ToolbarDroppable": [],
-  "Ext.ux.event.Maker": [],
-  "Ext.ux.TabScrollerMenu": [],
-  "options.model.Options": [],
-  "Ext.ux.IFrame": [],
-  "Ext.ux.DataView.Draggable": [],
-  "Ext.ux.TabCloseMenu": [],
-  "options.view.Title": [],
-  "Ext.ux.form.SearchField": [],
-  "Ext.ux.dd.CellFieldDropZone": [],
-  "Ext.ux.LiveSearchGridPanel": [],
   "Ext.ux.DataTip": [],
-  "Ext.ux.grid.filter.DateFilter": [],
-  "Ext.ux.grid.filter.DateTimeFilter": [],
-  "Ext.ux.TreePicker": [],
-  "Ext.ux.form.ItemSelector": [
-    "Ext.ux.ItemSelector"
-  ],
-  "Ext.ux.ajax.JsonSimlet": [],
+  "Ext.ux.DataView.Animated": [],
+  "Ext.ux.DataView.DragSelector": [],
+  "Ext.ux.DataView.Draggable": [],
+  "Ext.ux.DataView.LabelEditor": [],
+  "Ext.ux.FieldReplicator": [],
+  "Ext.ux.GMapPanel": [],
+  "Ext.ux.GroupTabPanel": [],
+  "Ext.ux.GroupTabRenderer": [],
+  "Ext.ux.IFrame": [],
+  "Ext.ux.LiveSearchGridPanel": [],
+  "Ext.ux.PreviewPlugin": [],
+  "Ext.ux.ProgressBarPager": [],
+  "Ext.ux.RowExpander": [],
+  "Ext.ux.SlidingPager": [],
   "Ext.ux.Spotlight": [],
-  "Ext.ux.grid.FiltersFeature": [],
+  "Ext.ux.TabCloseMenu": [],
+  "Ext.ux.TabReorderer": [],
+  "Ext.ux.TabScrollerMenu": [],
+  "Ext.ux.ToolbarDroppable": [],
+  "Ext.ux.TreePicker": [],
+  "Ext.ux.ajax.DataSimlet": [],
+  "Ext.ux.ajax.JsonSimlet": [],
+  "Ext.ux.ajax.SimManager": [],
+  "Ext.ux.ajax.SimXhr": [],
+  "Ext.ux.ajax.Simlet": [],
+  "Ext.ux.ajax.XmlSimlet": [],
   "Ext.ux.data.PagingMemoryProxy": [
     "Ext.data.PagingMemoryProxy"
   ],
+  "Ext.ux.dd.CellFieldDropZone": [],
+  "Ext.ux.dd.PanelFieldDragZone": [],
+  "Ext.ux.event.Driver": [],
+  "Ext.ux.event.Maker": [],
+  "Ext.ux.event.Player": [],
+  "Ext.ux.event.Recorder": [],
+  "Ext.ux.event.RecorderManager": [],
+  "Ext.ux.form.ItemSelector": [
+    "Ext.ux.ItemSelector"
+  ],
+  "Ext.ux.form.MultiSelect": [
+    "Ext.ux.Multiselect"
+  ],
+  "Ext.ux.form.SearchField": [],
+  "Ext.ux.grid.FiltersFeature": [],
+  "Ext.ux.grid.TransformGrid": [],
+  "Ext.ux.grid.filter.BooleanFilter": [],
+  "Ext.ux.grid.filter.DateFilter": [],
+  "Ext.ux.grid.filter.DateTimeFilter": [],
+  "Ext.ux.grid.filter.Filter": [],
+  "Ext.ux.grid.filter.ListFilter": [],
+  "Ext.ux.grid.filter.NumericFilter": [],
+  "Ext.ux.grid.filter.StringFilter": [],
+  "Ext.ux.grid.menu.ListMenu": [],
+  "Ext.ux.grid.menu.RangeMenu": [],
+  "Ext.ux.layout.Center": [],
+  "Ext.ux.statusbar.StatusBar": [
+    "Ext.ux.StatusBar"
+  ],
+  "Ext.ux.statusbar.ValidationStatus": [],
+  "options.controller.Options": [],
+  "options.model.Options": [],
+  "options.proxy.Options": [],
+  "options.view.AboutForm": [],
+  "options.view.MarksForm": [],
+  "options.view.Options": [],
   "options.view.Tabs": [],
-  "options.view.AboutForm": []
+  "options.view.Title": [],
+  "options.view.ViewForm": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.BoxReorderer": [],
-  "Ext.ux.grid.filter.Filter": [],
+  "Ext.ux.CellDragDrop": [
+    "plugin.celldragdrop"
+  ],
+  "Ext.ux.DataTip": [
+    "plugin.datatip"
+  ],
+  "Ext.ux.DataView.Animated": [],
+  "Ext.ux.DataView.DragSelector": [],
+  "Ext.ux.DataView.Draggable": [],
+  "Ext.ux.DataView.LabelEditor": [],
+  "Ext.ux.FieldReplicator": [],
+  "Ext.ux.GMapPanel": [
+    "widget.gmappanel"
+  ],
+  "Ext.ux.GroupTabPanel": [
+    "widget.grouptabpanel"
+  ],
   "Ext.ux.GroupTabRenderer": [
     "plugin.grouptabrenderer"
   ],
+  "Ext.ux.IFrame": [
+    "widget.uxiframe"
+  ],
+  "Ext.ux.LiveSearchGridPanel": [],
+  "Ext.ux.PreviewPlugin": [
+    "plugin.preview"
+  ],
+  "Ext.ux.ProgressBarPager": [],
+  "Ext.ux.RowExpander": [],
+  "Ext.ux.SlidingPager": [],
+  "Ext.ux.Spotlight": [],
+  "Ext.ux.TabCloseMenu": [
+    "plugin.tabclosemenu"
+  ],
+  "Ext.ux.TabReorderer": [],
+  "Ext.ux.TabScrollerMenu": [
+    "plugin.tabscrollermenu"
+  ],
+  "Ext.ux.ToolbarDroppable": [],
+  "Ext.ux.TreePicker": [
+    "widget.treepicker"
+  ],
   "Ext.ux.ajax.DataSimlet": [],
-  "Ext.ux.grid.TransformGrid": [],
-  "Ext.ux.FieldReplicator": [],
-  "Ext.ux.grid.filter.ListFilter": [
-    "gridfilter.list"
+  "Ext.ux.ajax.JsonSimlet": [
+    "simlet.json"
+  ],
+  "Ext.ux.ajax.SimManager": [],
+  "Ext.ux.ajax.SimXhr": [],
+  "Ext.ux.ajax.Simlet": [
+    "simlet.basic"
   ],
   "Ext.ux.ajax.XmlSimlet": [
     "simlet.xml"
   ],
-  "Ext.ux.event.Driver": [],
+  "Ext.ux.data.PagingMemoryProxy": [
+    "proxy.pagingmemory"
+  ],
+  "Ext.ux.dd.CellFieldDropZone": [],
   "Ext.ux.dd.PanelFieldDragZone": [],
-  "Ext.ux.DataView.DragSelector": [],
-  "options.view.Options": [
-    "widget.optionsOptions"
+  "Ext.ux.event.Driver": [],
+  "Ext.ux.event.Maker": [],
+  "Ext.ux.event.Player": [],
+  "Ext.ux.event.Recorder": [],
+  "Ext.ux.event.RecorderManager": [
+    "widget.eventrecordermanager"
   ],
-  "Ext.ux.grid.menu.ListMenu": [],
-  "Ext.ux.GMapPanel": [
-    "widget.gmappanel"
-  ],
-  "options.view.ViewForm": [
-    "widget.optionsViewForm"
+  "Ext.ux.form.ItemSelector": [
+    "widget.itemselector",
+    "widget.itemselectorfield"
   ],
   "Ext.ux.form.MultiSelect": [
     "widget.multiselect",
     "widget.multiselectfield"
   ],
-  "options.proxy.Options": [
-    "proxy.optionsProxy"
-  ],
-  "Ext.ux.DataView.LabelEditor": [],
-  "Ext.ux.GroupTabPanel": [
-    "widget.grouptabpanel"
-  ],
-  "Ext.ux.grid.filter.StringFilter": [
-    "gridfilter.string"
-  ],
-  "Ext.ux.statusbar.ValidationStatus": [],
-  "Ext.ux.layout.Center": [
-    "layout.ux.center"
-  ],
-  "Ext.ux.PreviewPlugin": [
-    "plugin.preview"
-  ],
-  "Ext.ux.DataView.Animated": [],
-  "options.view.MarksForm": [
-    "widget.optionsMarksForm"
-  ],
-  "Ext.ux.ajax.SimXhr": [],
-  "Ext.ux.event.RecorderManager": [
-    "widget.eventrecordermanager"
-  ],
-  "Ext.ux.ProgressBarPager": [],
-  "Ext.ux.CellDragDrop": [
-    "plugin.celldragdrop"
-  ],
-  "Ext.ux.statusbar.StatusBar": [
-    "widget.statusbar"
-  ],
-  "Ext.ux.ajax.Simlet": [
-    "simlet.basic"
-  ],
-  "Ext.ux.SlidingPager": [],
-  "Ext.ux.TabReorderer": [],
-  "Ext.ux.grid.filter.NumericFilter": [
-    "gridfilter.numeric"
-  ],
-  "Ext.ux.grid.menu.RangeMenu": [],
-  "Ext.ux.RowExpander": [],
-  "Ext.ux.event.Recorder": [],
-  "options.controller.Options": [],
-  "Ext.ux.event.Player": [],
-  "Ext.ux.ajax.SimManager": [],
-  "Ext.ux.grid.filter.BooleanFilter": [
-    "gridfilter.boolean"
-  ],
-  "Ext.ux.ToolbarDroppable": [],
-  "Ext.ux.event.Maker": [],
-  "Ext.ux.TabScrollerMenu": [
-    "plugin.tabscrollermenu"
-  ],
-  "options.model.Options": [],
-  "Ext.ux.IFrame": [
-    "widget.uxiframe"
-  ],
-  "Ext.ux.DataView.Draggable": [],
-  "Ext.ux.TabCloseMenu": [
-    "plugin.tabclosemenu"
-  ],
-  "options.view.Title": [
-    "widget.optionsTitle"
-  ],
   "Ext.ux.form.SearchField": [
     "widget.searchfield"
   ],
-  "Ext.ux.dd.CellFieldDropZone": [],
-  "Ext.ux.LiveSearchGridPanel": [],
-  "Ext.ux.DataTip": [
-    "plugin.datatip"
+  "Ext.ux.grid.FiltersFeature": [
+    "feature.filters"
+  ],
+  "Ext.ux.grid.TransformGrid": [],
+  "Ext.ux.grid.filter.BooleanFilter": [
+    "gridfilter.boolean"
   ],
   "Ext.ux.grid.filter.DateFilter": [
     "gridfilter.date"
@@ -194,27 +175,46 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.ux.grid.filter.DateTimeFilter": [
     "gridfilter.datetime"
   ],
-  "Ext.ux.TreePicker": [
-    "widget.treepicker"
+  "Ext.ux.grid.filter.Filter": [],
+  "Ext.ux.grid.filter.ListFilter": [
+    "gridfilter.list"
   ],
-  "Ext.ux.form.ItemSelector": [
-    "widget.itemselector",
-    "widget.itemselectorfield"
+  "Ext.ux.grid.filter.NumericFilter": [
+    "gridfilter.numeric"
   ],
-  "Ext.ux.ajax.JsonSimlet": [
-    "simlet.json"
+  "Ext.ux.grid.filter.StringFilter": [
+    "gridfilter.string"
   ],
-  "Ext.ux.Spotlight": [],
-  "Ext.ux.grid.FiltersFeature": [
-    "feature.filters"
+  "Ext.ux.grid.menu.ListMenu": [],
+  "Ext.ux.grid.menu.RangeMenu": [],
+  "Ext.ux.layout.Center": [
+    "layout.ux.center"
   ],
-  "Ext.ux.data.PagingMemoryProxy": [
-    "proxy.pagingmemory"
+  "Ext.ux.statusbar.StatusBar": [
+    "widget.statusbar"
+  ],
+  "Ext.ux.statusbar.ValidationStatus": [],
+  "options.controller.Options": [],
+  "options.model.Options": [],
+  "options.proxy.Options": [
+    "proxy.optionsProxy"
+  ],
+  "options.view.AboutForm": [
+    "widget.optionsAboutForm"
+  ],
+  "options.view.MarksForm": [
+    "widget.optionsMarksForm"
+  ],
+  "options.view.Options": [
+    "widget.optionsOptions"
   ],
   "options.view.Tabs": [
     "widget.optionsTabs"
   ],
-  "options.view.AboutForm": [
-    "widget.optionsAboutForm"
+  "options.view.Title": [
+    "widget.optionsTitle"
+  ],
+  "options.view.ViewForm": [
+    "widget.optionsViewForm"
   ]
 });

@@ -1,10 +1,14 @@
 {
   "extName": {
-    "message": "Chrookmarks - Chrome Bookmarks",
+    "message": "Chrookmarks - Chrome Bookmarks Menu",
     "description": "Extension name"
   },
+  "extShortName": {
+    "message": "Chrookmarks",
+    "description": "Extension short name"
+  },
   "extDescription": {
-    "message": "Chrookmarks - Displays your Chrome bookmarks in a tree.  Also allows for editing your bookmarks.",
+    "message": "Pops up a bookmarks menu with the click of a button.  Manage you bookmarks right from the bookmarks menu.",
     "description": "Extension description"
   },
   "extDefaultTitle": {
@@ -27,6 +31,18 @@
     "message": "Cancel",
     "description": "Text for Cancel buttons throughout popup"
   },
+  "popupName": {
+    "message": "Name",
+    "description": "Text for Name fields throughout popup"
+  },
+  "popupSave": {
+    "message": "Save",
+    "description": "Text for Save buttons throughout popup"
+  },
+  "popupCreateFolder": {
+    "message": "Create New Folder",
+    "description": "Title text for Create New Folder window"
+  },
   "popupEditBookmark": {
     "message": "Edit Bookmark",
     "description": "Title text for Edit Bookmark window"
@@ -43,17 +59,9 @@
     "message": "Delete Folder",
     "description": "Title text for Delete Folder window"
   },
-  "popupEditName": {
-    "message": "Name",
-    "description": "Text for Name field in Edit Bookmark window"
-  },
   "popupEditURL": {
     "message": "URL",
     "description": "Text for URL field in Edit Bookmark window"
-  },
-  "popupEditSave": {
-    "message": "Save",
-    "description": "Text for Save button in Edit Bookmark window"
   },
   "popupDeleteConfirm": {
     "message": "Are you sure you want to delete this item?",
@@ -79,9 +87,17 @@
     "message": "Open in Incognito window",
     "description": "Text for Open in Incognito window option in context menu"
   },
+  "popupCtxMenuCreateFolder": {
+    "message": "Create New Folder",
+    "description": "Text for Create New Folder option in context menu"
+  },
   "popupCtxMenuEdit": {
     "message": "Edit",
     "description": "Text for Edit option in context menu"
+  },
+  "popupMarksProxyMultiNodeCreateError": {
+    "message": "Cannot create more than one node.",
+    "description": "Text for proxy error message when trying to create more than one node"
   },
   "popupMarksProxyMultiNodeUpdateError": {
     "message": "Cannot update more than one node.",
@@ -122,6 +138,10 @@
   "optionsBookmarksSortBy": {
     "message": "Sort By",
     "description": "Text for Sort By label in Bookmarks form"
+  },
+  "optionsBookmarksSortByNone": {
+    "message": "None",
+    "description": "Text for Sort By None value in Bookmarks form"
   },
   "optionsBookmarksSortByName": {
     "message": "Name",
