@@ -84,7 +84,20 @@ Ext.define("options.view.MarksForm", {
           {
             xtype: 'checkbox',
             name: 'showTooltips',
+            id: 'showTooltips',
             fieldLabel: chrome.i18n.getMessage('optionsBookmarksShowTooltips')
+          },
+          {
+            xtype: 'numberfield',
+            name: 'tooltipDelay',
+            id: 'tooltipDelay',
+            fieldLabel: chrome.i18n.getMessage('optionsBookmarksTooltipDelay'),
+            allowBlank: false,
+            enforceMaxLength: true,
+            maxLength: 5,
+            size: 7,
+            minValue: 0,
+            maxValue: 99999
           }
         ]
       }

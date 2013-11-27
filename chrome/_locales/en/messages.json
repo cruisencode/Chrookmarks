@@ -171,6 +171,10 @@
     "message": "Show Tooltips",
     "description": "Text for Show Tooltips label in Bookmarks form"
   },
+  "optionsBookmarksTooltipDelay": {
+    "message": "Tooltip Delay (ms)",
+    "description": "Text for Tooltip Delay label in Bookmarks form"
+  },
   "optionsBookmarksSave": {
     "message": "Save Bookmarks Options",
     "description": "Text for save button in Bookmarks form"

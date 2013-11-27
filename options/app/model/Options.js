@@ -25,6 +25,7 @@ Ext.define('options.model.Options', {
     { name: 'sortOrder', type: 'string', convert: null },
     { name: 'showFavIcons', type: 'boolean' },
     { name: 'showTooltips', type: 'boolean' },
+    { name: 'tooltipDelay', type: 'string', convert: null },
     { name: 'popupWidth', type: 'string', convert: null },
     { name: 'popupHeight', type: 'string', convert: null }
   ],

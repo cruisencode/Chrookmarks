@@ -26,6 +26,9 @@ Ext.define('options.controller.Options', {
       'optionsMarksForm combobox[name=sortBy]': {
         select: this.sortByChanged
       },
+      'optionsMarksForm checkbox[name=showTooltips]': {
+        change: this.showTooltipsChanged
+      },
       'optionsMarksForm button[action=save]': {
         click: this.saveOptions
       },
@@ -35,9 +38,10 @@ Ext.define('options.controller.Options', {
     });
   },
   sortByChanged: function (combo, records) {
-    var sortOrder = Ext.getCmp('sortOrder');
-
-    sortOrder.setDisabled(records[0].data.val === 'none');
+    Ext.getCmp('sortOrder').setDisabled(records[0].data.val === 'none');
+  },
+  showTooltipsChanged: function (checkbox, newValue) {
+    Ext.getCmp('tooltipDelay').setDisabled(!newValue);
   },
   selectTab: function (view, record) {
     var layout = Ext.getCmp('optionsOptions').getLayout(),
@@ -55,10 +59,8 @@ Ext.define('options.controller.Options', {
         form.loadRecord(optionsRecord);
 
         if (record.data.title === chrome.i18n.getMessage('optionsBookmarks')) {
-          var sortBy = Ext.getCmp('sortBy'),
-              sortOrder = Ext.getCmp('sortOrder');
-
-          sortOrder.setDisabled(sortBy.getValue() === 'none');
+          Ext.getCmp('sortOrder').setDisabled(Ext.getCmp('sortBy').getValue() === 'none');
+          Ext.getCmp('tooltipDelay').setDisabled(!Ext.getCmp('showTooltips').getValue());
         }
 
         form.setLoading(false);

@@ -43,14 +43,6 @@ Ext.application({
   enableQuickTips: true,
   init: function () {
     document.title = chrome.i18n.getMessage('extName');
-
-//    Ext.tree.plugin.TreeViewDragDrop.override({
-//      init : function(view) {
-//        view.on('afterrender', this.onViewRender, this, {single: true}); // "afterrender" instead "render"
-//      }
-//    });
-
-    Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), { showDelay: 1000, hideDelay: 0 });
   },
   launch: function () {
     options.model.Options.load(0, {
@@ -58,14 +50,19 @@ Ext.application({
       callback: function(record) {
         popup.optionsData = record;
 
-        document.body.style.width = popup.optionsData.get('popupWidth') + 'px';
-        document.body.style.height = popup.optionsData.get('popupHeight') + 'px';
+        var sortBy = record.get('sortBy'),
+            popupWidth = record.get('popupWidth');
 
-        var sortBy = popup.optionsData.get('sortBy');
+        document.body.style.width = popupWidth + 'px';
+        document.body.style.height = record.get('popupHeight') + 'px';
+
+        Ext.apply(Ext.tip.QuickTipManager.getQuickTip(), { showDelay: record.get('tooltipDelay'), hideDelay: 0 });
 
         if (sortBy != 'none') {
-          this.getMarksStore().folderSort = true;
-          this.getMarksStore().sort(popup.optionsData.get('sortBy'), popup.optionsData.get('sortOrder'));
+          var marksStore = this.getMarksStore();
+
+          marksStore.folderSort = true;
+          marksStore.sort(record.get('sortBy'), record.get('sortOrder'));
         }
 
         Ext.create('Ext.container.Viewport', {
@@ -74,7 +71,11 @@ Ext.application({
         });
 
         Ext.getCmp('bookmarkTree').getRootNode().expand();
-        Ext.getCmp('searchField').focus(false, true);
+
+        var searchField = Ext.getCmp('searchField');
+
+        searchField.setWidth(parseInt(popupWidth) - 34);
+        searchField.focus(false, true);
       }
     });
   }

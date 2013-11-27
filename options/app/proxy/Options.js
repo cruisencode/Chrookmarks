@@ -31,6 +31,7 @@ Ext.define("options.proxy.Options", {
         'sortOrder': 'ASC',
         'showFavIcons': true,
         'showTooltips': true,
+        'tooltipDelay': '1000',
         'popupWidth': '360',
         'popupHeight': '600'
       }
