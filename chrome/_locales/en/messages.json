@@ -135,6 +135,10 @@
     "message": "Open in New Tab",
     "description": "Text for Open in New Tab label in Bookmarks form"
   },
+  "optionsBookmarksKeepPopupOpen": {
+    "message": "Keep Popup Open After Opening Bookmarks",
+    "description": "Text for Keep Popup Open After Opening Bookmarks label in Bookmarks form"
+  },
   "optionsBookmarksSortBy": {
     "message": "Sort By",
     "description": "Text for Sort By label in Bookmarks form"

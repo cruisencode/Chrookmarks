@@ -38,6 +38,11 @@ Ext.define("options.view.MarksForm", {
             fieldLabel: chrome.i18n.getMessage('optionsBookmarksOpenNewTab')
           },
           {
+            xtype: 'checkbox',
+            name: 'keepPopupOpen',
+            fieldLabel: chrome.i18n.getMessage('optionsBookmarksKeepPopupOpen')
+          },
+          {
             xtype: 'combobox',
             name: 'sortBy',
             id: 'sortBy',

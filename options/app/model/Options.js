@@ -21,6 +21,7 @@ Ext.define('options.model.Options', {
   extend: 'Ext.data.Model',
   fields: [
     { name: 'openInNewTab', type: 'boolean' },
+    { name: 'keepPopupOpen', type: 'boolean' },
     { name: 'sortBy', type: 'string', convert: null },
     { name: 'sortOrder', type: 'string', convert: null },
     { name: 'showFavIcons', type: 'boolean' },

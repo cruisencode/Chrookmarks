@@ -145,11 +145,15 @@ Ext.define('popup.controller.Marks', {
       } else if (popup.optionsData.get('openInNewTab') === true) {
         chrome.tabs.create({ url: url, selected: true });
 
-        self.close();
+        if (popup.optionsData.get('keepPopupOpen') !== true) {
+          self.close();
+        }
       } else {
         chrome.tabs.update({ url: url });
 
-        self.close();
+        if (popup.optionsData.get('keepPopupOpen') !== true) {
+          self.close();
+        }
       }
     } else if (node.isExpanded()) {
       node.collapse();
