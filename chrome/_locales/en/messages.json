@@ -23,6 +23,10 @@
     "message": "Options",
     "description": "Text for options button tooltip"
   },
+  "popupHistory": {
+    "message": "History",
+    "description": "Text for history button tooltip"
+  },
   "popupDelete": {
     "message": "Delete",
     "description": "Text for Delete buttons throughout popup"

@@ -74,7 +74,7 @@ Ext.application({
 
         var searchField = Ext.getCmp('searchField');
 
-        searchField.setWidth(parseInt(popupWidth) - 34);
+        searchField.setWidth(parseInt(popupWidth) - 56);
         searchField.focus(false, true);
       }
     });

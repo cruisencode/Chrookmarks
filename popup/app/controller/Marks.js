@@ -31,8 +31,14 @@ Ext.define('popup.controller.Marks', {
       'markTree button[action=options]': {
         click: this.openOptions
       },
+      'markTree button[action=history]': {
+        click: this.openHistory
+      },
       'markTree textfield[id=searchField]': {
-        change: this.searchBookmarks
+        change: {
+          fn: this.searchBookmarks,
+          buffer: 250
+        }
       },
       'createFolder button[action=save]': {
         click: this.createFolder
@@ -222,14 +228,20 @@ Ext.define('popup.controller.Marks', {
 
     self.close();
   },
+  openHistory: function () {
+    chrome.tabs.create({ url: "chrome://history", selected: true });
+
+    self.close();
+  },
   searchBookmarks: function (field, newValue) {
     var tree = this.getTree();
 
     if (!newValue || newValue === '') {
-      tree.clearFilter();
-      tree.expandPath('/root/1');
+      tree.clearFilter(function() {
+        tree.expandPath('/root/1');
+      }, this);
     } else {
-      tree.filter(new RegExp('.*?' + newValue + '.*', 'i'), 'text');
+      tree.filter('.*?' + newValue + '.*');
     }
   }
 });

@@ -44,6 +44,12 @@ Ext.define("popup.view.Tree", {
     '->',
     {
       xtype: 'button',
+      action: 'history',
+      tooltip: chrome.i18n.getMessage('popupHistory'),
+      icon: '/icons/history.png'
+    },
+    {
+      xtype: 'button',
       action: 'options',
       tooltip: chrome.i18n.getMessage('popupOptions'),
       icon: '/icons/options.png'

@@ -27,6 +27,7 @@ Ext.define("options.proxy.Options", {
     chrome.storage.sync.get({
       'options': {
         'openInNewTab': true,
+        'keepPopupOpen': false,
         'sortBy': 'text',
         'sortOrder': 'ASC',
         'showFavIcons': true,

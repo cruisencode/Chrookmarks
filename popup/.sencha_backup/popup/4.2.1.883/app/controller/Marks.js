@@ -31,8 +31,14 @@ Ext.define('popup.controller.Marks', {
       'markTree button[action=options]': {
         click: this.openOptions
       },
+      'markTree button[action=history]': {
+        click: this.openHistory
+      },
       'markTree textfield[id=searchField]': {
-        change: this.searchBookmarks
+        change: {
+          fn: this.searchBookmarks,
+          buffer: 100
+        }
       },
       'createFolder button[action=save]': {
         click: this.createFolder
@@ -145,11 +151,15 @@ Ext.define('popup.controller.Marks', {
       } else if (popup.optionsData.get('openInNewTab') === true) {
         chrome.tabs.create({ url: url, selected: true });
 
-        self.close();
+        if (popup.optionsData.get('keepPopupOpen') !== true) {
+          self.close();
+        }
       } else {
         chrome.tabs.update({ url: url });
 
-        self.close();
+        if (popup.optionsData.get('keepPopupOpen') !== true) {
+          self.close();
+        }
       }
     } else if (node.isExpanded()) {
       node.collapse();
@@ -215,6 +225,11 @@ Ext.define('popup.controller.Marks', {
   },
   openOptions: function () {
     chrome.tabs.create({ url: chrome.extension.getURL(chrome.runtime.getManifest().options_page), selected: true });
+
+    self.close();
+  },
+  openHistory: function () {
+    chrome.tabs.create({ url: "chrome://history", selected: true });
 
     self.close();
   },
