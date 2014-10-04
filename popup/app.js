@@ -21,6 +21,9 @@
 //@require @packageOverrides
 
 Ext.application({
+  compatibility: {
+    ext: '4.2'
+  },
   models:[
     'Mark'
   ],
